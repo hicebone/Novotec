@@ -66,8 +66,9 @@ Mensaje: ${mensaje}`;
 
     // Abrir WhatsApp
     window.open(url, "_blank");
-});
 
-document.getElementById("formMessage").style.display = "block";
-document.getElementById("formMessage").className = "alert alert-success";
-document.getElementById("formMessage").innerText = "Formulario enviado correctamente a WhatsApp";
+    // Mostrar mensaje de éxito después de abrir WhatsApp
+    document.getElementById("formMessage").style.display = "block";
+    document.getElementById("formMessage").className = "alert alert-success";
+    document.getElementById("formMessage").innerText = "Formulario enviado correctamente a WhatsApp";
+});
