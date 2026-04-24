@@ -2,38 +2,45 @@
    VARIABLES Y CONFIGURACIÓN GLOBAL
    ============================================ */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --dark-color: #212529;
-    --white-color: #ffffff;
-    --text-color: #343a40;
-    --text-muted: #6c757d;
-    --link-color: #007bff;
-    --link-hover: #0056b3;
-    --gray-light: #f8f9fa;
-    --gray-dark: #333333;
+    --primary-color: #007bff; /* azul brillante (tipo Bootstrap) */
+    --secondary-color: #6c757d; /* gris medio */
+    --dark-color: #212529; /* negro suave / gris muy oscuro */
+    --white-color: #ffffff; /* blanco */
+    --text-color: #343a40; /* gris oscuro para texto */
+    --text-muted: #6c757d; /* gris apagado */
+    --link-color: #007bff; /* azul enlaces */
+    --link-hover: #0056b3; /* azul más oscuro */
+    --gray-light: #f8f9fa; /* gris muy claro */
+    --gray-dark: #333333; /* gris oscuro */
     --transition: all 0.3s ease-in-out;
-    --shadow-lg: 0 18px 40px rgba(0, 123, 255, 0.25);
-    --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 18px 40px rgba(0, 123, 255, 0.25); /* sombra azul */
+    --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.08); /* sombra negra suave */
 }
 
-/* ============================================ */
+/* ============================================
+   RESET Y BASE
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html { 
+    scroll-behavior: smooth; 
+}
 
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
     line-height: 1.75;
     overflow-x: hidden;
-    background: radial-gradient(circle at top, #ffffff 0%, #e9f0f7 40%, #f0f5fa 100%);
+    background: radial-gradient(circle at top, #ffffff 0%, #e9f0f7 40%, #f0f5fa 100%); /* blanco a azul muy claro */
 }
 
+/* ============================================
+   LINKS
+   ============================================ */
 a, a:visited {
     color: var(--link-color);
     text-decoration: none;
@@ -45,9 +52,13 @@ a:hover, a:focus {
     text-decoration: underline;
 }
 
-.lead { color: var(--text-muted); }
+.lead { 
+    color: var(--text-muted); 
+}
 
-/* ============================================ */
+/* ============================================
+   TIPOGRAFÍA
+   ============================================ */
 h1,h2,h3,h4,h5,h6 {
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -61,11 +72,12 @@ p {
     line-height: 1.8;
 }
 
-/* ============================================ */
-/* NAVBAR */
+/* ============================================
+   NAVBAR
+   ============================================ */
 .navbar {
     background: var(--white-color);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08); /* negro transparente */
     padding: 0.75rem 0;
     z-index: 1000;
 }
@@ -81,8 +93,8 @@ p {
     height: 44px;
     padding: 6px 8px;
     border-radius: 14px;
-    border: 1px solid rgba(0,123,255,0.18);
-    background: rgba(0,123,255,0.05);
+    border: 1px solid rgba(0,123,255,0.18); /* azul transparente */
+    background: rgba(0,123,255,0.05); /* azul muy claro */
 }
 
 .navbar-nav .nav-link {
@@ -99,16 +111,19 @@ p {
     left:0;
     width:0;
     height:2px;
-    background:var(--primary-color);
+    background:var(--primary-color); /* azul */
     transition:0.3s;
 }
 
-.nav-link:hover::after { width:100%; }
+.nav-link:hover::after { 
+    width:100%; 
+}
 
-/* ============================================ */
-/* HERO */
+/* ============================================
+   HERO
+   ============================================ */
 .hero-section {
-    background: linear-gradient(135deg,#212529,#007bff);
+    background: linear-gradient(135deg,#212529,#007bff); /* negro a azul */
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -117,43 +132,45 @@ p {
 }
 
 .hero-copy {
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.75); /* negro con transparencia */
     border-radius: 28px;
     padding: 2rem;
     backdrop-filter: blur(10px);
 }
 
-/* ============================================ */
-/* BOTONES (CORREGIDO) */
+/* ============================================
+   BOTONES
+   ============================================ */
 .btn-primary {
-    background: var(--primary-color);
+    background: var(--primary-color); /* azul */
     border: none;
-    box-shadow: 0 6px 18px rgba(0,123,255,0.28);
+    box-shadow: 0 6px 18px rgba(0,123,255,0.28); /* sombra azul */
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,123,255,0.6);
+    box-shadow: 0 8px 25px rgba(0,123,255,0.6); /* sombra azul intensa */
 }
 
 .btn-outline-primary {
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+    color: var(--primary-color); /* azul */
+    border: 2px solid var(--primary-color); /* azul */
 }
 
 .btn-outline-primary:hover {
-    background: var(--primary-color);
+    background: var(--primary-color); /* azul */
     transform: translateY(-3px);
 }
 
-/* ============================================ */
-/* CARDS */
+/* ============================================
+   CARDS
+   ============================================ */
 .service-card {
-    background: var(--white-color);
+    background: var(--white-color); /* blanco */
     border-radius: 20px;
     padding: 2rem;
     transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06); /* negro transparente */
 }
 
 .service-card:hover {
@@ -163,73 +180,85 @@ p {
 
 .service-icon {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: var(--primary-color); /* azul */
 }
 
-/* ============================================ */
-/* EXPERIENCIA */
+/* ============================================
+   EXPERIENCIA
+   ============================================ */
 .experiencia-section {
-    background: linear-gradient(135deg,#212529,#007bff);
-    color:white;
+    background: linear-gradient(135deg,#212529,#007bff); /* negro a azul */
+    color:white; /* blanco */
     padding:4rem 0;
 }
 
-/* ============================================ */
-/* CONTACTO */
+/* ============================================
+   CONTACTO
+   ============================================ */
 .contacto-section {
-    background: #f3f5f8;
+    background: #f3f5f8; /* gris muy claro */
     padding:4rem 0;
 }
 
 .contact-card {
-    background:white;
+    background:white; /* blanco */
     border-radius:18px;
     padding:2rem;
     box-shadow:var(--shadow-sm);
 }
 
-/* ============================================ */
-/* FORM */
+/* ============================================
+   FORMULARIOS
+   ============================================ */
 .form-container {
-    background:white;
+    background:white; /* blanco */
     border-radius:20px;
     padding:3rem;
-    border-left:5px solid var(--primary-color);
+    border-left:5px solid var(--primary-color); /* azul */
 }
 
 .form-control:focus {
-    border-color:var(--primary-color);
-    box-shadow:0 0 0 0.2rem rgba(0,123,255,0.25);
+    border-color:var(--primary-color); /* azul */
+    box-shadow:0 0 0 0.2rem rgba(0,123,255,0.25); /* azul transparente */
 }
 
-/* ============================================ */
-/* ALERT (CORREGIDO) */
+/* ============================================
+   ALERTAS
+   ============================================ */
 #formMessage.alert-success {
-    background-color:#d4edda;
+    background-color:#d4edda; /* verde claro */
 }
 
 #formMessage.alert-danger {
-    background-color:#f8d7da;
+    background-color:#f8d7da; /* rojo claro */
 }
 
 #formMessage.alert-primary {
-    background-color:#cfe2ff;
+    background-color:#cfe2ff; /* azul claro */
 }
 
-/* ============================================ */
-/* FOOTER */
+/* ============================================
+   FOOTER
+   ============================================ */
 .footer-section {
-    background:#0f0f0f;
-    border-top:3px solid var(--primary-color);
+    background:#0f0f0f; /* negro profundo */
+    border-top:3px solid var(--primary-color); /* azul */
 }
 
-/* ============================================ */
-/* SCROLL */
-::-webkit-scrollbar { width:10px; }
-::-webkit-scrollbar-thumb { background:var(--primary-color); }
+/* ============================================
+   SCROLL
+   ============================================ */
+::-webkit-scrollbar { 
+    width:10px; 
+}
 
-/* ============================================ */
-/* RESPONSIVE */
+::-webkit-scrollbar-thumb { 
+    background:var(--primary-color); /* azul */
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media(max-width:768px){
     .hero-section{padding:3rem 0;}
     .hero-section h1{font-size:2rem;}
