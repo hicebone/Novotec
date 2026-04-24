@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarLinks();
+    configurarFormulario();
+});
+
 function inicializarLinks() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -22,7 +27,7 @@ function inicializarLinks() {
                 const offset = navbar ? navbar.offsetHeight : 80;
 
                 // 🔥 POSICIÓN REAL (corrige el problema)
-                const posicion = destino.getBoundingClientRect().top + window.pageYOffset - offset;
+                const posicion = destino.getBoundingClientRect().top + window.scrollY - offset;
 
                 window.scrollTo({
                     top: posicion,
@@ -33,41 +38,66 @@ function inicializarLinks() {
     });
 }
 
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+function configurarFormulario() {
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
 
-    // Obtener valores
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-    const servicio = document.getElementById("servicio").value;
-    const mensaje = document.getElementById("mensaje").value.trim();
-    const terminos = document.getElementById("terminos").checked;
+    if (!contactForm) return;
 
-    // Validación básica
-    if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
-        alert("Por favor completa todos los campos y acepta los términos.");
-        return;
-    }
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    // Número de WhatsApp (tu número)
-    const numero = "526625085372";
+        // Obtener valores
+        const nombre = document.getElementById("nombre").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const servicio = document.getElementById("servicio").value;
+        const mensaje = document.getElementById("mensaje").value.trim();
+        const terminos = document.getElementById("terminos").checked;
 
-    // Crear mensaje
-    const texto = `Hola, quiero solicitar un servicio:%0A
+        contactForm.classList.add('was-validated');
+
+        // Validación básica
+        if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
+        if (!contactForm.checkValidity()) {
+            e.stopPropagation();
+            contactForm.classList.add('was-validated');
+            if (formMessage) {
+                formMessage.style.display = "block";
+                formMessage.className = "alert alert-danger";
+                formMessage.innerText = "Por favor completa todos los campos y acepta los términos.";
+            }
+            return;
+        }
+
+        // Número de WhatsApp (tu número)
+        const numero = "526625085372";
+
+        // Crear mensaje
+        const texto = `Hola, quiero solicitar un servicio:%0A
 Nombre: ${nombre}%0A
 Correo: ${email}%0A
 Teléfono: ${telefono}%0A
 Servicio: ${servicio}%0A
 Mensaje: ${mensaje}`;
+        
+        const texto = encodeURIComponent(`Hola, quiero solicitar un servicio:
+Nombre: ${nombre}
+Correo: ${email}
+Teléfono: ${telefono}
+Servicio: ${servicio}
+Mensaje: ${mensaje}`);
 
-    // Crear enlace
-    const url = `https://wa.me/${numero}?text=${texto}`;
+        // Crear enlace
+        const url = `https://wa.me/${numero}?text=${texto}`;
 
-    // Abrir WhatsApp
-    window.open(url, "_blank");
-});
+        // Abrir WhatsApp
+        window.open(url, "_blank");
 
-document.getElementById("formMessage").style.display = "block";
-document.getElementById("formMessage").className = "alert alert-success";
-document.getElementById("formMessage").innerText = "Formulario enviado correctamente a WhatsApp";
+        if (formMessage) {
+            formMessage.style.display = "block";
+            formMessage.className = "alert alert-success";
+            formMessage.innerText = "Formulario enviado correctamente a WhatsApp";
+        }
+    });
+}
