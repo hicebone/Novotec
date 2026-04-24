@@ -15,18 +15,15 @@ function inicializarLinks() {
             if (destino) {
                 e.preventDefault();
 
-                // 🔽 Cerrar navbar en móvil
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                     const navbarToggler = document.querySelector('.navbar-toggler');
                     if (navbarToggler) navbarToggler.click();
                 }
 
-                // 🔥 ALTURA DEL NAVBAR (IMPORTANTE)
                 const navbar = document.querySelector('.navbar');
                 const offset = navbar ? navbar.offsetHeight : 80;
 
-                // 🔥 POSICIÓN REAL (corrige el problema)
                 const posicion = destino.getBoundingClientRect().top + window.scrollY - offset;
 
                 window.scrollTo({
@@ -47,50 +44,49 @@ function configurarFormulario() {
     contactForm.addEventListener("submit", function(e) {
         e.preventDefault();
 
-        // Obtener valores
         const nombre = document.getElementById("nombre").value.trim();
         const email = document.getElementById("email").value.trim();
         const telefono = document.getElementById("telefono").value.trim();
         const servicio = document.getElementById("servicio").value;
         const mensaje = document.getElementById("mensaje").value.trim();
-        const terminos = document.getElementById("terminos").checked;
+        const terminos = document.getElementById("terminos")?.checked;
 
-        if (!contactForm.checkValidity()) {
-            console.log("Formulario inválido");
-            e.stopPropagation();
+        // Validación extra manual
+        if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
             contactForm.classList.add('was-validated');
+
             if (formMessage) {
                 formMessage.style.display = "block";
                 formMessage.className = "alert alert-danger";
-                formMessage.className = "alert alert-primary";
                 formMessage.innerText = "Por favor completa todos los campos y acepta los términos.";
             }
             return;
         }
 
-        // Número de WhatsApp (tu número)
+        // Número de WhatsApp
         const numero = "526625085372";
-        
-        // Construcción limpia del mensaje para evitar espacios de indentación
-        let mensajeWA = "Hola, quiero solicitar un servicio:\n";
-        mensajeWA += "Nombre: " + nombre + "\n";
-        mensajeWA += "Correo: " + email + "\n";
-        mensajeWA += "Teléfono: " + telefono + "\n";
-        mensajeWA += "Servicio: " + servicio + "\n";
-        mensajeWA += "Mensaje: " + mensaje;
 
-        const texto = encodeURIComponent(mensajeWA);
+        // Mensaje optimizado (más profesional)
+        let mensajeWA = `Hola, me interesa contratar un servicio de Novotec:%0A%0A`;
+        mensajeWA += `👤 Nombre: ${nombre}%0A`;
+        mensajeWA += `📧 Correo: ${email}%0A`;
+        mensajeWA += `📱 Teléfono: ${telefono}%0A`;
+        mensajeWA += `🛠 Servicio: ${servicio}%0A`;
+        mensajeWA += `📝 Detalles: ${mensaje}`;
 
-        // Crear enlace
-        const url = `https://wa.me/${numero}?text=${texto}`;
+        const url = `https://wa.me/${numero}?text=${mensajeWA}`;
 
-        // Abrir WhatsApp
         window.open(url, "_blank");
 
+        // Mensaje éxito
         if (formMessage) {
             formMessage.style.display = "block";
             formMessage.className = "alert alert-success";
-            formMessage.innerText = "Formulario enviado correctamente a WhatsApp";
+            formMessage.innerText = "Redirigiendo a WhatsApp...";
         }
+
+        // Limpiar formulario
+        contactForm.reset();
+        contactForm.classList.remove('was-validated');
     });
 }
