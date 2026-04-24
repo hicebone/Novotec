@@ -2,14 +2,14 @@
    VARIABLES Y CONFIGURACIÓN GLOBAL
    ============================================ */
 :root {
-    --primary-color: #e10613;      /* Rojo del logo */
-    --secondary-color: #4a4a4a;    /* Gris neutro */
-    --dark-color: #0a0a0a;         /* Tono oscuro */
+    --primary-color: #007bff;      /* Azul principal para un look tech */
+    --secondary-color: #6c757d;    /* Gris secundario */
+    --dark-color: #212529;         /* Tono oscuro, casi negro */
     --white-color: #ffffff;        /* Blanco puro */
-    --text-color: #111111;         /* Texto principal */
-    --text-muted: #5f5f5f;         /* Texto secundario */
-    --link-color: #e10613;         /* Enlaces rojo */
-    --link-hover: #b10b10;         /* Hover enlaces rojo oscuro */
+    --text-color: #343a40;         /* Texto principal gris oscuro */
+    --text-muted: #6c757d;         /* Texto secundario gris */
+    --link-color: #007bff;         /* Enlaces azul */
+    --link-hover: #0056b3;         /* Hover enlaces azul oscuro */
     --gray-light: #f8f9fa;         /* Gris claro */
     --gray-dark: #333333;          /* Gris oscuro */
     --transition: all 0.3s ease-in-out;
@@ -36,7 +36,7 @@ body {
     color: var(--text-color);
     line-height: 1.75;
     overflow-x: hidden;
-    background: radial-gradient(circle at top, #ffffff 0%, #f4f6f9 40%, #f8f9fb 100%);
+    background: radial-gradient(circle at top, #ffffff 0%, #e9f0f7 40%, #f0f5fa 100%); /* Fondo con un toque azulado */
 }
 
 a, a:visited {
@@ -94,13 +94,13 @@ p {
 .navbar-brand img,
 .navbar-logo {
     display: inline-block;
-    height: 104px;
+    height: 44px; /* Ajustado para mejor proporción */
     width: auto;
-    background: rgba(216, 0, 0, 0.05);
-    padding: 10px 12px;
+    background: rgba(0, 123, 255, 0.05); /* Fondo azul claro */
+    padding: 6px 8px; /* Ajustado para mejor proporción */
     border-radius: 14px;
-    border: 1px solid rgba(216, 0, 0, 0.18);
-    box-shadow: 0 2px 10px rgba(216, 0, 0, 0.16);
+    border: 1px solid rgba(0, 123, 255, 0.18); /* Borde azul claro */
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.16); /* Sombra azul */
     transition: var(--transition);
 }
 
@@ -123,12 +123,7 @@ p {
     text-shadow: none;
 }
 
-@media (max-width: 767.98px) {
-    .navbar-logo {
-        height: 44px;
-        padding: 6px 8px;
-    }
-
+@media (max-width: 767.98px) { /* Mantenemos estos ajustes para móviles */
     .navbar-brand {
         gap: 0.4rem;
     }
@@ -177,14 +172,14 @@ p {
    HERO SECTION
    ============================================ */
 .hero-section {
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(35, 35, 35, 0.95) 50%, rgba(225, 16, 19, 0.92) 100%);
+    background: linear-gradient(135deg, rgba(33, 37, 41, 0.95) 0%, rgba(52, 58, 64, 0.95) 50%, rgba(0, 123, 255, 0.92) 100%); /* Gradiente oscuro a azul */
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    padding: 2rem 0;
+    padding: 4rem 0; /* Ajuste de padding para mejor visualización */
 }
 
 .hero-section::before {
@@ -195,7 +190,7 @@ p {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(225, 16, 19, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 20% 50%, rgba(0, 123, 255, 0.14) 0%, transparent 50%), /* Efecto de luz azul */
         radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.09) 0%, transparent 50%);
     pointer-events: none;
 }
@@ -237,14 +232,14 @@ p {
 
 .btn-danger {
     background: var(--primary-color);
-    border: none;
-    box-shadow: 0 6px 18px rgba(225, 16, 19, 0.28);
+    border: none; /* Eliminamos el borde para que sea un botón sólido */
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.28); /* Sombra azul */
 }
 
 .btn-danger:hover {
     background: var(--primary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(216, 0, 0, 0.6);
+    transform: translateY(-3px); /* Efecto hover */
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6); /* Sombra azul más intensa */
 }
 
 .btn-outline-danger {
@@ -259,15 +254,14 @@ p {
 }
 
 .hero-image {
-    animation: bounce 2s infinite;
-    filter: drop-shadow(0 10px 30px rgba(216, 0, 0, 0.3));
+    animation: bounce 2s infinite; /* Mantenemos la animación */
+    filter: drop-shadow(0 10px 30px rgba(0, 123, 255, 0.3)); /* Sombra azul */
 }
 
 /* ============================================
    SECCIONES GENERALES
    ============================================ */
-.servicios-section {
-    background: linear-gradient(135deg, var(--gray-light) 0%, var(--white-color) 100%);
+.servicios-section { /* Mantenemos el fondo claro para esta sección */
     position: relative;
     overflow: hidden;
 }
@@ -278,8 +272,8 @@ p {
     top: -50%;
     right: -10%;
     width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(216, 0, 0, 0.05) 0%, transparent 70%);
+    height: 500px; /* Ajustamos el tamaño */
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.05) 0%, transparent 70%); /* Efecto de luz azul */
     border-radius: 50%;
     pointer-events: none;
 }
@@ -306,15 +300,15 @@ p {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--dark-color) 100%);
+    height: 4px; /* Mantenemos el grosor */
+    background: linear-gradient(90deg, var(--primary-color) 0%, #0056b3 100%); /* Gradiente azul */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(225, 16, 19, 0.15) !important;
+    box-shadow: 0 20px 50px rgba(0, 123, 255, 0.15) !important; /* Sombra azul */
 }
 
 .service-card:hover::before {
@@ -328,8 +322,8 @@ p {
 }
 
 .service-card:hover .service-icon {
-    transform: scale(1.1) rotate(10deg);
-    filter: drop-shadow(0 5px 15px rgba(225, 16, 19, 0.25));
+    transform: scale(1.1) rotate(10deg); /* Efecto hover */
+    filter: drop-shadow(0 5px 15px rgba(0, 123, 255, 0.25)); /* Sombra azul */
 }
 
 .service-card .card-title {
@@ -359,7 +353,7 @@ p {
    EXPERIENCIA SECTION
    ============================================ */
 .experiencia-section {
-    background: linear-gradient(135deg, var(--dark-color) 0%, #2b2b2b 45%, rgba(225, 16, 19, 0.95) 100%);
+    background: linear-gradient(135deg, var(--dark-color) 0%, #343a40 45%, rgba(0, 123, 255, 0.95) 100%); /* Gradiente oscuro a azul */
     color: var(--white-color);
     padding: 4rem 0;
     position: relative;
@@ -406,7 +400,7 @@ p {
 }
 
 .experience-box li:hover {
-    transform: translateX(10px);
+    transform: translateX(10px); /* Efecto hover */
     color: var(--primary-color);
 }
 
@@ -428,7 +422,7 @@ p {
 .stat-box:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: scale(1.05);
-    border-color: var(--primary-color);
+    border-color: var(--primary-color); /* Borde azul al hover */
 }
 
 .stat-box h3 {
@@ -454,8 +448,8 @@ p {
     border-radius: 18px;
     padding: 2rem;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    border-top: 4px solid var(--primary-color);
+    transition: var(--transition); /* Mantenemos la transición */
+    border-top: 4px solid var(--primary-color); /* Borde superior azul */
 }
 
 .contact-card:hover {
@@ -466,7 +460,7 @@ p {
 .contact-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #b51a1f 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%); /* Gradiente azul */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -478,7 +472,7 @@ p {
 }
 
 .contact-card:hover .contact-icon {
-    transform: scale(1.1) rotate(10deg);
+    transform: scale(1.1) rotate(10deg); /* Efecto hover */
 }
 
 .contact-card h3 {
@@ -507,7 +501,7 @@ p {
     border-radius: 20px;
     padding: 3rem 2.5rem;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid var(--primary-color);
+    border-left: 5px solid var(--primary-color); /* Borde izquierdo azul */
 }
 
 .form-container .form-label {
@@ -527,9 +521,9 @@ p {
 }
 
 .form-container .form-control:focus,
-.form-container .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(216, 0, 0, 0.25);
+.form-container .form-select:focus { /* Foco azul */
+    border-color: var(--primary-color); /* Borde azul */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra azul */
     background-color: var(--white-color);
 }
 
@@ -541,7 +535,7 @@ p {
 .form-check-input {
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--primary-color); /* Borde azul */
     border-radius: 4px;
     transition: var(--transition);
     cursor: pointer;
@@ -553,7 +547,7 @@ p {
 }
 
 .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(216, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Sombra azul */
 }
 
 .form-check-label {
@@ -564,7 +558,7 @@ p {
 
 .invalid-feedback {
     display: block;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Mensajes de error en azul */
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
@@ -591,8 +585,8 @@ p {
    FOOTER
    ============================================ */
 .footer-section {
-    background: linear-gradient(135deg, var(--dark-color) 0%, #0f0f0f 100%);
-    border-top: 3px solid var(--primary-color);
+    background: linear-gradient(135deg, var(--dark-color) 0%, #0f0f0f 100%); /* Mantenemos el fondo oscuro */
+    border-top: 3px solid var(--primary-color); /* Borde superior azul */
     margin-top: 3rem;
 }
 
@@ -609,7 +603,7 @@ p {
 .social-links a {
     transition: var(--transition);
     display: inline-block;
-}
+} /* Mantenemos la transición */
 
 .social-links a:hover {
     transform: scale(1.3) rotate(10deg);
@@ -667,7 +661,7 @@ p {
    SCROLLBAR PERSONALIZADO
    ============================================ */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 10px; /* Mantenemos el ancho */
 }
 
 ::-webkit-scrollbar-track {
@@ -679,7 +673,7 @@ p {
     border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover { /* Hover azul */
     background: var(--primary-color);
 }
 
@@ -687,12 +681,12 @@ p {
    SELECCIÓN DE TEXTO
    ============================================ */
 ::selection {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Selección de texto azul */
     color: var(--white-color);
 }
 
 ::-moz-selection {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Selección de texto azul */
     color: var(--white-color);
 }
 
@@ -922,7 +916,7 @@ p {
    UTILIDADES
    ============================================ */
 .text-danger {
-    color: var(--primary-color) !important;
+    color: var(--primary-color) !important; /* Redefinimos text-danger para que sea azul */
 }
 
 .bg-dark {
