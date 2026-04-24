@@ -55,10 +55,6 @@ function configurarFormulario() {
         const mensaje = document.getElementById("mensaje").value.trim();
         const terminos = document.getElementById("terminos").checked;
 
-        contactForm.classList.add('was-validated');
-
-        // Validación básica
-        if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
         if (!contactForm.checkValidity()) {
             e.stopPropagation();
             contactForm.classList.add('was-validated');
@@ -72,14 +68,6 @@ function configurarFormulario() {
 
         // Número de WhatsApp (tu número)
         const numero = "526625085372";
-
-        // Crear mensaje
-        const texto = `Hola, quiero solicitar un servicio:%0A
-Nombre: ${nombre}%0A
-Correo: ${email}%0A
-Teléfono: ${telefono}%0A
-Servicio: ${servicio}%0A
-Mensaje: ${mensaje}`;
         
         const texto = encodeURIComponent(`Hola, quiero solicitar un servicio:
 Nombre: ${nombre}

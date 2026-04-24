@@ -163,6 +163,11 @@ p {
     transition: width 0.3s ease;
 }
 
+/* Mejora el scroll cuando hay navbar fijo */
+[id] {
+    scroll-margin-top: 90px;
+}
+
 .navbar-nav .nav-link:hover::after,
 .navbar-nav .nav-link.active::after {
     width: 100%;
@@ -201,11 +206,12 @@ p {
 }
 
 .hero-copy {
-    background: rgba(0, 0, 0, 0.34);
+background: rgba(0, 0, 0, 0.65);
     border-radius: 28px;
     padding: 2rem;
     display: inline-block;
     max-width: 100%;
+    backdrop-filter: blur(10px);
 }
 
 .hero-section h1 {
@@ -217,8 +223,8 @@ p {
 .hero-section p {
     animation: slideInUp 0.8s ease-out 0.2s both;
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.92);
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.16);
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-section .btn {
@@ -847,6 +853,11 @@ p {
 
 /* Modo oscuro del sistema */
 @media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #f0f0f0;
+        --text-muted: #b0b0b0;
+    }
+
     .servicios-section {
         background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     }
