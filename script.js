@@ -62,6 +62,7 @@ function configurarFormulario() {
             if (formMessage) {
                 formMessage.style.display = "block";
                 formMessage.className = "alert alert-danger";
+                formMessage.className = "alert alert-primary";
                 formMessage.innerText = "Por favor completa todos los campos y acepta los términos.";
             }
             return;
