@@ -70,12 +70,6 @@ function configurarFormulario() {
         // Número de WhatsApp (tu número)
         const numero = "526625085372";
         
-        const texto = encodeURIComponent(`Hola, quiero solicitar un servicio:
-Nombre: ${nombre}
-Correo: ${email}
-Teléfono: ${telefono}
-Servicio: ${servicio}
-Mensaje: ${mensaje}`);
         // Construcción limpia del mensaje para evitar espacios de indentación
         let mensajeWA = "Hola, quiero solicitar un servicio:\n";
         mensajeWA += "Nombre: " + nombre + "\n";
