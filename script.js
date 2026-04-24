@@ -56,6 +56,7 @@ function configurarFormulario() {
         const terminos = document.getElementById("terminos").checked;
 
         if (!contactForm.checkValidity()) {
+            console.log("Formulario inválido");
             e.stopPropagation();
             contactForm.classList.add('was-validated');
             if (formMessage) {
@@ -75,6 +76,15 @@ Correo: ${email}
 Teléfono: ${telefono}
 Servicio: ${servicio}
 Mensaje: ${mensaje}`);
+        // Construcción limpia del mensaje para evitar espacios de indentación
+        let mensajeWA = "Hola, quiero solicitar un servicio:\n";
+        mensajeWA += "Nombre: " + nombre + "\n";
+        mensajeWA += "Correo: " + email + "\n";
+        mensajeWA += "Teléfono: " + telefono + "\n";
+        mensajeWA += "Servicio: " + servicio + "\n";
+        mensajeWA += "Mensaje: " + mensaje;
+
+        const texto = encodeURIComponent(mensajeWA);
 
         // Crear enlace
         const url = `https://wa.me/${numero}?text=${texto}`;
