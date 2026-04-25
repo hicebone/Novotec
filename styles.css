@@ -850,7 +850,7 @@ p {
    ============================================ */
 
 /* Modo oscuro del sistema */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme:gray-light ) {
     .servicios-section {
         background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     }
@@ -873,21 +873,86 @@ p {
         color: var(--white-color);
     }
 
-    .form-container {
-        background: #2a2a2a;
-        color: var(--white-color);
-    }
+    /* ============================================
+   CONTENEDOR DEL FORMULARIO
+   ============================================ */
+.form-container {
+    background: #2a2a2a; /* Gris carbón (fondo principal modo oscuro) */
+    color: var(--white-color); /* Texto blanco para alto contraste */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
 
-    .form-container .form-label {
-        color: var(--white-color);
-    }
+/* ============================================
+   ETIQUETAS (LABELS)
+   ============================================ */
+.form-container .form-label {
+    color: #b3b3b3; /* Gris claro (mejor visibilidad que secondary oscuro) */
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
 
-    .form-container .form-control,
-    .form-container .form-select {
-        background-color: #1a1a1a;
-        color: var(--white-color);
-        border-color: #444;
-    }
+/* ============================================
+   CAMPOS (INPUT, SELECT, TEXTAREA)
+   ============================================ */
+.form-container .form-control,
+.form-container .form-select {
+    background-color: #1a1a1a; /* Negro suave (diferenciación del contenedor) */
+    color: #e0e0e0; /* Gris muy claro (mejor legibilidad) */
+    border: 1px solid #333; /* Borde neutro */
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    transition: all 0.3s ease;
+}
+
+/* Placeholder */
+.form-container .form-control::placeholder {
+    color: #777; /* Gris medio para placeholder */
+}
+
+/* ============================================
+   EFECTO HOVER
+   ============================================ */
+.form-container .form-control:hover,
+.form-container .form-select:hover {
+    border-color: var(--primary-color); /* Azul al pasar el mouse */
+}
+
+/* ============================================
+   EFECTO FOCUS (IMPORTANTE UX)
+   ============================================ */
+.form-container .form-control:focus,
+.form-container .form-select:focus {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-color: var(--primary-color); /* Azul principal */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Glow azul */
+    outline: none;
+}
+
+/* ============================================
+   BOTÓN (SI USAS UNO)
+   ============================================ */
+.form-container .btn-primary {
+    background-color: var(--primary-color); /* Azul principal */
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.form-container .btn-primary:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   ESPACIADO ENTRE CAMPOS
+   ============================================ */
+.form-container .mb-3 {
+    margin-bottom: 1.2rem;
 }
 
 /* Reducir movimiento */
@@ -935,4 +1000,5 @@ p {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;   border-width: 0;
+}
 }
