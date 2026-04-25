@@ -340,18 +340,20 @@ p {
 .service-card .card-text {
     flex-grow: 1;
     font-size: 0.96rem;
-    color: var(--text-muted);
+    color: var(--primary-color);
     line-height: 1.7;
 }
 
 .servicios-section,
-.servicios-section .lead,
 .servicios-section .card-title,
-.servicios-section .card-text,
 .contacto-section,
 .contacto-section .lead,
 .contacto-section p {
     color: var(--text-color);
+}
+
+.servicios-section .lead {
+    color: var(--primary-color);
 }
 
 /* ============================================
