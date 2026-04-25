@@ -7,7 +7,8 @@
     --dark-color: #0a0a0a;         /* Tono oscuro */
    --white-color: #ffffff;        /* Blanco puro */
     --text-color: #111111;         /* Texto principal */
-    --text-muted: #5f5f5f;         /* Texto secundario */
+    --text-muted: #575757;         /* Texto secundario con mejor contraste */
+    --danger-color: #e11013;       /* Rojo corporativo para avisos/iconos */
     --link-color: #0066cc;         /* Enlaces azul */
     --link-hover: #004c99;         /* Hover enlaces azul oscuro */
     --gray-light: #f8f9fa;         /* Gris claro */
@@ -339,7 +340,7 @@ p {
 .service-card .card-text {
     flex-grow: 1;
     font-size: 0.96rem;
-    color: #5b5b5b;
+    color: var(--text-muted);
     line-height: 1.7;
 }
 
@@ -357,7 +358,8 @@ p {
    EXPERIENCIA SECTION
    ============================================ */
 .experiencia-section {
-    background: linear-gradient(135deg, var(--dark-color) 0%, #2b2b2b 45%, rgba(0, 102, 204, 0.95) 100%);
+    background-color: var(--dark-color);
+    background: linear-gradient(135deg, var(--dark-color) 0%, #1a1a1a 45%, rgba(0, 80, 160, 0.95) 100%);
     color: var(--white-color);
     padding: 4rem 0;
     position: relative;
@@ -405,7 +407,7 @@ p {
 
 .experience-box li:hover {
     transform: translateX(10px);
-    color: var(--primary-color);
+    color: var(--white-color);
 }
 
 /* ============================================
@@ -562,7 +564,7 @@ p {
 
 .invalid-feedback {
     display: block;
-    color: var(--primary-color);
+    color: var(--danger-color);
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
