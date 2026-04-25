@@ -6,413 +6,226 @@
 <meta name="description" content="Reparación profesional de computadoras en Hermosillo, Sonora. 25 años de experiencia. Servicio rápido y confiable.">
 <title>NOVOTECHermosillo | Reparación de Computadoras Profesional</title>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<!-- Custom CSS -->
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- CSS personalizado -->
 <link rel="stylesheet" href="styles.css">
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-166MTJPZJV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-166MTJPZJV');
 </script>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="#inicio">
-            <img src="imagenes/logo.png" alt="Logo novotec" class="navbar-logo">
-            <span class="navbar-brand-text d-none d-md-inline ms-2">Novotec</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="#inicio">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#servicios">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#experiencia">Experiencia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
-<!-- Hero Section -->
-<section id="inicio" class="hero-section">
-    <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
-        <div class="row w-100 align-items-center">
-            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 text-center text-lg-start">
-                <div class="hero-copy">
-                    <h1 class="display-4 fw-bold text-white mb-3" role="heading" aria-level="1">
-                        Reparación de Computadoras <span class="text-danger">Profesional</span>
-                    </h1>
-                    <p class="lead text-white-75 mb-4">
-                        En Hermosillo, tu equipo está en manos expertas. En Novotec ofrecemos reparación y mantenimiento profesional de computadoras, laptops y equipos de oficina, con soluciones rápidas y confiables.
-                    </p>
-                    <p class="lead text-white-75 mb-4">
-                        Si tu equipo está lento, tiene fallas de software, problemas de hardware o virus, te ayudamos con atención local, precios justos y garantía. Tu equipo funcionando como nuevo está cerca.
-                    </p>
-                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
-                    <a href="#contacto" class="btn btn-danger btn-lg" role="button" aria-label="Solicitar servicio">
-                        <i class="fas fa-phone-alt"></i> Solicitar Servicio
-                    </a>
-                    <a href="https://wa.me/526625085372" class="btn btn-outline-danger btn-lg" target="_blank" rel="noopener noreferrer" role="button" aria-label="Contactar por WhatsApp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 text-center">
-                <div class="hero-image">
-                    <img src="imagenes/reparacion.avif" alt="Reparación Profesional de Computadoras" class="img-fluid rounded shadow">
-                </div>
-            </div>
-        </div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="#inicio" class="logo">
+      <img src="imagenes/logo.png" alt="Logo Novotec">
+      <span>Novotec</span>
+    </a>
+
+    <nav class="menu" id="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Reparación de Computadoras <span>Profesional</span></h1>
+      <p>
+        En Hermosillo, tu equipo está en manos expertas. Ofrecemos reparación y mantenimiento profesional de computadoras con soluciones rápidas y confiables.
+      </p>
+      <p>
+        Fallas de software, hardware o virus — lo resolvemos con atención local y garantía.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn primary" href="#contacto">Solicitar Servicio</a>
+        <a class="btn outline" href="https://wa.me/526625085372" target="_blank">WhatsApp</a>
+      </div>
     </div>
+
+    <div class="hero-image">
+      <img src="imagenes/reparacion.avif" alt="Reparación de computadoras">
+    </div>
+  </div>
 </section>
 
-<!-- Servicios Section -->
-<section id="servicios" class="servicios-section py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold text-dark mb-3" role="heading" aria-level="2">Nuestros Servicios</h2>
-            <p class="lead text-muted">Soluciones completas para todas tus necesidades informáticas</p>
-        </div>
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <div class="container">
+    <h2>Nuestros Servicios</h2>
 
-        <div class="row g-4">
-            <!-- Servicio 1 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/reparacion.avif" alt="Reparación de Laptops" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Reparación de Laptops</h3>
-                        <p class="card-text text-muted">
-                            Diagnóstico y reparación de fallos en pantalla, batería, disco duro y más.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div class="grid">
+      <div class="card">
+        <img src="imagenes/reparacion.avif" alt="Laptops">
+        <h3>Reparación de Laptops</h3>
+        <p>Diagnóstico y reparación de pantalla, batería y hardware.</p>
+      </div>
 
-            <!-- Servicio 2 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/instalacion.png" alt="Reparación de PCs" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Reparación de PCs</h3>
-                        <p class="card-text text-muted">
-                            Mantenimiento, actualización y reparación de computadoras de escritorio.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <img src="imagenes/instalacion.png" alt="PC">
+        <h3>Reparación de PC</h3>
+        <p>Mantenimiento y actualización de equipos de escritorio.</p>
+      </div>
 
-            <!-- Servicio 3 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/antivirus.png" alt="Seguridad Informática" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Seguridad Informática</h3>
-                        <p class="card-text text-muted">
-                            Eliminación de virus, malware y protección de tus datos personales.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <img src="imagenes/antivirus.png" alt="Seguridad">
+        <h3>Seguridad Informática</h3>
+        <p>Eliminación de virus y protección de datos.</p>
+      </div>
 
-            <!-- Servicio 4 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/programas.png" alt="Recuperación de Datos" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Recuperación de Datos</h3>
-                        <p class="card-text text-muted">
-                            Recuperación profesional de datos perdidos o borrados accidentalmente.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <img src="imagenes/programas.png" alt="Datos">
+        <h3>Recuperación de Datos</h3>
+        <p>Recuperación profesional de archivos eliminados.</p>
+      </div>
 
-            <!-- Servicio 5 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/programas.png" alt="Instalación de Software" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Instalación de Software</h3>
-                        <p class="card-text text-muted">
-                            Instalación y configuración de sistemas operativos y aplicaciones.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <img src="imagenes/programas.png" alt="Software">
+        <h3>Instalación de Software</h3>
+        <p>Instalación de sistemas y programas.</p>
+      </div>
 
-            <!-- Servicio 6 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card service-card h-100 border-0 shadow-lg">
-                    <div class="card-body text-center">
-                        <div class="service-icon mb-3">
-                            <img src="imagenes/hmo.jpg" alt="Red e Internet" class="img-fluid" style="max-height: 60px;">
-                        </div>
-                        <h3 class="card-title fw-bold mb-2">Red e Internet</h3>
-                        <p class="card-text text-muted">
-                            Configuración y solución de problemas de conexión de red.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="card">
+        <img src="imagenes/hmo.jpg" alt="Red">
+        <h3>Red e Internet</h3>
+        <p>Configuración de redes y conexión.</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Experiencia Section -->
-<section id="experiencia" class="experiencia-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-                <div class="experience-box">
-                    <h2 class="display-5 fw-bold text-white mb-4" role="heading" aria-level="2">
-                        25+ Años de Experiencia
-                    </h2>
-                    <p class="lead text-white-50 mb-3">
-        Hace más de 25 años, en Hermosillo, Sonora, nació un pequeño taller dedicado a la reparación de computadoras. Comenzamos con herramientas básicas, un profundo interés por la tecnología y el compromiso firme de ayudar a nuestra comunidad a resolver cualquier problema relacionado con su equipo de cómputo.
-                    </p>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-danger me-2"></i>
-                            <strong>Servicio rápido y profesional</strong>
-                        </li>
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-danger me-2"></i>
-                            <strong>Garantía en todos nuestros trabajos</strong>
-                        </li>
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-danger me-2"></i>
-                            <strong>Personal capacitado y actualizado</strong>
-                        </li>
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-danger me-2"></i>
-                            <strong>Precios competitivos y transparentes</strong>
-                        </li>
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle text-danger me-2"></i>
-                            <strong>Atención al cliente de excelencia</strong>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-          
+<!-- EXPERIENCIA -->
+<section id="experiencia" class="section dark">
+  <div class="container">
+    <h2>25+ Años de Experiencia</h2>
+    <p>
+      Más de 25 años ayudando a la comunidad de Hermosillo con soluciones tecnológicas confiables y profesionales.
+    </p>
 
-<!-- Formulario de Contacto Section -->
-<section id="contacto" class="contacto-section py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold text-dark mb-3" role="heading" aria-level="2">Contacto</h2>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="contact-card text-center">
-                    <div class="contact-icon mb-3">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="fw-bold mb-2">Ubicación</h3>
-                    <p class="text-muted">
-                        Hermosillo, Sonora, México
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Formulario -->
-        <div class="row mt-5">
-            <div class="col-lg-8 mx-auto">
-                <div class="form-container">
-                    <form id="contactForm" method="POST" novalidate>
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label fw-bold">Nombre Completo *</label>
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="nombre" 
-                                name="nombre" 
-                                required 
-                                aria-required="true"
-                                aria-describedby="nombreHelp"
-                                placeholder="Tu nombre"
-                            >
-                            <div class="invalid-feedback">
-                                Por favor ingresa tu nombre.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label fw-bold">Correo Electrónico *</label>
-                            <input 
-                                type="email" 
-                                class="form-control" 
-                                id="email" 
-                                name="email" 
-                                required 
-                                aria-required="true"
-                                aria-describedby="emailHelp"
-                                placeholder="tu@email.com"
-                            >
-                            <div class="invalid-feedback">
-                                Por favor ingresa un email válido.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label fw-bold">Teléfono *</label>
-                            <input 
-                                type="tel" 
-                                class="form-control" 
-                                id="telefono" 
-                                name="telefono" 
-                                required 
-                                aria-required="true"
-                                aria-describedby="telefonoHelp"
-                                placeholder="+52 624-123-4567"
-                            >
-                            <div class="invalid-feedback">
-                                Por favor ingresa tu teléfono.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="servicio" class="form-label fw-bold">Servicio Requerido *</label>
-                            <select 
-                                class="form-select" 
-                                id="servicio" 
-                                name="servicio" 
-                                required
-                                aria-required="true"
-                                aria-describedby="servicioHelp"
-                            >
-                                <option value="">Selecciona un servicio...</option>
-                                <option value="reparacion-laptop">Reparación de Laptop</option>
-                                <option value="reparacion-pc">Reparación de PC</option>
-                                <option value="seguridad">Seguridad Informática</option>
-                                <option value="recuperacion">Recuperación de Datos</option>
-                                <option value="instalacion">Instalación de Software</option>
-                                <option value="red">Red e Internet</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Por favor selecciona un servicio.
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="mensaje" class="form-label fw-bold">Mensaje *</label>
-                            <textarea 
-                                class="form-control" 
-                                id="mensaje" 
-                                name="mensaje" 
-                                rows="5" 
-                                required
-                                aria-required="true"
-                                aria-describedby="mensajeHelp"
-                                placeholder="Describe tu problema o consulta..."
-                            ></textarea>
-                            <div class="invalid-feedback">
-                                Por favor escribe tu mensaje.
-                            </div>
-                        </div>
-
-                        <div class="mb-3 form-check">
-                            <input 
-                                type="checkbox" 
-                                class="form-check-input" 
-                                id="terminos" 
-                                name="terminos" 
-                                required
-                                aria-required="true"
-                            >
-                            <label class="form-check-label" for="terminos">
-                                Acepto recibir comunicaciones por WhatsApp y teléfono *
-                            </label>
-                            <div class="invalid-feedback">
-                                Debes aceptar las condiciones.
-                            </div>
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button 
-                                type="submit" 
-                                class="btn btn-danger btn-lg fw-bold"
-                                aria-label="Enviar formulario"
-                            >
-                                <i class="fab fa-whatsapp me-2"></i> Enviar por WhatsApp
-                            </button>
-                        </div>
-
-                        <div id="formMessage" class="alert mt-3" role="alert" style="display: none;"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <ul>
+      <li>Servicio rápido y profesional</li>
+      <li>Garantía en todos los trabajos</li>
+      <li>Personal capacitado</li>
+      <li>Precios justos</li>
+    </ul>
+  </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer-section bg-dark text-white py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <h5 class="fw-bold mb-2">
-                    <i class="fas fa-laptop-code text-danger"></i> NovotecHermosillo
-                </h5>
-                <p class="text-muted">Reparación profesional de computadoras desde 1999</p>
-            </div>
-            <div class="col-md-6">
-                <h5 class="fw-bold mb-3">Síguenos</h5>
-                <div class="social-links">
-                    <a href="https://wa.me/526241234567" class="text-danger me-3" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-                        <i class="fab fa-whatsapp fa-lg"></i>
-                    </a>
-                    <a href="https://facebook.com" class="text-danger me-3" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="https://instagram.com" class="text-danger" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="bg-secondary my-3">
-        <div class="text-center text-muted">
-            <p>&copy; 2026 NovotecHermosillo. Todos los derechos reservados. | Hermosillo, Sonora, México</p>
-        </div>
-    </div>
+<!-- CONTACTO -->
+<section id="contacto" class="section">
+  <div class="container">
+    <h2>Contacto</h2>
+<form id="contactForm" class="form">
+
+  <div class="input-group">
+    <input type="text" id="nombre" required>
+    <label>Nombre completo</label>
+  </div>
+
+  <div class="input-group">
+    <input type="email" id="email" required>
+    <label>Correo electrónico</label>
+  </div>
+
+  <div class="input-group">
+    <input type="tel" id="telefono" required>
+    <label>Teléfono</label>
+  </div>
+
+  <div class="input-group">
+    <select id="servicio" required>
+      <option value="">Selecciona un servicio</option>
+      <option>Reparación Laptop</option>
+      <option>Reparación PC</option>
+      <option>Seguridad Informática</option>
+      <option>Recuperación de Datos</option>
+      <option>Instalación de Software</option>
+      <option>Red e Internet</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <textarea id="mensaje" required></textarea>
+    <label>Mensaje</label>
+  </div>
+
+  <label class="check">
+    <input type="checkbox" id="terminos" required>
+    Acepto ser contactado por WhatsApp
+  </label>
+
+  <button type="submit" id="btnEnviar">
+    Enviar por WhatsApp
+  </button>
+
+  <p id="formMsg"></p>
+
+</form>
+    div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 NovotecHermosillo - Hermosillo, Sonora</p>
+  </div>
 </footer>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS -->
-<script src="script.js"></script>
+  const btn = document.getElementById("btnEnviar");
+  const msg = document.getElementById("formMsg");
+
+  btn.innerText = "Enviando...";
+  btn.disabled = true;
+
+  const nombre = document.getElementById("nombre").value;
+  const email = document.getElementById("email").value;
+  const telefono = document.getElementById("telefono").value;
+  const servicio = document.getElementById("servicio").value;
+  const mensaje = document.getElementById("mensaje").value;
+
+  const texto = `Hola, necesito soporte:%0A
+Nombre: ${nombre}%0A
+Email: ${email}%0A
+Teléfono: ${telefono}%0A
+Servicio: ${servicio}%0A
+Mensaje: ${mensaje}`;
+
+  const numero = "526625085372";
+  const url = `https://wa.me/${numero}?text=${texto}`;
+
+  setTimeout(() => {
+    window.open(url, "_blank");
+
+    msg.innerText = "✔ Mensaje listo en WhatsApp";
+    msg.style.color = "green";
+
+    btn.innerText = "Enviar por WhatsApp";
+    btn.disabled = false;
+
+    document.getElementById("contactForm").reset();
+  }, 1200);
+});
+</script>
 </body>
-</html>    
+</html>
