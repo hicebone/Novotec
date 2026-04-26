@@ -214,7 +214,8 @@ p {
     display: inline-block;
     max-width: 100%;
 }
-..hero-section h1 {
+
+.hero-section h1 {
     animation: slideInLeft 0.8s ease-out;
     line-height: 1.15;
     text-shadow: 
@@ -343,7 +344,7 @@ p {
 .service-card .card-text {
     flex-grow: 1;
     font-size: 0.96rem;
-    color: #5b5b5b;
+    color: #d1d1d1;
     line-height: 1.7;
 }
 
