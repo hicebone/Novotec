@@ -1,20 +1,20 @@
-/* ============================================ 
+/* ============================================
    VARIABLES Y CONFIGURACIÓN GLOBAL
    ============================================ */
 :root {
-    --primary-color: #007bff;      /* Azul profesional (principal - tecnología y confianza) */
-    --secondary-color: #4a4a4a;    /* Gris neutro (equilibrio visual) */
-    --dark-color: #0a0a0a;         /* Negro profundo (fondos oscuros elegantes) */
-    --white-color: #ffffff;        /* Blanco puro (fondos y contraste) */
-    --text-color: #111111;         /* Negro suave (texto principal legible) */
-    --text-muted: #5f5f5f;         /* Gris medio (texto secundario/discreto) */
-    --link-color: #007bff;         /* Azul principal (enlaces) */
-    --link-hover: #0056b3;         /* Azul más oscuro (hover en enlaces) */
-    --gray-light: #f8f9fa;         /* Gris muy claro (fondos suaves / secciones) */
-    --gray-dark: #333333;          /* Gris oscuro (texto sobre fondos claros o secundarios) */
-    --transition: all 0.3s ease-in-out; /* Transiciones suaves para animaciones */
-    --shadow-lg: 0 18px 40px rgba(0, 123, 255, 0.25); /* Sombra azul */
-    --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.08);      /* Sombra ligera negra */
+    --primary-color: #007bff;      /* Azul brillante principal */
+    --secondary-color: #4a4a4a;    /* Gris neutro */
+    --dark-color: #0a0a0a;         /* Tono oscuro */
+    --white-color: #ffffff;        /* Blanco puro */
+    --text-color: #111111;         /* Texto principal */
+    --text-muted: #5f5f5f;         /* Texto secundario */
+    --link-color: #007bff;         /* Enlaces azul */
+    --link-hover: #0056b3;         /* Hover azul más oscuro */
+    --gray-light: #f8f9fa;         /* Gris claro */
+    --gray-dark: #333333;          /* Gris oscuro */
+    --transition: all 0.3s ease-in-out;
+    --shadow-lg: 0 18px 40px rgba(0, 123, 255, 0.25); /* Sombra con azul */
+    --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================
@@ -64,10 +64,12 @@ p {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
 h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
 }
 
 h2 {
@@ -83,8 +85,7 @@ p {
    ============================================ */
 .navbar {
     background: var(--white-color);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.08);padding: 0.75rem 0;
     z-index: 1000;
 }
 
@@ -99,11 +100,9 @@ p {
     display: inline-block;
     height: 104px;
     width: auto;
-    background: rgba(216, 0, 0, 0.05);
-    padding: 10px 12px;
+    background: rgba(0, 123, 255, 0.05);padding: 10px 12px;
     border-radius: 14px;
-    border: 1px solid rgba(216, 0, 0, 0.18);
-    box-shadow: 0 2px 10px rgba(216, 0, 0, 0.16);
+    border: 1px solid rgba(0, 123, 255, 0.18);box-shadow: 0 2px 10px rgba(216, 0, 0, 0.16);
     transition: var(--transition);
 }
 
@@ -114,7 +113,7 @@ p {
 .navbar-brand-text {
     font-size: clamp(1.1rem, 1.5vw, 1.5rem);
     font-weight: 700;
-    color: var(--dark-color);
+    color: var(--primary-color);
     letter-spacing: 0.2px;
 }
 
@@ -175,7 +174,12 @@ p {
    HERO SECTION
    ============================================ */
 .hero-section {
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(35, 35, 35, 0.95) 50%, rgba(225, 16, 19, 0.92) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(10, 10, 10, 0.95) 0%,     /* Negro profundo */
+        rgba(35, 35, 35, 0.95) 50%,   /* Gris oscuro */
+        rgba(0, 123, 255, 0.92) 100%  /* Azul brillante */
+    );
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -184,7 +188,6 @@ p {
     overflow: hidden;
     padding: 2rem 0;
 }
-
 .hero-section::before {
     content: '';
     position: absolute;
@@ -193,28 +196,30 @@ p {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(225, 16, 19, 0.14) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.09) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(0, 123, 255, 0.14) 0%, transparent 50%), /* Luz azul */
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.09) 0%, transparent 50%); /* Luz blanca */
     pointer-events: none;
 }
-
 .hero-section .row {
     position: relative;
     z-index: 1;
 }
 
 .hero-copy {
-    background: rgba(0, 0, 0, 0.34);
+    background: rgba(0, 0, 0, 0.34); /* Fondo oscuro semi-transparente */
+    border: 1px solid rgba(0, 123, 255, 0.18); /* Borde azul sutil */
+    backdrop-filter: blur(8px); /* Efecto glass */
     border-radius: 28px;
     padding: 2rem;
     display: inline-block;
     max-width: 100%;
 }
-
-.hero-section h1 {
+..hero-section h1 {
     animation: slideInLeft 0.8s ease-out;
     line-height: 1.15;
-    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    text-shadow: 
+        0 4px 18px rgba(0, 0, 0, 0.35),       /* Sombra base */
+        0 0 12px rgba(0, 123, 255, 0.35);     /* Glow azul suave */
 }
 
 .hero-section p {
@@ -230,9 +235,9 @@ p {
     padding: 0.8rem 2rem;
     border-radius: 50px;
     transition: var(--transition);
-}f
+}
 
-.btn-primary
+.btn-p
  {
     background: var(--primary-color);
     border: none;
@@ -248,7 +253,7 @@ p {
 .btn-outline-primary {
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
-}f
+}
 
 .btn-outline-primary:hover {
     background: var(--primary-color);
@@ -277,8 +282,7 @@ p {
     right: -10%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(216, 0, 0, 0.05) 0%, transparent 70%);
-    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.12) 0%, transparent 70%);border-radius: 50%;
     pointer-events: none;
 }
 
@@ -464,7 +468,9 @@ p {
 .contact-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #b51a1f 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #007bff 100%);
+    /* 🔴 cambiado de rojo (#b51a1f) a azul */
+
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -496,7 +502,6 @@ p {
 .contact-card a:hover {
     text-decoration: underline !important;
 }
-
 /* ============================================
    FORMULARIO
    ============================================ */
@@ -527,7 +532,8 @@ p {
 .form-container .form-control:focus,
 .form-container .form-select:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(216, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    /* 🔴 cambiado a azul */
     background-color: var(--white-color);
 }
 
@@ -551,7 +557,8 @@ p {
 }
 
 .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(216, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    /* 🔴 cambiado a azul */
 }
 
 .form-check-label {
@@ -579,88 +586,60 @@ p {
     color: #155724;
 }
 
+/* ⚠️ corregido error aquí (salto de línea) */
 #formMessage.alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
+    background-color: #e7f1ff;
+    border-color: #b6d4fe;
+    color: #084298;
+    /* 🔴 cambiado de rojo a azul suave */
 }
-
 /* ============================================
    FOOTER
    ============================================ */
 .footer-section {
     background: linear-gradient(135deg, var(--dark-color) 0%, #0f0f0f 100%);
+    /* Fondo oscuro degradado (negro → gris muy oscuro)
+       → ideal para footer elegante */
+
     border-top: 3px solid var(--primary-color);
+    /* Línea superior azul (acento visual) */
+
     margin-top: 3rem;
+    /* Separación con la sección anterior */
 }
 
 .footer-section h5 {
     color: var(--white-color);
+    /* Títulos en blanco para alto contraste */
+
     margin-bottom: 1rem;
 }
 
 .footer-section p {
     color: #999;
+    /* Gris medio → texto secundario suave */
+
     font-size: 0.95rem;
 }
 
 .social-links a {
     transition: var(--transition);
     display: inline-block;
+    /* Necesario para aplicar transform */
 }
 
 .social-links a:hover {
     transform: scale(1.3) rotate(10deg);
+    /* Agranda y rota ligeramente */
+
     filter: drop-shadow(0 0 10px var(--primary-color));
+    /* Glow azul alrededor del ícono */
 }
 
 .footer-section hr {
     border-color: rgba(255, 255, 255, 0.1);
+    /* Línea divisora muy sutil */
 }
-
-/* ============================================
-   ANIMACIONES
-   ============================================ */
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 /* ============================================
    SCROLLBAR PERSONALIZADO
    ============================================ */
@@ -850,7 +829,7 @@ p {
    ============================================ */
 
 /* Modo oscuro del sistema */
-@media (prefers-color-scheme:gray-light ) {
+@media (prefers-color-scheme: dark) {
     .servicios-section {
         background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
     }
@@ -873,86 +852,26 @@ p {
         color: var(--white-color);
     }
 
-    /* ============================================
-   CONTENEDOR DEL FORMULARIO
-   ============================================ */
-.form-container {
-    background: #2a2a2a; /* Gris carbón (fondo principal modo oscuro) */
-    color: var(--white-color); /* Texto blanco para alto contraste */
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
+    @media (prefers-color-scheme: dark) {
 
-/* ============================================
-   ETIQUETAS (LABELS)
-   ============================================ */
-.form-container .form-label {
-    color: #b3b3b3; /* Gris claro (mejor visibilidad que secondary oscuro) */
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-}
+    .form-container .form-control:focus,
+    .form-container .form-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        background-color: #1a1a1a;
+    }
 
-/* ============================================
-   CAMPOS (INPUT, SELECT, TEXTAREA)
-   ============================================ */
-.form-container .form-control,
-.form-container .form-select {
-    background-color: #1a1a1a; /* Negro suave (diferenciación del contenedor) */
-    color: #e0e0e0; /* Gris muy claro (mejor legibilidad) */
-    border: 1px solid #333; /* Borde neutro */
-    border-radius: 8px;
-    padding: 0.6rem 0.75rem;
-    transition: all 0.3s ease;
-}
+    .form-check-input {
+        border-color: var(--primary-color);
+    }
 
-/* Placeholder */
-.form-container .form-control::placeholder {
-    color: #777; /* Gris medio para placeholder */
-}
+    .form-check-input:checked {
+        background-color: var(--primary-color);
+    }
 
-/* ============================================
-   EFECTO HOVER
-   ============================================ */
-.form-container .form-control:hover,
-.form-container .form-select:hover {
-    border-color: var(--primary-color); /* Azul al pasar el mouse */
-}
-
-/* ============================================
-   EFECTO FOCUS (IMPORTANTE UX)
-   ============================================ */
-.form-container .form-control:focus,
-.form-container .form-select:focus {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border-color: var(--primary-color); /* Azul principal */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Glow azul */
-    outline: none;
-}
-
-/* ============================================
-   BOTÓN (SI USAS UNO)
-   ============================================ */
-.form-container .btn-primary {
-    background-color: var(--primary-color); /* Azul principal */
-    border: none;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.form-container .btn-primary:hover {
-    background-color: #0056b3; /* Azul más oscuro */
-    transform: translateY(-1px);
-}
-
-/* ============================================
-   ESPACIADO ENTRE CAMPOS
-   ============================================ */
-.form-container .mb-3 {
-    margin-bottom: 1.2rem;
+    .form-check-input:focus {
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
 }
 
 /* Reducir movimiento */
@@ -974,7 +893,8 @@ p {
 /* ============================================
    UTILIDADES
    ============================================ */
-.text-primary {
+.text-primary
+ {
     color: var(--primary-color) !important;
 }
 
