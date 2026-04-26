@@ -1,125 +1,73 @@
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarLinks();
-    inicializarFormulario();
-    inicializarScrollSpy();
-});
-
 function inicializarLinks() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
 
             if (!href || href === '#') return;
 
             const destino = document.querySelector(href);
-            if (!destino) return;
 
-            e.preventDefault();
+            if (destino) {
+                e.preventDefault();
 
-            // 🔽 Cerrar navbar en móvil (más seguro)
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse)
-                    || new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                // 🔽 Cerrar navbar en móvil
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    if (navbarToggler) navbarToggler.click();
+                }
 
-                bsCollapse.hide();
-            }
+                // 🔥 ALTURA DEL NAVBAR (IMPORTANTE)
+                const navbar = document.querySelector('.navbar');
+                const offset = navbar ? navbar.offsetHeight : 80;
 
-            // 🔥 Altura del navbar
-            const navbar = document.querySelector('.navbar');
-            const offset = navbar ? navbar.offsetHeight : 80;
+                // 🔥 POSICIÓN REAL (corrige el problema)
+                const posicion = destino.getBoundingClientRect().top + window.pageYOffset - offset;
 
-            // 🔥 Scroll corregido
-            const posicion = destino.getBoundingClientRect().top + window.scrollY - offset;
-
-            window.scrollTo({
-                top: posicion,
-                behavior: 'smooth'
-            });
-        });
-    });
-}
-
-function inicializarScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
-    window.addEventListener('scroll', () => {
-        let current = "";
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-
-            if (window.scrollY >= (sectionTop - 150)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
+                window.scrollTo({
+                    top: posicion,
+                    behavior: 'smooth'
+                });
             }
         });
     });
 }
 
-function inicializarFormulario() {
-    const contactForm = document.getElementById("contactForm");
-    const formMessage = document.getElementById("formMessage");
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    if (!contactForm) return;
+    // Obtener valores
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const servicio = document.getElementById("servicio").value;
+    const mensaje = document.getElementById("mensaje").value.trim();
+    const terminos = document.getElementById("terminos").checked;
 
-    contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+    // Validación básica
+    if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
+        alert("Por favor completa todos los campos y acepta los términos.");
+        return;
+    }
 
-        const btnSubmit = this.querySelector('button[type="submit"]');
-        const originalBtnText = btnSubmit.innerHTML;
+    // Número de WhatsApp (tu número)
+    const numero = "526625085372";
 
-        const datos = {
-            nombre: document.getElementById("nombre")?.value.trim(),
-            email: document.getElementById("email")?.value.trim(),
-            telefono: document.getElementById("telefono")?.value.trim(),
-            servicio: document.getElementById("servicio")?.value,
-            mensaje: document.getElementById("mensaje")?.value.trim(),
-            terminos: document.getElementById("terminos")?.checked
-        };
+    // Crear mensaje
+    const texto = `Hola, quiero solicitar un servicio:%0A
+Nombre: ${nombre}%0A
+Correo: ${email}%0A
+Teléfono: ${telefono}%0A
+Servicio: ${servicio}%0A
+Mensaje: ${mensaje}`;
 
-        // Validación más segura
-        if (Object.values(datos).some(val => !val)) {
-            alert("Por favor completa todos los campos y acepta los términos.");
-            return;
-        }
+    // Crear enlace
+    const url = `https://wa.me/${numero}?text=${texto}`;
 
-        btnSubmit.disabled = true;
-        btnSubmit.innerHTML = `
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Enviando...
-        `;
+    // Abrir WhatsApp
+    window.open(url, "_blank");
+});
 
-        const numero = "526625085372";
-
-        const texto = `Hola, quiero solicitar un servicio:\n\n` +
-            `Nombre: ${datos.nombre}\n` +
-            `Correo: ${datos.email}\n` +
-            `Teléfono: ${datos.telefono}\n` +
-            `Servicio: ${datos.servicio}\n` +
-            `Mensaje: ${datos.mensaje}`;
-
-        const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-
-        setTimeout(() => {
-            window.open(url, "_blank");
-
-            if (formMessage) {
-                formMessage.style.display = "block";
-                formMessage.className = "alert alert-success mt-3";
-                formMessage.innerText = "¡Listo! Se abrió WhatsApp para completar tu solicitud.";
-            }
-
-            btnSubmit.disabled = false;
-            btnSubmit.innerHTML = originalBtnText;
-        }, 800);
-    });
-}
+document.getElementById("formMessage").style.display = "block";
+document.getElementById("formMessage").className = "alert alert-success";
+document.getElementById("formMessage").innerText = "Formulario enviado correctamente a WhatsApp";
