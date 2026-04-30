@@ -1,80 +1,163 @@
-function inicializarLinks() {
+document.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar");
+  const navCollapse = document.querySelector(".navbar-collapse");
+  const navLinks = document.querySelectorAll('.navbar a[href^="#"]');
+  const revealItems = document.querySelectorAll(".reveal");
+  const form = document.getElementById("contactForm");
+  const formMessage = document.getElementById("formMessage");
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+  const closeNav = () => {
+    if (!navCollapse || !navCollapse.classList.contains("show")) return;
+    const instance = window.bootstrap?.Collapse?.getOrCreateInstance(navCollapse);
+    instance?.hide();
+  };
 
-            if (!href || href === '#') return;
+  const scrollToTarget = (hash) => {
+    const target = document.querySelector(hash);
+    if (!target) return;
 
-            const destino = document.querySelector(href);
+    const offset = navbar ? navbar.offsetHeight + 8 : 0;
+    const top = window.scrollY + target.getBoundingClientRect().top - offset;
 
-            if (destino) {
-                e.preventDefault();
+    window.scrollTo({
+      top,
+      behavior: "smooth"
+    });
 
-                // 🔽 Cerrar navbar en móvil
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                    const navbarToggler = document.querySelector('.navbar-toggler');
-                    if (navbarToggler) navbarToggler.click();
-                }
+    if (typeof target.focus === "function") {
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    }
+  };
 
-                // 🔥 ALTURA DEL NAVBAR (IMPORTANTE)
-                const navbar = document.querySelector('.navbar');
-                const offset = navbar ? navbar.offsetHeight : 80;
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
 
-                // 🔥 POSICIÓN REAL (corrige el problema)
-                const posicion = destino.getBoundingClientRect().top + window.pageYOffset - offset;
+    const hash = link.getAttribute("href");
+    if (!hash || hash === "#") return;
 
-                window.scrollTo({
-                    top: posicion,
-                    behavior: 'smooth'
-                });
-            }
-        });
-          });
-}
+    const target = document.querySelector(hash);
+    if (!target) return;
 
-// #region agent log
-fetch('http://127.0.0.1:7824/ingest/6a7f4d26-3bf4-4a3c-ab2b-a8f4dfb3670e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'97dab9'},body:JSON.stringify({sessionId:'97dab9',runId:'pre-fix',hypothesisId:'H1',location:'script.js:46',message:'script loaded (note: inicializarLinks not auto-called here)',data:{readyState:document.readyState,hasInit:typeof inicializarLinks==='function'},timestamp:Date.now()})}).catch(()=>{});
-// #endregion agent log
+    event.preventDefault();
+    closeNav();
+    scrollToTarget(hash);
+  });
 
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  const setActiveLink = () => {
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const offset = (navbar?.offsetHeight || 0) + 28;
+    let currentId = sections[0]?.id || "";
 
-    // Obtener valores
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-    const servicio = document.getElementById("servicio").value;
-    const mensaje = document.getElementById("mensaje").value.trim();
-    const terminos = document.getElementById("terminos").checked;
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top - offset <= 0 && rect.bottom - offset > 0) {
+        currentId = section.id;
+      }
+    });
 
-    // Validación básica
-    if (!nombre || !email || !telefono || !servicio || !mensaje || !terminos) {
-        alert("Por favor completa todos los campos y acepta los términos.");
-        return;
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${currentId}`;
+      link.classList.toggle("active", isActive);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18 }
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+
+  window.addEventListener("scroll", setActiveLink, { passive: true });
+  window.addEventListener("resize", setActiveLink);
+  setActiveLink();
+
+  const setFieldState = (field, isValid) => {
+    if (!field) return;
+    field.classList.toggle("is-valid", isValid);
+    field.classList.toggle("is-invalid", !isValid);
+  };
+
+  const showMessage = (type, text) => {
+    if (!formMessage) return;
+    formMessage.className = `alert alert-${type}`;
+    formMessage.textContent = text;
+    formMessage.classList.remove("d-none");
+  };
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nombre = document.getElementById("nombre");
+    const email = document.getElementById("email");
+    const telefono = document.getElementById("telefono");
+    const servicio = document.getElementById("servicio");
+    const mensaje = document.getElementById("mensaje");
+    const terminos = document.getElementById("terminos");
+
+    const values = {
+      nombre: nombre?.value.trim() ?? "",
+      email: email?.value.trim() ?? "",
+      telefono: telefono?.value.trim() ?? "",
+      servicio: servicio?.value ?? "",
+      mensaje: mensaje?.value.trim() ?? "",
+      terminos: Boolean(terminos?.checked)
+    };
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
+    const phoneOk = /^[0-9+\-\s()]{7,}$/.test(values.telefono);
+    const valid =
+      values.nombre.length >= 2 &&
+      emailOk &&
+      phoneOk &&
+      values.servicio &&
+      values.mensaje.length >= 10 &&
+      values.terminos;
+
+    setFieldState(nombre, values.nombre.length >= 2);
+    setFieldState(email, emailOk);
+    setFieldState(telefono, phoneOk);
+    setFieldState(servicio, Boolean(values.servicio));
+    setFieldState(mensaje, values.mensaje.length >= 10);
+    setFieldState(terminos, values.terminos);
+
+    if (!valid) {
+      showMessage("danger", "Revisa los campos marcados antes de continuar.");
+      return;
     }
 
-    // Número de WhatsApp (tu número)
     const numero = "526625085372";
+    const texto = [
+      "Hola, quiero solicitar un servicio tecnico.",
+      `Nombre: ${values.nombre}`,
+      `Correo: ${values.email}`,
+      `Telefono: ${values.telefono}`,
+      `Servicio: ${values.servicio}`,
+      `Mensaje: ${values.mensaje}`
+    ].join("\n");
 
-    // Crear mensaje
-    const texto = `Hola, quiero solicitar un servicio:%0A
-Nombre: ${nombre}%0A
-Correo: ${email}%0A
-Teléfono: ${telefono}%0A
-Servicio: ${servicio}%0A
-Mensaje: ${mensaje}`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+    const popup = window.open(url, "_blank", "noopener,noreferrer");
 
-    // Crear enlace
-    const url = `https://wa.me/${numero}?text=${texto}`;
+    if (!popup) {
+      window.location.assign(url);
+      showMessage("success", "Si tu navegador bloqueó la ventana nueva, te llevamos a WhatsApp en esta misma pestaña.");
+      return;
+    }
 
-    // Abrir WhatsApp
-    window.open(url, "_blank");
-
-    // Mostrar mensaje de éxito
-    const formMsg = document.getElementById("formMessage");
-    formMsg.style.display = "block";
-    formMsg.className = "alert alert-success mt-3";
-    formMsg.innerText = "Formulario enviado correctamente a WhatsApp";
+    showMessage("success", "Abrimos WhatsApp con tu mensaje listo para enviar.");
+    form.reset();
+    form.querySelectorAll(".is-valid, .is-invalid").forEach((field) => {
+      field.classList.remove("is-valid", "is-invalid");
+    });
+  });
 });
