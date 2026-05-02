@@ -5,12 +5,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealItems = document.querySelectorAll(".reveal");
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
+  const servicesCarousel = document.getElementById("serviciosCarousel");
+  const carouselButtons = document.querySelectorAll("[data-carousel-action]");
 
   const closeNav = () => {
     if (!navCollapse || !navCollapse.classList.contains("show")) return;
     const instance = window.bootstrap?.Collapse?.getOrCreateInstance(navCollapse);
     instance?.hide();
   };
+
+  const carousel = servicesCarousel ? window.bootstrap?.Carousel?.getOrCreateInstance(servicesCarousel) : null;
+  let carouselPaused = false;
+
+  const updateCarouselToggle = () => {
+    const toggleButton = document.querySelector('[data-carousel-action="toggle"]');
+    if (!toggleButton) return;
+
+    const label = toggleButton.querySelector(".services-carousel-toggle-label");
+    const icon = toggleButton.querySelector("i");
+
+    toggleButton.setAttribute("aria-pressed", String(carouselPaused));
+
+    if (label) label.textContent = carouselPaused ? "Reanudar" : "Pausar";
+    if (icon) {
+      icon.classList.toggle("fa-pause", !carouselPaused);
+      icon.classList.toggle("fa-play", carouselPaused);
+    }
+  };
+
+  carouselButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const action = button.getAttribute("data-carousel-action");
+      if (!carousel || !action) return;
+
+      if (action === "prev") {
+        carousel.prev();
+        return;
+      }
+
+      if (action === "next") {
+        carousel.next();
+        return;
+      }
+
+      if (action === "toggle") {
+        carouselPaused = !carouselPaused;
+        if (carouselPaused) {
+          carousel.pause();
+        } else {
+          carousel.cycle();
+        }
+        updateCarouselToggle();
+      }
+    });
+  });
+
+  updateCarouselToggle();
 
   const scrollToTarget = (hash) => {
     const target = document.querySelector(hash);

@@ -380,6 +380,81 @@ a:hover {
   color: var(--ink-soft);
 }
 
+.services-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(7, 17, 31, 0.08);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(180deg, rgba(7, 17, 31, 0.04), rgba(255, 255, 255, 0.9));
+}
+
+.services-carousel .carousel-item {
+  aspect-ratio: 16 / 9;
+  background: #dfe9f7;
+}
+
+.services-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-carousel .carousel-control-prev,
+.services-carousel .carousel-control-next {
+  width: 14%;
+  opacity: 0.92;
+}
+
+.services-carousel .carousel-control-prev-icon,
+.services-carousel .carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(7, 17, 31, 0.5);
+  background-size: 1.15rem 1.15rem;
+  box-shadow: 0 10px 24px rgba(7, 17, 31, 0.18);
+}
+
+.services-carousel .carousel-indicators {
+  margin-bottom: 0.85rem;
+}
+
+.services-carousel .carousel-indicators [data-bs-target] {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.72);
+  opacity: 0.8;
+}
+
+.services-carousel .carousel-indicators .active {
+  background-color: #fff;
+}
+
+.services-carousel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(7, 17, 31, 0.14));
+  pointer-events: none;
+}
+
+.services-carousel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.services-carousel-btn {
+  min-width: 9.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
 .experience-list {
   display: grid;
   gap: 0.9rem;
@@ -638,6 +713,28 @@ a:hover {
 
   .hero-section .display-4 {
     font-size: clamp(2.1rem, 9vw, 3.4rem);
+  }
+
+  .services-carousel .carousel-item {
+    aspect-ratio: 4 / 3;
+  }
+
+  .services-carousel .carousel-control-prev,
+  .services-carousel .carousel-control-next {
+    width: 18%;
+  }
+
+  .services-carousel .carousel-control-prev-icon,
+  .services-carousel .carousel-control-next-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    background-size: 0.95rem 0.95rem;
+  }
+
+  .services-carousel-btn {
+    min-width: 8.5rem;
+    width: 100%;
+    justify-content: center;
   }
 }
 
