@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth"
     });
 
+    if (window.history?.replaceState && window.location.hash !== hash) {
+      window.history.replaceState(null, "", hash);
+    }
+
     if (typeof target.focus === "function") {
       target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
@@ -60,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.forEach((link) => {
       const isActive = link.getAttribute("href") === `#${currentId}`;
       link.classList.toggle("active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
   };
 
