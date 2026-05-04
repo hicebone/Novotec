@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
   const servicesSection = document.getElementById("servicios");
+  let activeLinkFrame = 0;
 
   const loadDeferredImages = (root) => {
     if (!root) return;
@@ -122,7 +123,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealItems.forEach((item) => observer.observe(item));
 
-  window.addEventListener("scroll", setActiveLink, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (activeLinkFrame) return;
+
+      activeLinkFrame = window.requestAnimationFrame(() => {
+        activeLinkFrame = 0;
+        setActiveLink();
+      });
+    },
+    { passive: true }
+  );
   window.addEventListener("resize", setActiveLink);
   setActiveLink();
 
