@@ -144,12 +144,24 @@ document.addEventListener("DOMContentLoaded", () => {
     field.classList.toggle("is-invalid", !isValid);
   };
 
-  const showMessage = (type, text) => {
+  const showMessage = (type, html) => {
     if (!formMessage) return;
     formMessage.className = `alert alert-${type}`;
-    formMessage.textContent = text;
+    formMessage.innerHTML = html;
     formMessage.classList.remove("d-none");
   };
+
+  // Limpiar estilos de error conforme el usuario interactúa
+  const formInputs = form ? form.querySelectorAll("input, select, textarea") : [];
+  formInputs.forEach((input) => {
+    const clearError = () => {
+      if (input.classList.contains("is-invalid")) {
+        input.classList.remove("is-invalid");
+      }
+    };
+    input.addEventListener("input", clearError);
+    input.addEventListener("change", clearError);
+  });
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -170,48 +182,71 @@ document.addEventListener("DOMContentLoaded", () => {
       terminos: Boolean(terminos?.checked)
     };
 
+    const nombreOk = values.nombre.length >= 2;
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
     const phoneOk = /^[0-9+\-\s()]{7,}$/.test(values.telefono);
-    const valid =
-      values.nombre.length >= 2 &&
-      emailOk &&
-      phoneOk &&
-      values.servicio &&
-      values.mensaje.length >= 10 &&
-      values.terminos;
+    const servicioOk = Boolean(values.servicio);
+    const mensajeOk = values.mensaje.length >= 3;
+    const terminosOk = values.terminos;
 
-    setFieldState(nombre, values.nombre.length >= 2);
+    setFieldState(nombre, nombreOk);
     setFieldState(email, emailOk);
     setFieldState(telefono, phoneOk);
-    setFieldState(servicio, Boolean(values.servicio));
-    setFieldState(mensaje, values.mensaje.length >= 10);
-    setFieldState(terminos, values.terminos);
+    setFieldState(servicio, servicioOk);
+    setFieldState(mensaje, mensajeOk);
+    setFieldState(terminos, terminosOk);
+
+    const valid = nombreOk && emailOk && phoneOk && servicioOk && mensajeOk && terminosOk;
 
     if (!valid) {
-      showMessage("danger", "Revisa los campos marcados antes de continuar.");
+      showMessage("danger", "Por favor revisa los campos señalados en rojo antes de enviar.");
+      // Mover foco al primer campo inválido
+      const primerInvalido = form.querySelector(".is-invalid");
+      if (primerInvalido) {
+        primerInvalido.focus();
+      }
       return;
     }
 
     const numero = "526625085372";
     const texto = [
-      "Hola, quiero solicitar un servicio tecnico.",
-      `Nombre: ${values.nombre}`,
-      `Correo: ${values.email}`,
-      `Telefono: ${values.telefono}`,
-      `Servicio: ${values.servicio}`,
-      `Mensaje: ${values.mensaje}`
+      "🔧 *Solicitud de servicio - Novotec*",
+      "",
+      `👤 *Nombre:* ${values.nombre}`,
+      `📱 *Teléfono:* ${values.telefono}`,
+      `📧 *Correo:* ${values.email}`,
+      `💻 *Servicio requerido:* ${values.servicio}`,
+      "",
+      `📝 *Mensaje:*`,
+      values.mensaje
     ].join("\n");
 
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-    const popup = window.open(url, "_blank", "noopener,noreferrer");
+    const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(texto)}`;
 
-    if (!popup) {
-      window.location.assign(url);
-      showMessage("success", "Si tu navegador bloqueó la ventana nueva, te llevamos a WhatsApp en esta misma pestaña.");
-      return;
+    // Intentar abrir en pestaña nueva
+    let popup = null;
+    try {
+      popup = window.open(url, "_blank");
+    } catch (e) {
+      popup = null;
     }
 
-    showMessage("success", "Abrimos WhatsApp con tu mensaje listo para enviar.");
+    if (popup && !popup.closed) {
+      popup.focus();
+      showMessage(
+        "success",
+        `<strong>¡Listo!</strong> Se abrió WhatsApp con tu mensaje preparado para enviar.<br>` +
+        `<span class="small">Si tu navegador no abrió la ventana automáticamente, <a href="${url}" target="_blank" rel="noopener noreferrer" class="alert-link text-decoration-underline fw-bold">haz clic aquí para abrir WhatsApp</a>.</span>`
+      );
+    } else {
+      // Si el navegador bloqueó la ventana emergente, dar enlace directo y redirigir
+      showMessage(
+        "info",
+        `<strong>Abriendo WhatsApp...</strong> Si no redirige automáticamente, <a href="${url}" class="alert-link text-decoration-underline fw-bold">haz clic aquí para abrir el chat</a>.`
+      );
+      window.location.href = url;
+    }
+
     form.reset();
     form.querySelectorAll(".is-valid, .is-invalid").forEach((field) => {
       field.classList.remove("is-valid", "is-invalid");
