@@ -52,6 +52,11 @@ a:hover {
   color: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(11, 95, 255, 0.16);
   color: var(--ink);
@@ -394,15 +399,35 @@ a:hover {
   background: linear-gradient(180deg, rgba(7, 17, 31, 0.04), rgba(255, 255, 255, 0.9));
 }
 
+.services-carousel:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
 .services-carousel .carousel-item {
   aspect-ratio: 16 / 9;
   background: #dfe9f7;
+  overflow: hidden;
 }
 
-.services-carousel-image {
+.services-carousel-image,
+.services-carousel noscript img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  display: block;
+}
+
+.services-carousel-image[data-src] {
+  filter: blur(2px);
+  transition: filter 250ms ease, opacity 250ms ease;
+  opacity: 0.9;
+}
+
+.services-carousel-image:not([data-src]) {
+  filter: none;
+  opacity: 1;
 }
 
 .services-carousel .carousel-control-prev,

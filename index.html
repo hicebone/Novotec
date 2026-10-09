@@ -41,13 +41,20 @@
   <link rel="icon" type="image/png" href="imagenes/logo.png">
   <link rel="apple-touch-icon" href="imagenes/logo-optimized.png">
   <link rel="preload" as="image" href="imagenes/opt/reparacion-optimizada.webp">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS Crítico -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Tipografía y Font Awesome sin bloqueo de renderizado -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
   <!-- Datos Estructurados Schema.org (LocalBusiness + FAQPage) -->
   <script type="application/ld+json">
@@ -274,42 +281,60 @@
 
         <div class="row justify-content-center mt-4 mb-5">
           <div class="col-12 col-xl-10 reveal">
-            <div id="serviciosCarousel" class="carousel slide services-carousel" role="region" aria-label="Galería de imágenes de servicios">
+            <div id="serviciosCarousel" class="carousel slide services-carousel" role="region" aria-roledescription="carousel" aria-label="Galería interactiva de servicios de soporte y reparación" tabindex="0">
               <div class="carousel-indicators">
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Imagen 1"></button>
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="1" aria-label="Imagen 2"></button>
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="2" aria-label="Imagen 3"></button>
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="3" aria-label="Imagen 4"></button>
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="4" aria-label="Imagen 5"></button>
-                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="5" aria-label="Imagen 6"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Ver servicio 1 de 6: Reparación de laptops y PCs"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="1" aria-label="Ver servicio 2 de 6: Limpieza de virus y seguridad informática"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="2" aria-label="Ver servicio 3 de 6: Instalación de sistemas y software"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="3" aria-label="Ver servicio 4 de 6: Configuración de paquetería de oficina"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="4" aria-label="Ver servicio 5 de 6: Recuperación de datos"></button>
+                <button type="button" data-bs-target="#serviciosCarousel" data-bs-slide-to="5" aria-label="Ver servicio 6 de 6: Instalación de redes e Internet"></button>
               </div>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/reparacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Técnico realizando reparación física de computadoras y laptops en Hermosillo" width="1200" height="800" decoding="async">
+                <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 de 6: Reparación de laptops y computadoras">
+                  <img src="imagenes/opt/reparacion-optimizada.webp" data-src="imagenes/opt/reparacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Técnico realizando reparación física de computadoras y laptops en Hermosillo" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/reparacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Técnico realizando reparación física de computadoras y laptops en Hermosillo" width="1200" height="675">
+                  </noscript>
                 </div>
-                <div class="carousel-item">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/antivirus-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Servicio de eliminación de virus y seguridad informática para computadoras" width="1200" height="800" decoding="async">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 de 6: Eliminación de virus y seguridad informática">
+                  <img src="imagenes/opt/antivirus-optimizada.webp" data-src="imagenes/opt/antivirus-optimizada.webp" loading="lazy" class="d-block w-100 services-carousel-image" alt="Servicio de eliminación de virus y seguridad informática para computadoras" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/antivirus-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Servicio de eliminación de virus y seguridad informática para computadoras" width="1200" height="675" loading="lazy">
+                  </noscript>
                 </div>
-                <div class="carousel-item">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/instalacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Instalación y configuración de sistemas operativos Windows y programas" width="1200" height="800" decoding="async">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 de 6: Instalación y formateo de sistemas">
+                  <img src="imagenes/opt/instalacion-optimizada.webp" data-src="imagenes/opt/instalacion-optimizada.webp" loading="lazy" class="d-block w-100 services-carousel-image" alt="Instalación y configuración de sistemas operativos Windows y programas" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/instalacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Instalación y configuración de sistemas operativos Windows y programas" width="1200" height="675" loading="lazy">
+                  </noscript>
                 </div>
-                <div class="carousel-item">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/programas-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Optimización y configuración de paquetería de software y programas de oficina" width="1200" height="800" decoding="async">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="4 de 6: Programas y herramientas de oficina">
+                  <img src="imagenes/opt/programas-optimizada.webp" data-src="imagenes/opt/programas-optimizada.webp" loading="lazy" class="d-block w-100 services-carousel-image" alt="Optimización y configuración de paquetería de software y programas de oficina" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/programas-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Optimización y configuración de paquetería de software y programas de oficina" width="1200" height="675" loading="lazy">
+                  </noscript>
                 </div>
-                <div class="carousel-item">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/recuperacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Recuperación de archivos y datos desde disco duro dañado en Hermosillo" width="1200" height="800" decoding="async">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="5 de 6: Rescate y recuperación de archivos">
+                  <img src="imagenes/opt/recuperacion-optimizada.webp" data-src="imagenes/opt/recuperacion-optimizada.webp" loading="lazy" class="d-block w-100 services-carousel-image" alt="Recuperación de archivos y datos desde disco duro dañado en Hermosillo" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/recuperacion-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Recuperación de archivos y datos desde disco duro dañado en Hermosillo" width="1200" height="675" loading="lazy">
+                  </noscript>
                 </div>
-                <div class="carousel-item">
-                  <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" data-src="imagenes/opt/redes-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Instalación de redes cableadas, WiFi e internet para hogares y empresas" width="1200" height="800" decoding="async">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="6 de 6: Soporte y cableado de redes">
+                  <img src="imagenes/opt/redes-optimizada.webp" data-src="imagenes/opt/redes-optimizada.webp" loading="lazy" class="d-block w-100 services-carousel-image" alt="Instalación de redes cableadas, WiFi e internet para hogares y empresas" width="1200" height="675" decoding="async">
+                  <noscript>
+                    <img src="imagenes/opt/redes-optimizada.webp" class="d-block w-100 services-carousel-image" alt="Instalación de redes cableadas, WiFi e internet para hogares y empresas" width="1200" height="675" loading="lazy">
+                  </noscript>
                 </div>
               </div>
             </div>
             <div class="services-carousel-actions" aria-label="Controles del carrusel">
-              <button type="button" class="btn btn-outline-primary services-carousel-btn" data-bs-target="#serviciosCarousel" data-bs-slide="prev" aria-controls="serviciosCarousel">
-                <i class="fa-solid fa-chevron-left me-2" aria-hidden="true"></i>Anterior
+              <button type="button" class="btn btn-outline-primary services-carousel-btn" data-bs-target="#serviciosCarousel" data-bs-slide="prev" aria-controls="serviciosCarousel" aria-label="Ver servicio anterior">
+                <i class="fa-solid fa-chevron-left me-2" aria-hidden="true"></i><span>Anterior</span>
               </button>
-              <button type="button" class="btn btn-outline-primary services-carousel-btn" data-bs-target="#serviciosCarousel" data-bs-slide="next" aria-controls="serviciosCarousel">
-                Siguiente<i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
+              <button type="button" class="btn btn-outline-primary services-carousel-btn" data-bs-target="#serviciosCarousel" data-bs-slide="next" aria-controls="serviciosCarousel" aria-label="Ver servicio siguiente">
+                <span>Siguiente</span><i class="fa-solid fa-chevron-right ms-2" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -464,16 +489,16 @@
         <div class="row g-4 align-items-start mt-1">
           <div class="col-lg-4 reveal">
             <article class="contact-card mb-4">
-              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="contact-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
               <h3>Ubicación</h3>
               <p>Hermosillo, Sonora, México</p>
-              <a class="contact-link" href="https://www.google.com/maps/search/Hermosillo,+Sonora,+Mexico" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+              <a class="contact-link" href="https://www.google.com/maps/search/Hermosillo,+Sonora,+Mexico" target="_blank" rel="noopener noreferrer" aria-label="Ver ubicación de Novotec en Google Maps">Ver en Google Maps</a>
             </article>
             <article class="contact-card">
-              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-              <h3>Teléfono y WhatsApp</h3>
+              <div class="contact-icon"><i class="fa-solid fa-phone" aria-hidden="true"></i></div>
+              <h3>Teléfono directo</h3>
               <p>Atención directa y cotizaciones rápidas</p>
-              <a class="contact-link" href="tel:+526625085372">+52 662 508 5372</a>
+              <a class="contact-link" href="tel:+526625085372" aria-label="Llamar al taller Novotec Hermosillo al +52 662 508 5372">+52 662 508 5372</a>
             </article>
           </div>
 
@@ -514,9 +539,9 @@
                   </div>
 
                   <div class="col-12">
-                    <label for="mensaje" class="form-label">Mensaje *</label>
-                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos brevemente qué sucede con tu equipo"></textarea>
-                    <div class="invalid-feedback">Escribe un mensaje.</div>
+                    <label for="mensaje" class="form-label">Descripción del equipo o falla *</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntanos brevemente qué equipo tienes y qué falla presenta (mínimo 10 caracteres)"></textarea>
+                    <div class="invalid-feedback">Describe la falla de tu equipo (mínimo 10 caracteres).</div>
                   </div>
 
                   <div class="col-12">
@@ -529,7 +554,7 @@
 
                   <div class="col-12">
                     <button type="submit" class="btn btn-accent btn-lg w-100">
-                      <i class="fa-brands fa-whatsapp me-2"></i> Enviar por WhatsApp
+                      <i class="fa-brands fa-whatsapp me-2" aria-hidden="true"></i> Enviar por WhatsApp
                     </button>
                   </div>
 
@@ -553,9 +578,10 @@
           <p class="footer-copy mb-0">Reparación profesional de computadoras en Hermosillo, Sonora.</p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <nav class="social-links" aria-label="Redes sociales">
-            <a href="https://wa.me/526625085372" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://facebook.com/elnovotech" target="_blank" rel="noopener noreferrer" aria-label="Abrir Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <nav class="social-links" aria-label="Canales de contacto y redes sociales">
+            <a href="tel:+526625085372" aria-label="Llamar al taller Novotec Hermosillo"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
+            <a href="https://wa.me/526625085372" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Novotec por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="https://facebook.com/elnovotech" target="_blank" rel="noopener noreferrer" aria-label="Visitar página de Facebook de Novotec"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
           </nav>
         </div>
       </div>

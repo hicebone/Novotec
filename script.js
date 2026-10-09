@@ -6,43 +6,90 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");
   const servicesSection = document.getElementById("servicios");
+  const carouselEl = document.getElementById("serviciosCarousel");
   let activeLinkFrame = 0;
 
+  /* ==========================================================================
+     1. CARGA ROBUSTA Y DIFERIDA DE IMÁGENES (LAZY LOADING / HIDRATACIÓN)
+     ========================================================================== */
   const loadDeferredImages = (root) => {
     if (!root) return;
-
-    root.querySelectorAll("img[data-src]").forEach((img) => {
+    const deferredImages = root.querySelectorAll("img[data-src]");
+    deferredImages.forEach((img) => {
       const realSrc = img.getAttribute("data-src");
       if (!realSrc) return;
-
       img.src = realSrc;
       img.removeAttribute("data-src");
     });
   };
 
+  // Carga diferida mediante IntersectionObserver
   if (servicesSection) {
-    const loadWhenVisible = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        loadDeferredImages(servicesSection);
-        observer.unobserve(entry.target);
-      });
-    };
-
     if ("IntersectionObserver" in window) {
-      const servicesObserver = new IntersectionObserver(loadWhenVisible, {
-        root: null,
-        rootMargin: "220px 0px",
-        threshold: 0.08
-      });
-
+      const servicesObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            loadDeferredImages(servicesSection);
+            observer.unobserve(entry.target);
+          });
+        },
+        { root: null, rootMargin: "300px 0px", threshold: 0.05 }
+      );
       servicesObserver.observe(servicesSection);
     } else {
       loadDeferredImages(servicesSection);
     }
   }
 
+  // Si el usuario cambia de diapositiva antes de que la sección sea observada
+  if (carouselEl) {
+    carouselEl.addEventListener("slide.bs.carousel", () => {
+      loadDeferredImages(carouselEl);
+    });
+  }
+
+  /* ==========================================================================
+     2. ACCESIBILIDAD POR TECLADO (CARRUSEL Y ACORDEÓN FAQ)
+     ========================================================================== */
+  // Navegación por flechas en el carrusel
+  if (carouselEl) {
+    carouselEl.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        window.bootstrap?.Carousel?.getOrCreateInstance(carouselEl)?.prev();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        window.bootstrap?.Carousel?.getOrCreateInstance(carouselEl)?.next();
+      }
+    });
+  }
+
+  // Navegación accesible por flechas en el acordeón de Preguntas Frecuentes (WAI-ARIA)
+  const faqButtons = Array.from(document.querySelectorAll("#faqAccordion .accordion-button"));
+  faqButtons.forEach((btn, index) => {
+    btn.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        const nextBtn = faqButtons[(index + 1) % faqButtons.length];
+        nextBtn?.focus();
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        const prevBtn = faqButtons[(index - 1 + faqButtons.length) % faqButtons.length];
+        prevBtn?.focus();
+      } else if (event.key === "Home") {
+        event.preventDefault();
+        faqButtons[0]?.focus();
+      } else if (event.key === "End") {
+        event.preventDefault();
+        faqButtons[faqButtons.length - 1]?.focus();
+      }
+    });
+  });
+
+  /* ==========================================================================
+     3. NAVEGACIÓN SUAVE Y DESPLAZAMIENTO
+     ========================================================================== */
   const closeNav = () => {
     if (!navCollapse || !navCollapse.classList.contains("show")) return;
     const instance = window.bootstrap?.Collapse?.getOrCreateInstance(navCollapse);
@@ -109,25 +156,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.18 }
-  );
-
-  revealItems.forEach((item) => observer.observe(item));
+  // Observador de revelación visual de elementos
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }
 
   window.addEventListener(
     "scroll",
     () => {
       if (activeLinkFrame) return;
-
       activeLinkFrame = window.requestAnimationFrame(() => {
         activeLinkFrame = 0;
         setActiveLink();
@@ -137,6 +187,20 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   window.addEventListener("resize", setActiveLink);
   setActiveLink();
+
+  /* ==========================================================================
+     4. FORMULARIO DE CONTACTO, SANITIZACIÓN Y WHATSAPP
+     ========================================================================== */
+  const sanitizeText = (val, maxLen = 500) => {
+    if (typeof val !== "string") return "";
+    return val
+      .replace(/[<>]/g, "") // Retira caracteres < y > para evitar inyección
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Retira caracteres de control
+      .replace(/\r\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim()
+      .slice(0, maxLen);
+  };
 
   const setFieldState = (field, isValid) => {
     if (!field) return;
@@ -173,21 +237,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensaje = document.getElementById("mensaje");
     const terminos = document.getElementById("terminos");
 
-    const values = {
-      nombre: nombre?.value.trim() ?? "",
-      email: email?.value.trim() ?? "",
-      telefono: telefono?.value.trim() ?? "",
-      servicio: servicio?.value ?? "",
-      mensaje: mensaje?.value.trim() ?? "",
-      terminos: Boolean(terminos?.checked)
-    };
+    const cleanNombre = sanitizeText(nombre?.value, 80);
+    const cleanEmail = sanitizeText(email?.value, 100);
+    const cleanTelefono = sanitizeText(telefono?.value, 25);
+    const cleanServicio = sanitizeText(servicio?.value, 80);
+    const cleanMensaje = sanitizeText(mensaje?.value, 1000);
+    const cleanTerminos = Boolean(terminos?.checked);
 
-    const nombreOk = values.nombre.length >= 2;
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
-    const phoneOk = /^[0-9+\-\s()]{7,}$/.test(values.telefono);
-    const servicioOk = Boolean(values.servicio);
-    const mensajeOk = values.mensaje.length >= 3;
-    const terminosOk = values.terminos;
+    const nombreOk = cleanNombre.length >= 2;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail);
+    const phoneOk = /^[0-9+\-\s()]{7,}$/.test(cleanTelefono);
+    const servicioOk = Boolean(cleanServicio);
+    const mensajeOk = cleanMensaje.length >= 10;
+    const terminosOk = cleanTerminos;
 
     setFieldState(nombre, nombreOk);
     setFieldState(email, emailOk);
@@ -199,8 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const valid = nombreOk && emailOk && phoneOk && servicioOk && mensajeOk && terminosOk;
 
     if (!valid) {
-      showMessage("danger", "Por favor revisa los campos señalados en rojo antes de enviar.");
-      // Mover foco al primer campo inválido
+      showMessage("danger", "Por favor revisa los campos señalados antes de continuar.");
       const primerInvalido = form.querySelector(".is-invalid");
       if (primerInvalido) {
         primerInvalido.focus();
@@ -210,23 +271,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const numero = "526625085372";
     const texto = [
-      "🔧 *Solicitud de servicio - Novotec*",
+      "🛠️ *Solicitud de servicio - Novotec Hermosillo*",
       "",
-      `👤 *Nombre:* ${values.nombre}`,
-      `📱 *Teléfono:* ${values.telefono}`,
-      `📧 *Correo:* ${values.email}`,
-      `💻 *Servicio requerido:* ${values.servicio}`,
+      `👤 *Nombre:* ${cleanNombre}`,
+      `📱 *Teléfono:* ${cleanTelefono}`,
+      `📧 *Correo:* ${cleanEmail}`,
+      `💻 *Servicio requerido:* ${cleanServicio}`,
       "",
-      `📝 *Mensaje:*`,
-      values.mensaje
+      "📝 *Descripción del equipo o falla:*",
+      cleanMensaje,
+      "",
+      "📍 *Origen:* Enviado desde el sitio web"
     ].join("\n");
 
-    const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(texto)}`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
 
-    // Intentar abrir en pestaña nueva
+    // Intentar abrir WhatsApp en una nueva pestaña/app de forma limpia
     let popup = null;
     try {
-      popup = window.open(url, "_blank");
+      popup = window.open(url, "_blank", "noopener,noreferrer");
     } catch (e) {
       popup = null;
     }
@@ -239,7 +302,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `<span class="small">Si tu navegador no abrió la ventana automáticamente, <a href="${url}" target="_blank" rel="noopener noreferrer" class="alert-link text-decoration-underline fw-bold">haz clic aquí para abrir WhatsApp</a>.</span>`
       );
     } else {
-      // Si el navegador bloqueó la ventana emergente, dar enlace directo y redirigir
       showMessage(
         "info",
         `<strong>Abriendo WhatsApp...</strong> Si no redirige automáticamente, <a href="${url}" class="alert-link text-decoration-underline fw-bold">haz clic aquí para abrir el chat</a>.`
