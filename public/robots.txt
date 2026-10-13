@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.novotechhermosillo.com/sitemap-index.xml

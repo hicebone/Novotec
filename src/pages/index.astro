@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
+import Experience from '../components/Experience.astro';
+import FAQ from '../components/FAQ.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Reparación de Computadoras en Hermosillo | Laptops y PC - Novotec"
+  description="Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Diagnóstico honesto, formateo, eliminación de virus, redes y rescate de archivos. ¡Cotiza por WhatsApp!"
+  canonicalUrl="https://www.novotechhermosillo.com/"
+>
+  <Header />
+
+  <main id="contenido-principal" tabindex="-1">
+    <Hero />
+    <Services />
+    <Process />
+    <Experience />
+    <FAQ />
+    <ContactForm />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Eliminar outline cuando main recibe foco programático mediante el SkipLink */
+  #contenido-principal:focus {
+    outline: none !important;
+  }
+</style>

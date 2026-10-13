@@ -1,0 +1,205 @@
+---
+import Icon from './Icon.astro';
+---
+
+<footer class="site-footer" aria-label="Pie de página">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand-col">
+        <span class="footer-brand-name">Novotec Hermosillo</span>
+        <p class="footer-tagline">
+          Servicio técnico formal, honesto y especializado en laptops, PCs de escritorio, rescate de archivos y redes en Hermosillo, Sonora.
+        </p>
+        <div class="footer-social" aria-label="Canales de contacto y redes sociales">
+          <a
+            href="tel:+526625085372"
+            class="social-btn"
+            aria-label="Llamar al taller Novotec Hermosillo al +52 662 508 5372"
+          >
+            <Icon name="phone" size={20} />
+          </a>
+          <a
+            href="https://wa.me/526625085372"
+            class="social-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar a Novotec por WhatsApp (abre en nueva pestaña)"
+          >
+            <Icon name="whatsapp" size={20} />
+          </a>
+          <a
+            href="https://facebook.com/elnovotech"
+            class="social-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Página de Facebook oficial de Novotec (abre en nueva pestaña)"
+          >
+            <Icon name="facebook" size={20} />
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-links-col" aria-label="Enlaces rápidos del sitio">
+        <h3 class="footer-heading">Navegación</h3>
+        <ul class="footer-nav-list">
+          <li><a href="#inicio" class="footer-link">Inicio</a></li>
+          <li><a href="#servicios" class="footer-link">Servicios de Soporte</a></li>
+          <li><a href="#proceso" class="footer-link">Cómo Trabajamos</a></li>
+          <li><a href="#experiencia" class="footer-link">Trayectoria y Garantía</a></li>
+          <li><a href="#faq" class="footer-link">Preguntas Frecuentes</a></li>
+          <li><a href="#contacto" class="footer-link">Contacto y Cotización</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-hours-col">
+        <h3 class="footer-heading">Horario y Ubicación</h3>
+        <p class="footer-info-text">
+          <strong>Taller en:</strong> Hermosillo, Sonora, México
+        </p>
+        <p class="footer-info-text">
+          <strong>Lunes a Viernes:</strong> 9:00 am - 6:00 pm<br />
+          <strong>Sábados:</strong> 9:00 am - 2:00 pm
+        </p>
+        <p class="footer-info-text">
+          <strong>Teléfono:</strong> <a href="tel:+526625085372" class="footer-link footer-link--inline">+52 662 508 5372</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; 2026 Novotec Hermosillo. Todos los derechos reservados.
+      </p>
+      <p class="footer-a11y-badge">
+        Sitio diseñado con accesibilidad digital total (WCAG 2.2 AA). By Cuidado con el Ciego.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-inverse-muted);
+    border-top: 1px solid var(--color-dark-border);
+    padding: 4.5rem 0 2.5rem 0;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--color-dark-border);
+  }
+
+  .footer-brand-name {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: var(--font-weight-extrabold);
+    color: #ffffff;
+    margin-bottom: 0.85rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    max-width: 28rem;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.85rem;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--color-dark-surface);
+    color: #ffffff;
+    border: 1px solid var(--color-dark-border);
+    transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .social-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .footer-heading {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-nav-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .footer-link {
+    font-size: 0.95rem;
+    color: var(--color-text-inverse-muted);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-link--inline {
+    display: inline;
+    text-decoration: underline;
+  }
+
+  .footer-info-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
+  }
+
+  .footer-info-text strong {
+    color: #ffffff;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+    font-size: 0.88rem;
+  }
+
+  .footer-copy {
+    margin: 0;
+  }
+
+  .footer-a11y-badge {
+    margin: 0;
+    color: #a7c8ed;
+  }
+
+  @media (max-width: 991px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

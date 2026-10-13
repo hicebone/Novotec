@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="novoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B5FFF"/>
+      <stop offset="100%" stop-color="#39A0FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#07111f"/>
+  <path d="M16 46V18L32 34V18H40V46L24 30V46H16Z" fill="url(#novoGrad)"/>
+  <circle cx="48" cy="22" r="4" fill="#39A0FF"/>
+</svg>

@@ -1,0 +1,603 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section id="contacto" class="section" aria-labelledby="contacto-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-kicker">Contacto Directo</span>
+      <h2 id="contacto-title" class="section-title">
+        Hablemos de tu equipo en Hermosillo
+      </h2>
+      <p class="section-description">
+        Completa el formulario y se abrirá WhatsApp con tu reporte estructurado listo para enviarnos. O contáctanos por teléfono directo.
+      </p>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Tarjetas de Información Directa -->
+      <aside class="contact-info-cards" aria-label="Información de contacto">
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <Icon name="phone" size={26} />
+          </div>
+          <div>
+            <h3 class="info-title">Atención Telefónica</h3>
+            <p class="info-desc">Llámanos para dudas rápidas o urgencias:</p>
+            <a
+              href="tel:+526625085372"
+              class="info-link"
+              aria-label="Llamar al taller Novotec al +52 662 508 5372"
+            >
+              +52 662 508 5372
+            </a>
+          </div>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon info-icon--whatsapp" aria-hidden="true">
+            <Icon name="whatsapp" size={26} />
+          </div>
+          <div>
+            <h3 class="info-title">WhatsApp Directo</h3>
+            <p class="info-desc">Escríbenos en cualquier momento:</p>
+            <a
+              href="https://wa.me/526625085372"
+              class="info-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Escribir por WhatsApp a Novotec al +52 662 508 5372 (abre en nueva pestaña)"
+            >
+              Iniciar Chat en WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <Icon name="map-pin" size={26} />
+          </div>
+          <div>
+            <h3 class="info-title">Ubicación</h3>
+            <p class="info-desc">Hermosillo, Sonora, México</p>
+            <a
+              href="https://www.google.com/maps/search/Hermosillo,+Sonora,+Mexico"
+              class="info-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir ubicación de Hermosillo en Google Maps (abre en nueva pestaña)"
+            >
+              Ver en Google Maps
+            </a>
+          </div>
+        </article>
+
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <Icon name="clock" size={26} />
+          </div>
+          <div>
+            <h3 class="info-title">Horario de Taller</h3>
+            <p class="info-desc">Lunes a Viernes: 9:00 am - 6:00 pm<br />Sábados: 9:00 am - 2:00 pm</p>
+          </div>
+        </article>
+      </aside>
+
+      <!-- Formulario Accesible de Solicitud -->
+      <div class="form-wrapper">
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-grid">
+            <!-- Campo Nombre -->
+            <div class="form-field">
+              <label for="nombre" class="form-label">
+                Nombre completo <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                class="form-input"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="nombre-error"
+                placeholder="Ej. Juan Pérez"
+              />
+              <span id="nombre-error" class="form-error" role="alert">
+                Por favor, escribe tu nombre completo (mínimo 2 letras).
+              </span>
+            </div>
+
+            <!-- Campo Correo -->
+            <div class="form-field">
+              <label for="email" class="form-label">
+                Correo electrónico <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+                placeholder="ejemplo@correo.com"
+              />
+              <span id="email-error" class="form-error" role="alert">
+                Ingresa una dirección de correo válida (ejemplo@correo.com).
+              </span>
+            </div>
+
+            <!-- Campo Teléfono -->
+            <div class="form-field">
+              <label for="telefono" class="form-label">
+                Teléfono de contacto <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                class="form-input"
+                autocomplete="tel"
+                inputmode="tel"
+                required
+                aria-required="true"
+                aria-describedby="telefono-error"
+                placeholder="+52 662 123 4567"
+              />
+              <span id="telefono-error" class="form-error" role="alert">
+                Ingresa un teléfono válido de al menos 7 dígitos.
+              </span>
+            </div>
+
+            <!-- Campo Servicio -->
+            <div class="form-field">
+              <label for="servicio" class="form-label">
+                Servicio que necesitas <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <select
+                id="servicio"
+                name="servicio"
+                class="form-select"
+                required
+                aria-required="true"
+                aria-describedby="servicio-error"
+              >
+                <option value="">Selecciona una opción</option>
+                <option value="Reparación de laptop">Reparación de laptop</option>
+                <option value="Reparación de PC de escritorio">Reparación de PC de escritorio</option>
+                <option value="Seguridad informática y virus">Seguridad informática y virus</option>
+                <option value="Recuperación de datos">Recuperación de datos</option>
+                <option value="Instalación de software y formateo">Instalación de software y formateo</option>
+                <option value="Redes e Internet">Redes e Internet</option>
+                <option value="Otro servicio de cómputo">Otro servicio de cómputo</option>
+              </select>
+              <span id="servicio-error" class="form-error" role="alert">
+                Por favor, selecciona el servicio que requieres.
+              </span>
+            </div>
+
+            <!-- Campo Descripción de la Falla -->
+            <div class="form-field form-field--full">
+              <label for="mensaje" class="form-label">
+                Descripción del equipo y la falla <span class="required-indicator" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                class="form-textarea"
+                rows="4"
+                required
+                aria-required="true"
+                aria-describedby="mensaje-help mensaje-error"
+                placeholder="Cuéntanos la marca, modelo aproximado y qué síntomas presenta el equipo..."
+              ></textarea>
+              <span id="mensaje-help" class="form-help">
+                Describe brevemente la falla (mínimo 10 caracteres).
+              </span>
+              <span id="mensaje-error" class="form-error" role="alert">
+                Por favor, describe la falla con al menos 10 caracteres.
+              </span>
+            </div>
+
+            <!-- Casilla de Aceptación -->
+            <div class="form-field form-field--full">
+              <div class="form-checkbox-wrapper">
+                <input
+                  type="checkbox"
+                  id="terminos"
+                  name="terminos"
+                  class="form-checkbox"
+                  required
+                  aria-required="true"
+                  aria-describedby="terminos-error"
+                />
+                <label for="terminos" class="form-checkbox-label">
+                  Acepto ser contactado por Novotec mediante WhatsApp o llamada telefónica para dar seguimiento a esta cotización. <span class="required-indicator" aria-hidden="true">*</span>
+                </label>
+              </div>
+              <span id="terminos-error" class="form-error" role="alert">
+                Debes marcar esta casilla para que podamos contactarte.
+              </span>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="form-field form-field--full">
+              <button type="submit" class="btn btn-whatsapp btn-submit" id="submitBtn">
+                <Icon name="whatsapp" size={22} />
+                <span>Enviar cotización por WhatsApp</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Región de Estado Accesible para Lectores de Pantalla -->
+          <div
+            id="formStatus"
+            class="form-status"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .contact-info-cards {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    display: flex;
+    gap: 1.25rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .info-icon--whatsapp {
+    background-color: #e6f7f2;
+    color: #128c7e;
+  }
+
+  .info-title {
+    font-size: 1.15rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+    margin-bottom: 0.35rem;
+  }
+
+  .info-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .info-link {
+    display: inline-block;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    font-size: 0.98rem;
+    border-radius: var(--radius-sm);
+    min-height: 36px;
+    line-height: 36px;
+  }
+
+  .info-link:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+
+  .form-wrapper {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .required-indicator {
+    color: var(--color-error);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    color: var(--color-text-main);
+    background-color: #ffffff;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(11, 95, 255, 0.15);
+  }
+
+  .form-input[aria-invalid="true"],
+  .form-select[aria-invalid="true"],
+  .form-textarea[aria-invalid="true"],
+  .form-checkbox[aria-invalid="true"] {
+    border-color: var(--color-error) !important;
+    background-color: var(--color-error-bg);
+  }
+
+  .form-help {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+  }
+
+  .form-error {
+    display: none;
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-error);
+    margin-top: 0.4rem;
+  }
+
+  .form-field.has-error .form-error {
+    display: block;
+  }
+
+  .form-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .form-checkbox {
+    width: 22px;
+    height: 22px;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .form-checkbox-label {
+    font-size: 0.92rem;
+    color: var(--color-text-main);
+    cursor: pointer;
+    line-height: 1.5;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .form-status {
+    margin-top: 1.5rem;
+    border-radius: var(--radius-md);
+    padding: 0;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .form-status.status-success {
+    padding: 1rem 1.25rem;
+    background-color: var(--color-success-bg);
+    border: 1px solid var(--color-success);
+    color: #0d5f30;
+  }
+
+  .form-status.status-error {
+    padding: 1rem 1.25rem;
+    background-color: var(--color-error-bg);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+  }
+
+  @media (max-width: 991px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .form-wrapper {
+      padding: 1.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Validación y envío 100% accesible para lectores de pantalla (NVDA)
+  const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
+  const statusEl = document.getElementById('formStatus');
+
+  if (contactForm && statusEl) {
+    const fields = [
+      { id: 'nombre', check: (v: string) => v.trim().length >= 2 },
+      { id: 'email', check: (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'telefono', check: (v: string) => /^[0-9+\-\s()]{7,}$/.test(v.trim()) },
+      { id: 'servicio', check: (v: string) => Boolean(v.trim()) },
+      { id: 'mensaje', check: (v: string) => v.trim().length >= 10 }
+    ];
+
+    const sanitize = (text: string, maxLen: number) => {
+      return text
+        .replace(/[<>]/g, '')
+        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
+        .trim()
+        .slice(0, maxLen);
+    };
+
+    // Limpiar errores cuando el usuario escribe
+    fields.forEach((f) => {
+      const input = document.getElementById(f.id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+      if (!input) return;
+      const clear = () => {
+        const parent = input.closest('.form-field');
+        if (parent?.classList.contains('has-error')) {
+          parent.classList.remove('has-error');
+          input.removeAttribute('aria-invalid');
+        }
+      };
+      input.addEventListener('input', clear);
+      input.addEventListener('change', clear);
+    });
+
+    const terminosCheck = document.getElementById('terminos') as HTMLInputElement | null;
+    if (terminosCheck) {
+      terminosCheck.addEventListener('change', () => {
+        const parent = terminosCheck.closest('.form-field');
+        if (parent?.classList.contains('has-error')) {
+          parent.classList.remove('has-error');
+          terminosCheck.removeAttribute('aria-invalid');
+        }
+      });
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let hasErrors = false;
+      let firstInvalidEl: HTMLElement | null = null;
+
+      // Validar campos de texto / select
+      fields.forEach((f) => {
+        const el = document.getElementById(f.id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+        if (!el) return;
+        const parent = el.closest('.form-field');
+        const isValid = f.check(el.value);
+
+        if (!isValid) {
+          hasErrors = true;
+          parent?.classList.add('has-error');
+          el.setAttribute('aria-invalid', 'true');
+          if (!firstInvalidEl) firstInvalidEl = el;
+        } else {
+          parent?.classList.remove('has-error');
+          el.removeAttribute('aria-invalid');
+        }
+      });
+
+      // Validar checkbox
+      if (terminosCheck) {
+        const parent = terminosCheck.closest('.form-field');
+        if (!terminosCheck.checked) {
+          hasErrors = true;
+          parent?.classList.add('has-error');
+          terminosCheck.setAttribute('aria-invalid', 'true');
+          if (!firstInvalidEl) firstInvalidEl = terminosCheck;
+        } else {
+          parent?.classList.remove('has-error');
+          terminosCheck.removeAttribute('aria-invalid');
+        }
+      }
+
+      if (hasErrors) {
+        statusEl.className = 'form-status status-error';
+        statusEl.textContent = 'Hay errores en el formulario. Por favor, revisa los campos señalados antes de continuar.';
+        if (firstInvalidEl) {
+          firstInvalidEl.focus();
+        }
+        return;
+      }
+
+      // Preparar datos sanitizados
+      const nombreVal = sanitize((document.getElementById('nombre') as HTMLInputElement).value, 80);
+      const emailVal = sanitize((document.getElementById('email') as HTMLInputElement).value, 100);
+      const telVal = sanitize((document.getElementById('telefono') as HTMLInputElement).value, 25);
+      const servVal = sanitize((document.getElementById('servicio') as HTMLSelectElement).value, 80);
+      const msgVal = sanitize((document.getElementById('mensaje') as HTMLTextAreaElement).value, 1000);
+
+      const numeroWhatsApp = '526625085372';
+      const mensajeWA = [
+        '🛠️ *Solicitud de servicio - Novotec Hermosillo*',
+        '',
+        `👤 *Nombre:* ${nombreVal}`,
+        `📱 *Teléfono:* ${telVal}`,
+        `📧 *Correo:* ${emailVal}`,
+        `💻 *Servicio requerido:* ${servVal}`,
+        '',
+        '📝 *Descripción del equipo o falla:*',
+        msgVal,
+        '',
+        '📍 *Origen:* Enviado desde el sitio web novoai2'
+      ].join('\n');
+
+      const waUrl = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWA)}`;
+
+      statusEl.className = 'form-status status-success';
+      statusEl.innerHTML = `<strong>¡Excelente!</strong> Se está abriendo WhatsApp con tu cotización estructurada.<br><span style="font-size: 0.9rem;">Si la ventana no se abrió de inmediato, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color: #0b5fff; text-decoration: underline; font-weight: bold;">haz clic aquí para abrir WhatsApp</a>.</span>`;
+
+      // Intentar abrir WhatsApp
+      let opened = false;
+      try {
+        const popup = window.open(waUrl, '_blank', 'noopener,noreferrer');
+        if (popup && !popup.closed) {
+          opened = true;
+        }
+      } catch (err) {
+        opened = false;
+      }
+
+      if (!opened) {
+        window.location.href = waUrl;
+      }
+
+      // Limpiar formulario conservando el mensaje de estado para NVDA
+      contactForm.reset();
+    });
+  }
+</script>

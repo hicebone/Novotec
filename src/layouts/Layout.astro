@@ -1,0 +1,78 @@
+---
+import SkipLink from '../components/SkipLink.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Reparación de Computadoras en Hermosillo | Laptops y PC - Novotec",
+  description = "Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Diagnóstico honesto, formateo, recuperación de datos, virus y redes. ¡Cotiza rápido por WhatsApp!",
+  canonicalUrl = "https://www.novotechhermosillo.com/",
+  ogImage = "/imagenes/opt/reparacion-optimizada.webp"
+} = Astro.props;
+
+const siteUrl = "https://www.novotechhermosillo.com";
+const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="reparacion de computadoras hermosillo, reparacion de laptops hermosillo, soporte tecnico hermosillo, formateo de computadoras hermosillo, recuperacion de datos hermosillo, novotec hermosillo, mantenimiento de computadoras sonoral" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Novotec Hermosillo" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Geo Tags para SEO Local Hermosillo, Sonora -->
+    <meta name="geo.region" content="MX-SON" />
+    <meta name="geo.placename" content="Hermosillo" />
+    <meta name="geo.position" content="29.072967;-110.955919" />
+    <meta name="ICBM" content="29.072967, -110.955919" />
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Novotec Hermosillo" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta property="og:image:alt" content="Técnico especialista reparando una computadora en taller Novotec Hermosillo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+    <meta name="twitter:image:alt" content="Técnico reparando computadora en taller Novotec Hermosillo" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/imagenes/logo.png" />
+    <link rel="apple-touch-icon" href="/imagenes/logo-optimized.png" />
+
+    <!-- Preload del recurso LCP principal -->
+    <link rel="preload" as="image" href="/imagenes/opt/reparacion-optimizada.webp" type="image/webp" fetchpriority="high" />
+
+    <!-- Datos Estructurados Schema.org -->
+    <SchemaOrg siteUrl={siteUrl} />
+  </head>
+  <body>
+    <SkipLink />
+    <slot />
+  </body>
+</html>

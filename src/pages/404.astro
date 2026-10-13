@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Página no encontrada (404) | Novotec Hermosillo"
+  description="La página que buscas no existe o ha sido movida. Regresa a la página principal de Novotec Hermosillo."
+  canonicalUrl="https://www.novotechhermosillo.com/404.html"
+>
+  <Header />
+
+  <main id="contenido-principal" tabindex="-1" class="not-found-main">
+    <div class="container not-found-container">
+      <div class="not-found-card">
+        <span class="error-badge">Error 404</span>
+        <h1 class="not-found-title">Página no encontrada</h1>
+        <p class="not-found-desc">
+          Lo sentimos, la página que buscas no existe o ha sido reubicada. Puedes volver a la página de inicio o escribirnos directamente para ayudarte con tu computadora.
+        </p>
+
+        <div class="not-found-actions">
+          <a href="/" class="btn btn-primary">
+            <span>Volver al inicio</span>
+          </a>
+          <a
+            href="https://wa.me/526625085372"
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar a Novotec por WhatsApp al +52 662 508 5372 (abre en nueva pestaña)"
+          >
+            <Icon name="whatsapp" size={20} />
+            <span>Escribir por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .not-found-main {
+    min-height: calc(100vh - 72px - 300px);
+    display: flex;
+    align-items: center;
+    padding: 5rem 0;
+  }
+
+  .not-found-container {
+    max-width: 680px;
+  }
+
+  .not-found-card {
+    text-align: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem 2.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .error-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-accent-light);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-extrabold);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .not-found-title {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-main);
+    margin-bottom: 1rem;
+  }
+
+  .not-found-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+  }
+
+  .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>

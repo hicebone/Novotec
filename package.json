@@ -1,0 +1,20 @@
+{
+  "name": "novoai2",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Sitio web oficial de Novotec Hermosillo - Reparación de Computadoras y Soporte Técnico Profesional.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,151 @@
+---
+interface Props {
+  siteUrl?: string;
+}
+
+const { siteUrl = "https://www.novotechhermosillo.com" } = Astro.props;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ElectronicsRepairShop"],
+      "@id": `${siteUrl}/#business`,
+      "name": "Novotec Hermosillo",
+      "alternateName": "Novotec Reparación de Computadoras",
+      "url": `${siteUrl}/`,
+      "logo": `${siteUrl}/imagenes/logo-optimized.png`,
+      "image": [
+        `${siteUrl}/imagenes/opt/reparacion-optimizada.webp`,
+        `${siteUrl}/imagenes/logo-optimized.png`
+      ],
+      "description": "Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Mantenimiento, eliminación de virus, formateo, redes y rescate de información.",
+      "telephone": "+526625085372",
+      "priceRange": "$$",
+      "currenciesAccepted": "MXN",
+      "paymentAccepted": "Efectivo, Transferencia, Tarjeta",
+      "areaServed": {
+        "@type": "City",
+        "name": "Hermosillo"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hermosillo",
+        "addressRegion": "Sonora",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 29.072967,
+        "longitude": -110.955919
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "sameAs": [
+        "https://facebook.com/elnovotech",
+        "https://wa.me/526625085372"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Reparación y Soporte Técnico de Cómputo",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de laptops"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Reparación de computadoras de escritorio (PC)"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Seguridad informática y eliminación de virus"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Recuperación de datos"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Instalación de software y formateo"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Redes e Internet"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tarda la reparación de una computadora o laptop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El diagnóstico inicial normalmente se efectúa en un lapso de 24 a 48 horas. Mantenimientos preventivos, limpiezas y formateos con frecuencia quedan listos en 24 horas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se pierden mis archivos o fotos al reparar o formatear?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Realizamos un respaldo preventivo de tus documentos, fotos y datos antes de realizar cualquier intervención en el sistema."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipos y marcas de computadoras atienden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atendemos laptops y computadoras de escritorio de todas las marcas (HP, Dell, Lenovo, ASUS, Acer, Apple Mac, armadas / gamer) tanto para usuarios domésticos como negocios y oficinas en Hermosillo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Ofrecen garantía en las reparaciones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, ofrecemos garantía por escrito tanto en mano de obra como en refacciones instaladas, asegurando un servicio confiable con más de 25 años de experiencia técnica."
+          }
+        }
+      ]
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

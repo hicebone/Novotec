@@ -1,0 +1,244 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section id="inicio" class="hero-section" aria-labelledby="hero-title">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <Icon name="award" size={18} />
+        <span>Soporte Técnico en Hermosillo, Sonora</span>
+      </div>
+
+      <h1 id="hero-title" class="hero-title">
+        Reparación de computadoras en Hermosillo <span class="highlight">rápida, honesta y confiable</span>
+      </h1>
+
+      <p class="hero-description">
+        En Novotec diagnosticamos y solucionamos fallas en laptops, PCs de escritorio, problemas de lentitud, virus, formateo con respaldo seguro, redes y recuperación de datos.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary btn-lg">
+          <span>Solicitar servicio</span>
+        </a>
+        <a
+          href="https://wa.me/526625085372"
+          class="btn btn-whatsapp btn-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contactar a Novotec por WhatsApp al +52 662 508 5372 (abre en nueva pestaña)"
+        >
+          <Icon name="whatsapp" size={20} />
+          <span>Cotizar por WhatsApp</span>
+        </a>
+      </div>
+
+      <ul class="hero-features" aria-label="Beneficios principales">
+        <li class="feature-item">
+          <span class="feature-icon"><Icon name="check" size={16} /></span>
+          <span><strong>25+ años</strong> de trayectoria técnica real</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon"><Icon name="check" size={16} /></span>
+          <span><strong>Diagnóstico claro</strong> y presupuesto sin sorpresas</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon"><Icon name="check" size={16} /></span>
+          <span><strong>Respaldo preventivo</strong> para proteger tus fotos y archivos</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-visual">
+      <div class="image-wrapper">
+        <img
+          src="/imagenes/opt/reparacion-optimizada.webp"
+          alt="Técnico especialista de Novotec realizando diagnóstico y reparación a una laptop"
+          class="hero-img"
+          width="900"
+          height="600"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="hero-floating-card" aria-hidden="true">
+          <div class="floating-icon"><Icon name="clock" size={24} /></div>
+          <div>
+            <span class="floating-title">Atención Ágil</span>
+            <span class="floating-desc">Diagnóstico de 24 a 48 hrs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 4.5rem 0 5.5rem 0;
+    background: linear-gradient(135deg, #07111f 0%, #0d223f 50%, #0b5fff 120%);
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(57, 160, 255, 0.15);
+    border: 1px solid rgba(57, 160, 255, 0.35);
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: var(--font-weight-extrabold);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+
+  .highlight {
+    color: #9bc8ff;
+    display: inline;
+  }
+
+  .hero-description {
+    font-size: 1.18rem;
+    line-height: 1.7;
+    color: #d8e6f7;
+    margin-bottom: 2.2rem;
+    max-width: 38rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-lg {
+    padding: 0.85rem 1.85rem;
+    font-size: 1.05rem;
+    min-height: 52px;
+  }
+
+  .hero-features {
+    display: grid;
+    gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #e5effa;
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: #07111f;
+    flex-shrink: 0;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .hero-floating-card {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(7, 17, 31, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.9rem 1.4rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .floating-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .floating-title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+  }
+
+  .floating-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: #a7c8ed;
+  }
+
+  @media (max-width: 991px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero-section {
+      padding: 3rem 0 4rem 0;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn-lg {
+      width: 100%;
+    }
+  }
+</style>

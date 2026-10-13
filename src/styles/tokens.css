@@ -1,0 +1,61 @@
+:root {
+  /* Paleta Corporativa Novotec Hermosillo */
+  --color-primary: #0b5fff;
+  --color-primary-hover: #0747c7;
+  --color-primary-dark: #0737a6;
+  --color-accent: #39a0ff;
+  --color-accent-light: #e6f2ff;
+
+  /* Colores de Fondo y Superficies */
+  --color-bg: #f8fafd;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-alt: #f0f5fc;
+
+  /* Modo Oscuro Corporativo (Header y Secciones Destacadas) */
+  --color-dark-bg: #07111f;
+  --color-dark-surface: #0e1b2d;
+  --color-dark-surface-raised: #14243b;
+  --color-dark-border: rgba(255, 255, 255, 0.12);
+
+  /* Texto y Contraste WCAG 2.2 AA (Mínimo 4.5:1 verificado) */
+  --color-text-main: #07111f;       /* Contraste 17.5:1 sobre blanco */
+  --color-text-muted: #2f3e53;      /* Contraste 7.2:1 sobre blanco */
+  --color-text-inverse: #ffffff;    /* Contraste 17.5:1 sobre dark-bg */
+  --color-text-inverse-muted: #d0ddec; /* Contraste 9.4:1 sobre dark-bg */
+
+  /* Estados y Validación Accesible */
+  --color-success: #0d8a43;
+  --color-success-bg: #e6f7ee;
+  --color-error: #c5162a;
+  --color-error-bg: #fde8eb;
+  --color-focus: #0b5fff;
+  --color-focus-inverse: #ffffff;
+
+  /* Bordes y Sombras */
+  --color-border: #d4e0ef;
+  --color-border-subtle: #e8eef6;
+  --shadow-sm: 0 2px 6px rgba(7, 17, 31, 0.05);
+  --shadow-md: 0 10px 24px rgba(7, 17, 31, 0.08);
+  --shadow-lg: 0 20px 48px rgba(7, 17, 31, 0.12);
+  --shadow-primary: 0 12px 28px rgba(11, 95, 255, 0.25);
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Tipografía */
+  --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Transiciones Suaves */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}

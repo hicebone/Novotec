@@ -1,0 +1,101 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Recepción y Diagnóstico",
+    desc: "Revisamos tu laptop o PC en taller para detectar la causa exacta de la falla. Diagnóstico inicial de 24 a 48 horas."
+  },
+  {
+    step: "02",
+    title: "Presupuesto sin Sorpresas",
+    desc: "Te explicamos claramente qué tiene el equipo, la solución recomendada y el costo exacto antes de realizar cualquier trabajo."
+  },
+  {
+    step: "03",
+    title: "Respaldo y Reparación",
+    desc: "Cuidamos tu información respaldando documentos y fotos antes de intervenir. Aplicamos refacciones y ajustes con rigor técnico."
+  },
+  {
+    step: "04",
+    title: "Pruebas y Entrega con Garantía",
+    desc: "Realizamos pruebas de temperatura y funcionamiento antes de entregarte el equipo, respaldado por garantía escrita."
+  }
+];
+---
+
+<section id="proceso" class="section" aria-labelledby="proceso-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-kicker">Atención Transparente</span>
+      <h2 id="proceso-title" class="section-title">
+        Cómo cuidamos tu equipo en 4 pasos
+      </h2>
+      <p class="section-description">
+        Un proceso ordenado para que siempre sepas en qué estado se encuentra tu computadora.
+      </p>
+    </div>
+
+    <div class="process-grid">
+      {steps.map((s) => (
+        <article class="process-card" aria-labelledby={`step-title-${s.step}`}>
+          <div class="step-badge" aria-hidden="true">{s.step}</div>
+          <h3 id={`step-title-${s.step}`} class="step-title">{s.title}</h3>
+          <p class="step-desc">{s.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .process-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 1.75rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+
+  .process-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #ffffff;
+    font-weight: var(--font-weight-extrabold);
+    font-size: 1.1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-primary);
+  }
+
+  .step-title {
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+    margin-bottom: 0.85rem;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
