@@ -1,6 +1,16 @@
 ---
 import Icon from './Icon.astro';
 
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const resolveAsset = (path: string) => {
+  if (path.startsWith('http')) return path;
+  const clean = path.startsWith('/') ? path.slice(1) : path;
+  return `${base}${clean}`;
+};
+
 const services = [
   {
     id: "laptops",
@@ -86,7 +96,7 @@ const services = [
         <article class="service-card" aria-labelledby={`service-heading-${s.id}`}>
           <div class="service-media">
             <img
-              src={s.image}
+              src={resolveAsset(s.image)}
               alt={s.alt}
               class="service-img"
               width="600"

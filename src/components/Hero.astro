@@ -1,5 +1,10 @@
 ---
 import Icon from './Icon.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const heroImgSrc = `${base}imagenes/opt/reparacion-optimizada.webp`;
 ---
 
 <section id="inicio" class="hero-section" aria-labelledby="hero-title">
@@ -53,7 +58,7 @@ import Icon from './Icon.astro';
     <div class="hero-visual">
       <div class="image-wrapper">
         <img
-          src="/imagenes/opt/reparacion-optimizada.webp"
+          src={heroImgSrc}
           alt="Técnico especialista de Novotec realizando diagnóstico y reparación a una laptop"
           class="hero-img"
           width="900"
