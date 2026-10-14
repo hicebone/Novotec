@@ -6,18 +6,17 @@ import Icon from '../components/Icon.astro';
 ---
 
 <Layout
-  title="404: Página no encontrada | Novotec Hermosillo"
+  title="Página no encontrada (404) | Novotec Hermosillo"
   description="La página que buscas no existe o ha sido movida. Regresa a la página principal de Novotec Hermosillo."
   canonicalUrl="https://www.novotechhermosillo.com/404.html"
-  noindex={true}
 >
   <Header />
 
   <main id="contenido-principal" tabindex="-1" class="not-found-main">
     <div class="container not-found-container">
-      <div class="not-found-card" role="region" aria-labelledby="error-heading">
-        <span class="error-badge" aria-hidden="true">Error 404</span>
-        <h1 id="error-heading" class="not-found-title" tabindex="-1">Página no encontrada</h1>
+      <div class="not-found-card">
+        <span class="error-badge">Error 404</span>
+        <h1 class="not-found-title">Página no encontrada</h1>
         <p class="not-found-desc">
           Lo sentimos, la página que buscas no existe o ha sido reubicada. Puedes volver a la página de inicio o escribirnos directamente para ayudarte con tu computadora.
         </p>
@@ -40,14 +39,6 @@ import Icon from '../components/Icon.astro';
       </div>
     </div>
   </main>
-
-  <script>
-    // Enfoque programático directo para lectores de pantalla (NVDA) al acceder a la página de error
-    const errorHeading = document.getElementById('error-heading');
-    if (errorHeading) {
-      errorHeading.focus();
-    }
-  </script>
 
   <Footer />
 </Layout>

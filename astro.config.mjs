@@ -8,7 +8,6 @@ export default defineConfig({
   // descomentar o configurar la propiedad base: '/Novotec/'
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
       changefreq: 'weekly',
       priority: 1.0,
       lastmod: new Date()

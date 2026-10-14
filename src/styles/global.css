@@ -232,8 +232,9 @@
 }
 
 /* ==========================================================================
-   6. ALINEACIÓN TIPOGRÁFICA EN MAIN (ENCABEZADOS CENTRADOS Y PÁRRAFOS JUSTIFICADOS)
+   6. ALINEACIÓN TIPOGRÁFICA EN MAIN Y HEADER (ENCABEZADOS CENTRADOS Y PÁRRAFOS JUSTIFICADOS)
    ========================================================================== */
+header h1,
 main h1,
 main h2,
 main h3,

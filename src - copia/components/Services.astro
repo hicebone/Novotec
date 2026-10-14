@@ -1,0 +1,258 @@
+---
+import Icon from './Icon.astro';
+
+const services = [
+  {
+    id: "laptops",
+    icon: "laptop",
+    title: "Reparación de Laptops",
+    image: "/imagenes/opt/reparacion-optimizada.webp",
+    alt: "Reparación física y electrónica de laptop en taller Novotec",
+    description: "Diagnóstico especializado, solución de problemas de encendido, pantalla negra, cambio de bisagras, teclado, batería, limpieza profunda y cambio de pasta térmica.",
+    badge: "Servicio Frecuente"
+  },
+  {
+    id: "pc",
+    icon: "desktop",
+    title: "Reparación de Computadoras PC",
+    image: "/imagenes/opt/instalacion-optimizada.webp",
+    alt: "Mantenimiento y actualización de computadora de escritorio PC",
+    description: "Mantenimiento preventivo y correctivo, cambio de disco duro a SSD de alta velocidad, optimización de memoria RAM, fuentes de poder y ensamble gamer/oficina.",
+    badge: "Alta Demanda"
+  },
+  {
+    id: "antivirus",
+    icon: "shield",
+    title: "Eliminación de Virus y Seguridad",
+    image: "/imagenes/opt/antivirus-optimizada.webp",
+    alt: "Análisis y desinfección de virus informáticos y malware",
+    description: "Limpieza profunda de troyanos, publicidad molesta, spyware y malware sin formatear si es posible, protegiendo tus datos personales y bancarios.",
+    badge: "Protección Total"
+  },
+  {
+    id: "recuperacion",
+    icon: "database",
+    title: "Recuperación de Archivos y Datos",
+    image: "/imagenes/opt/recuperacion-optimizada.webp",
+    alt: "Recuperación de datos desde disco duro y memorias de almacenamiento",
+    description: "Rescate de documentos, fotografías y proyectos en discos duros con fallas lógicas o mecánicas leves, memorias USB dañadas o unidades formateadas por accidente.",
+    badge: "Confidencial"
+  },
+  {
+    id: "software",
+    icon: "software",
+    title: "Instalación de Software y Formateo",
+    image: "/imagenes/opt/programas-optimizada.webp",
+    alt: "Instalación de sistema operativo Windows y paquetería de trabajo",
+    description: "Formateo e instalación limpia de Windows con respaldo preventivo obligatorio de tus archivos personales. Configuración de controladores y programas básicos de trabajo.",
+    badge: "Garantizado"
+  },
+  {
+    id: "redes",
+    icon: "network",
+    title: "Redes, WiFi y Conectividad",
+    image: "/imagenes/opt/redes-optimizada.webp",
+    alt: "Instalación y configuración de redes WiFi y cableado de red",
+    description: "Solución de problemas de internet lento o caídas de señal, configuración de módems, routers, repetidores, impresoras compartidas y cableado estructurado.",
+    badge: "Hogar y Negocio"
+  }
+];
+---
+
+<section id="servicios" class="section section--alt" aria-labelledby="servicios-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-kicker">Catálogo de Servicios</span>
+      <h2 id="servicios-title" class="section-title">
+        Soluciones técnicas profesionales para tu equipo
+      </h2>
+      <p class="section-description">
+        Mantenimiento honesto, transparente y con explicación clara de cada procedimiento en Hermosillo.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      {services.map((s) => (
+        <article class="service-card" aria-labelledby={`service-heading-${s.id}`}>
+          <div class="service-media">
+            <img
+              src={s.image}
+              alt={s.alt}
+              class="service-img"
+              width="600"
+              height="338"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="service-badge">{s.badge}</span>
+          </div>
+
+          <div class="service-body">
+            <div class="service-header">
+              <span class="service-icon-box" aria-hidden="true">
+                <Icon name={s.icon} size={24} />
+              </span>
+              <h3 id={`service-heading-${s.id}`} class="service-name">
+                {s.title}
+              </h3>
+            </div>
+
+            <p class="service-text">
+              {s.description}
+            </p>
+
+            <div class="service-footer">
+              <a
+                href={`https://wa.me/526625085372?text=${encodeURIComponent(`Hola, me interesa cotizar el servicio de ${s.title} en Hermosillo.`)}`}
+                class="service-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Cotizar por WhatsApp el servicio de ${s.title} (abre en nueva pestaña)`}
+              >
+                <span>Cotizar por WhatsApp</span>
+                <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border);
+  }
+
+  .service-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: #e5effa;
+    overflow: hidden;
+  }
+
+  .service-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+
+  .service-card:hover .service-img {
+    transform: scale(1.03);
+  }
+
+  .service-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    background-color: rgba(7, 17, 31, 0.85);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(4px);
+  }
+
+  .service-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .service-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-accent-light);
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .service-name {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .service-text {
+    font-size: 0.98rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+    flex-grow: 1;
+  }
+
+  .service-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-subtle);
+    text-align: center;
+  }
+
+  .service-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.95rem;
+    color: var(--color-primary);
+    min-height: 44px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), gap var(--transition-fast);
+  }
+
+  .service-cta:hover {
+    color: var(--color-primary-hover);
+    gap: 0.75rem;
+  }
+
+  .cta-arrow {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 767px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

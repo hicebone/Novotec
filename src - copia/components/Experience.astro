@@ -1,0 +1,154 @@
+---
+import Icon from './Icon.astro';
+
+const trustItems = [
+  "Más de 25 años atendiendo problemas informáticos en Hermosillo.",
+  "Diagnóstico claro: te explicamos qué falla en palabras cotidianas.",
+  "Respaldo preventivo estricto de documentos, fotos y bases de datos.",
+  "Garantía por escrito tanto en mano de obra como en refacciones.",
+  "Atención a particulares, profesionistas, comercios y pequeñas oficinas.",
+  "Precios honestos y presupuestos autorizados antes de intervenir."
+];
+---
+
+<section id="experiencia" class="section section--dark" aria-labelledby="experiencia-title">
+  <div class="container experience-container">
+    <div class="experience-content">
+      <span class="section-kicker">Trayectoria y Confianza</span>
+      <h2 id="experiencia-title" class="section-title">
+        Más de 25 años resolviendo problemas reales en Hermosillo
+      </h2>
+      <p class="section-description">
+        Iniciamos como un taller de cómputo en Hermosillo y nos mantenemos firmes con un principio elemental: soporte técnico formal, explicaciones transparentes y reparaciones bien hechas desde la primera vez.
+      </p>
+
+      <div class="stats-grid" aria-label="Cifras de experiencia">
+        <div class="stat-card">
+          <span class="stat-num">25+</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Diagnósticos honestos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">24-48h</span>
+          <span class="stat-label">Diagnóstico promedio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="experience-checklist-wrapper">
+      <h3 class="checklist-title">Compromisos de servicio Novotec</h3>
+      <ul class="checklist" aria-label="Compromisos de calidad">
+        {trustItems.map((item) => (
+          <li class="checklist-item">
+            <span class="checklist-icon" aria-hidden="true">
+              <Icon name="check" size={18} />
+            </span>
+            <span class="checklist-text">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-card {
+    background-color: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    display: block;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-accent);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-inverse-muted);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .experience-checklist-wrapper {
+    background-color: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-xl);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .checklist-title {
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-dark-border);
+    text-align: center;
+  }
+
+  .checklist {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .checklist-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .checklist-text {
+    font-size: 0.98rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 991px) {
+    .experience-container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+  }
+</style>

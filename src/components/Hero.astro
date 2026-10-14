@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 
 <section id="inicio" class="hero-section" aria-labelledby="hero-title">
   <div class="container hero-container">
-    <div class="hero-content">
+    <header class="hero-header">
       <div class="hero-badge">
         <Icon name="award" size={18} />
         <span>Soporte Técnico en Hermosillo, Sonora</span>
@@ -48,7 +48,7 @@ import Icon from './Icon.astro';
           <span><strong>Respaldo preventivo</strong> para proteger tus fotos y archivos</span>
         </li>
       </ul>
-    </div>
+    </header>
 
     <div class="hero-visual">
       <div class="image-wrapper">
@@ -83,10 +83,20 @@ import Icon from './Icon.astro';
   }
 
   .hero-container {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 3.5rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 3.5rem;
+  }
+
+  .hero-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .hero-badge {
@@ -100,7 +110,7 @@ import Icon from './Icon.astro';
     color: var(--color-accent);
     font-size: 0.875rem;
     font-weight: var(--font-weight-semibold);
-    margin-bottom: 1.5rem;
+    margin: 0 auto 1.5rem auto;
   }
 
   .hero-title {
@@ -110,6 +120,7 @@ import Icon from './Icon.astro';
     margin-bottom: 1.5rem;
     color: #ffffff;
     text-align: center;
+    width: 100%;
   }
 
   .highlight {
@@ -121,8 +132,8 @@ import Icon from './Icon.astro';
     font-size: 1.18rem;
     line-height: 1.7;
     color: #d8e6f7;
-    margin-bottom: 2.2rem;
-    max-width: 38rem;
+    margin: 0 auto 2.2rem auto;
+    max-width: 46rem;
     text-align: justify;
     text-justify: inter-word;
   }
@@ -130,8 +141,9 @@ import Icon from './Icon.astro';
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.2rem;
   }
 
   .btn-lg {
@@ -141,10 +153,13 @@ import Icon from './Icon.astro';
   }
 
   .hero-features {
-    display: grid;
-    gap: 0.85rem;
-    padding-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
+    width: 100%;
   }
 
   .feature-item {
@@ -169,6 +184,9 @@ import Icon from './Icon.astro';
 
   .hero-visual {
     position: relative;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
   }
 
   .image-wrapper {
@@ -182,7 +200,7 @@ import Icon from './Icon.astro';
   .hero-img {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
   }
 
@@ -227,21 +245,23 @@ import Icon from './Icon.astro';
   }
 
   @media (max-width: 991px) {
-    .hero-container {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
     .hero-section {
       padding: 3rem 0 4rem 0;
     }
 
     .hero-actions {
       flex-direction: column;
+      width: 100%;
     }
 
     .btn-lg {
       width: 100%;
+    }
+
+    .hero-features {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
   }
 </style>

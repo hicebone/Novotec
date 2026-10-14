@@ -1,0 +1,232 @@
+---
+import Icon from './Icon.astro';
+---
+
+<header class="site-header" id="cabecera">
+  <div class="container header-container">
+    <a href="#inicio" class="brand-link" aria-label="Novotec Hermosillo - Ir a inicio">
+      <img
+        src="/imagenes/logo-optimized.png"
+        alt="Logo de Novotec Hermosillo"
+        class="brand-logo"
+        width="220"
+        height="64"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      id="navToggle"
+      aria-expanded="false"
+      aria-controls="navMenu"
+      aria-label="Abrir menú de navegación"
+    >
+      <span class="icon-open"><Icon name="menu" size={28} /></span>
+      <span class="icon-close"><Icon name="close" size={28} /></span>
+    </button>
+
+    <nav class="nav-shell" id="navShell" aria-label="Navegación principal">
+      <ul class="nav-list" id="navMenu">
+        <li><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li><a class="nav-link" href="#servicios">Servicios</a></li>
+        <li><a class="nav-link" href="#proceso">Cómo Trabajamos</a></li>
+        <li><a class="nav-link" href="#experiencia">Experiencia</a></li>
+        <li><a class="nav-link" href="#faq">Preguntas</a></li>
+        <li><a class="nav-link nav-link--contact" href="#contacto">Contacto</a></li>
+        <li class="nav-item-cta">
+          <a
+            class="btn btn-whatsapp header-cta"
+            href="https://wa.me/526625085372"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar a Novotec por WhatsApp (abre en nueva pestaña)"
+          >
+            <Icon name="whatsapp" size={18} />
+            <span>Cotizar</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-sm);
+  }
+
+  .brand-logo {
+    display: block;
+    width: auto;
+    height: 48px;
+    max-width: 220px;
+    object-fit: contain;
+  }
+
+  .nav-shell {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 0.95rem;
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-main);
+    border-radius: var(--radius-full);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+    background-color: var(--color-accent-light);
+  }
+
+  .nav-link--contact {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .header-cta {
+    min-height: 40px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-main);
+    background-color: var(--color-surface);
+  }
+
+  .nav-toggle .icon-close {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .nav-shell {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      padding: 1.25rem 1.5rem;
+      display: none;
+    }
+
+    .nav-shell.is-open {
+      display: block;
+    }
+
+    .nav-toggle[aria-expanded="true"] .icon-open {
+      display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] .icon-close {
+      display: inline-block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      padding: 0.75rem 1rem;
+      width: 100%;
+      border-radius: var(--radius-md);
+    }
+
+    .nav-item-cta {
+      margin-top: 0.5rem;
+    }
+
+    .header-cta {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+</style>
+
+<script>
+  // Script accesible y sin dependencias para el menú de navegación móvil
+  const toggleBtn = document.getElementById('navToggle');
+  const navShell = document.getElementById('navShell');
+  const navLinks = document.querySelectorAll('.nav-link, .header-cta');
+
+  if (toggleBtn && navShell) {
+    const toggleMenu = (open?: boolean) => {
+      const isExpanded = open ?? (toggleBtn.getAttribute('aria-expanded') === 'true');
+      const newState = !isExpanded;
+      toggleBtn.setAttribute('aria-expanded', String(newState));
+      toggleBtn.setAttribute('aria-label', newState ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+      navShell.classList.toggle('is-open', newState);
+    };
+
+    toggleBtn.addEventListener('click', () => toggleMenu());
+
+    // Cerrar al pulsar Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggleBtn.getAttribute('aria-expanded') === 'true') {
+        toggleMenu(true);
+        toggleBtn.focus();
+      }
+    });
+
+    // Cerrar al hacer clic en un enlace de navegación
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (toggleBtn.getAttribute('aria-expanded') === 'true') {
+          toggleMenu(true);
+        }
+      });
+    });
+  }
+</script>
