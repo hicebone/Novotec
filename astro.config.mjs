@@ -3,9 +3,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.novotechhermosillo.com',
-  // Si se publica en GitHub Pages bajo una subruta (ej. hicebone.github.io/Novotec/),
-  // descomentar o configurar la propiedad base: '/Novotec/'
+  site: 'https://hicebone.github.io',
+  base: '/Novotec/',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404'),
