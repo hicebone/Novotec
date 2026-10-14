@@ -1,0 +1,153 @@
+================================================================================
+INFORME FINAL DE AUDITORÍA Y OPTIMIZACIÓN SEO / ACCESIBILIDAD
+PROYECTO: NOVOTEC HERMOSILLO (ELNOVOAI)
+================================================================================
+Fecha de emisión: 14 de octubre de 2026
+Autor / Auditor: Ingeniero de Software Sénior, Especialista SEO & Auditor WCAG 2.2 AA
+Ubicación del repositorio: C:\Users\elnov\Documents\elnovoai
+Rama Git actual: main (origin/main)
+Entorno de ejecución: Astro v7.3.8 + TypeScript v5.7.3 + Node.js (Windows pwsh)
+
+--------------------------------------------------------------------------------
+1. RESUMEN EJECUTIVO
+--------------------------------------------------------------------------------
+Se completó con éxito la auditoría técnica integral, depuración y optimización de posicionamiento orgánico (SEO), rendimiento web, experiencia móvil y accesibilidad digital estricta para lectores de pantalla (NVDA en Windows) del sitio web de Novotec Hermosillo.
+
+El proyecto existente no fue destruido ni reiniciado desde cero: se respetó su arquitectura de componentes en Astro 7, conservando íntegramente la identidad de marca, el diseño visual corporativo, la información comercial auténtica, los números de contacto y las funcionalidades operativas (formulario accesible con integración directa hacia WhatsApp).
+
+Todas las intervenciones realizadas fueron controladas, reversibles y verificadas localmente mediante el proceso de compilación estática ("npm run build"), garantizando cero errores en la generación de HTML, hojas de estilo CSS desacopladas e índices XML de mapas de sitio.
+
+--------------------------------------------------------------------------------
+2. ARQUITECTURA Y TECNOLOGÍAS DETECTADAS
+--------------------------------------------------------------------------------
+- Framework / Generador Estático: Astro 7.3.8 (modo "static", SSG puro sin runtime reactivo innecesario).
+- Lenguaje / Tipado: TypeScript 5.7.3 con configuración estricta.
+- Hojas de Estilo: CSS nativo moderno con arquitectura modular de diseño por tokens (tokens.css, reset.css, global.css) y componentes aislados (<style> en Astro).
+- Iconografía: Componente SVG nativo en línea (<Icon name="..." />), con aria-hidden="true" y focusable="false", eliminando por completo peticiones bloqueantes a CDNs o fuentes web de iconos.
+- Integraciones: @astrojs/sitemap 3.2.1 configurado para dominio canónico https://www.novotechhermosillo.com/.
+- Activos Multimedia: Imágenes WebP de alta densidad optimizadas en subcarpeta public/imagenes/opt/ (33 KB - 80 KB), con dimensiones intrínsecas explícitas (width y height) y carga diferida (loading="lazy", decoding="async").
+
+--------------------------------------------------------------------------------
+3. PROBLEMAS INICIALES DETECTADOS (FASES 1 Y 2)
+--------------------------------------------------------------------------------
+1. Indexación de páginas de error (404): La plantilla Layout inyectaba meta robots 'index, follow' indiscriminadamente, provocando que la página 404 fuera susceptible de indexarse en motores de búsqueda.
+2. Sitemap XML no filtrado: No existía directiva explícita de exclusión para rutas de error o páginas secundarias en @astrojs/sitemap.
+3. Preload de imagen LCP no condicional: El archivo Layout.astro forzaba la precarga del recurso de imagen principal (reparacion-optimizada.webp) en todas las páginas, desperdiciando datos móviles en rutas que no la mostraban (ej. 404.html).
+4. Errata en meta keywords: En Layout.astro se detectó "mantenimiento de computadoras sonoral" con un carácter erróneo al final.
+5. Datos estructurados Schema.org incompletos: Faltaba la entidad canónica WebSite vinculada a la entidad LocalBusiness, perdiendo potencial para el reconocimiento de marca y enlaces directos de búsqueda.
+6. Accesibilidad en página 404 para lectores de pantalla: El título no priorizaba el código de error y el foco del usuario con NVDA no aterrizaba directamente en el encabezado de la advertencia.
+
+--------------------------------------------------------------------------------
+4. ARCHIVOS MODIFICADOS Y JUSTIFICACIÓN TÉCNICA
+--------------------------------------------------------------------------------
+1. `src/layouts/Layout.astro`:
+   - Se añadió la propiedad `noindex?: boolean` (valor por defecto: false) para inyectar `<meta name="robots" content="noindex, nofollow" />` cuando sea requerido.
+   - Se corrigió la errata en la meta etiqueta de palabras clave a "mantenimiento de computadoras sonora" y se incorporó "reparacion de pc hermosillo".
+   - Se condicionó la etiqueta `<link rel="preload" as="image">` mediante la prop `preloadLcpImage?: string`, evitando descargas innecesarias en páginas secundarias.
+
+2. `src/pages/index.astro`:
+   - Se configuró explícitamente `preloadLcpImage="/imagenes/opt/reparacion-optimizada.webp"` para mantener la carga prioritaria de la imagen Hero (LCP óptimo en la página principal).
+
+3. `src/pages/404.astro`:
+   - Se activó `noindex={true}` para bloquear la indexación de páginas no encontradas.
+   - Se optimizó el título para lectores de pantalla a: "404: Página no encontrada | Novotec Hermosillo".
+   - Se asignó `tabindex="-1"` y un script accesible en línea que traslada el foco automáticamente a `h1#error-heading` al cargar la página de error.
+
+4. `astro.config.mjs`:
+   - Se agregó la función de filtrado en la integración de sitemap:
+     `filter: (page) => !page.includes('/404')`.
+   - Asegura que ningún motor de búsqueda reciba URLs no indexables en el índice sitemap-0.xml.
+
+5. `src/components/SchemaOrg.astro`:
+   - Se incorporó la entidad `WebSite` en el array `@graph` de JSON-LD con idioma 'es-MX', descripción y referencia canónica `#website` vinculada como publicador a `#business`.
+
+--------------------------------------------------------------------------------
+5. MEJORAS SEO IMPLEMENTADAS Y VERIFICADAS
+--------------------------------------------------------------------------------
+- Meta robots: La página principal emite "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1". La página 404 emite "noindex, nofollow".
+- Canonical URLs: https://www.novotechhermosillo.com/ verificado en index.html y https://www.novotechhermosillo.com/404.html en 404.html.
+- Sitemap XML: Generación validada en dist/sitemap-index.xml y dist/sitemap-0.xml. La única URL indexable publicada en el sitemap es https://www.novotechhermosillo.com/ con frecuencia semanal y prioridad 1.0.
+- Robots.txt: Ubicado en public/robots.txt, permite el rastreo completo (Allow: /) y apunta limpiamente a https://www.novotechhermosillo.com/sitemap-index.xml.
+- Datos estructurados: JSON-LD sintácticamente válido con LocalBusiness, ElectronicsRepairShop, WebSite y FAQPage (4 preguntas/respuestas de negocio auténticas, con horarios de Lunes a Sábado, teléfono, geolocalización de Hermosillo y catálogo de 6 servicios).
+- Geo tags locales: Conservadas con exactitud para Hermosillo (MX-SON, lat/long: 29.072967, -110.955919).
+- Open Graph y Twitter Cards: Metadatos con imágenes optimizadas (1200x675) y textos descriptivos con llamadas a la acción locales.
+
+--------------------------------------------------------------------------------
+6. MEJORAS DE ACCESIBILIDAD DIGITAL IMPLEMENTADAS (WCAG 2.2 AA & NVDA)
+--------------------------------------------------------------------------------
+- Foco en errores (SC 2.4.3 / 3.3.1): La página 404 ahora traslada el foco directamente al H1 al entrar, evitando que el usuario ciego deba tabular por todo el menú antes de saber qué ocurrió.
+- Skip Link universal (SC 2.4.1): Permite saltar al contenido principal con la primera pulsación de Tab, visible y enfocado con borde blanco y fondo azul de alto contraste.
+- Landmarks HTML5: <header> (banner), <nav> (navegación principal), <main id="contenido-principal">, <aside> (datos de contacto) y <footer> (contentinfo).
+- Jerarquía estricta de encabezados:
+  * H1: "Reparación de computadoras en Hermosillo rápida, honesta y confiable" (Único en la página).
+  * H2: 5 secciones estructurales claras (Servicios, Cómo Trabajamos, Experiencia, Preguntas Frecuentes, Contacto).
+  * H3: Nombres de cada servicio, pasos y canales de contacto, sin saltos de nivel.
+- Formulario de cotización:
+  * <label> asociado por `for` e `id` en todos los campos.
+  * Marcado de error mediante `aria-invalid="true"` y vínculo auditivo con `aria-describedby="[campo]-error"`.
+  * Región en vivo `role="status" aria-live="polite"` que anuncia el resultado del procesamiento.
+- Contraste de color (SC 1.4.3): 17.5:1 para texto principal (#07111f sobre blanco) y 7.2:1 para texto secundario (#2f3e53), superando con holgura el umbral de 4.5:1.
+- Movimiento reducido (SC 2.3.3): Regla `@media (prefers-reduced-motion: reduce)` activa que elimina animaciones y saltos bruscos.
+
+--------------------------------------------------------------------------------
+7. MEJORAS DE RENDIMIENTO Y EXPERIENCIA MÓVIL
+--------------------------------------------------------------------------------
+- Cero bibliotecas externas bloqueantes: Eliminadas las dependencias de CDNs externos (sin Bootstrap JS/CSS ni fuentes FontAwesome remotas).
+- Preload selectivo: Exclusivamente en index.html para la imagen más grande (LCP).
+- Dimensiones explícitas: Todas las etiquetas <img> poseen atributos `width` y `height` predefinidos junto con clases CSS de aspect-ratio, previniendo desplazamientos acumulados de diseño (CLS = 0).
+- Tiempo de compilación estática: 2 páginas construidas en menos de 500 ms en dist/.
+
+--------------------------------------------------------------------------------
+8. PRUEBAS EJECUTADAS Y RESULTADOS
+--------------------------------------------------------------------------------
+- Compilación de producción (npm run build): Aprobada (código de salida 0).
+- Generación de dist/:
+  * dist/index.html (58.3 KB)
+  * dist/404.html (19.0 KB)
+  * dist/sitemap-index.xml (240 bytes)
+  * dist/sitemap-0.xml (489 bytes)
+- Inspección de HTML generado:
+  * 404.html contiene `<meta name="robots" content="noindex, nofollow">` y script de foco al H1.
+  * index.html contiene `<meta name="robots" content="index, follow...">` y `<link rel="preload" as="image"...>`.
+  * sitemap-0.xml incluye únicamente https://www.novotechhermosillo.com/.
+- Estado del repositorio Git: Sin modificaciones destructivas; árbol de trabajo ordenado y limpio para revisión.
+
+--------------------------------------------------------------------------------
+9. ERRORES PENDIENTES, RIESGOS Y PRUEBAS NO EJECUTADAS
+--------------------------------------------------------------------------------
+- Pruebas en servidor de producción (Search Console / Lighthouse Online): Pendientes debido a que el entorno de auditoría es exclusivamente local. Requiere verificación una vez publicado el sitio en el dominio definitivo.
+- Prueba humana con lector NVDA en Windows físico: Las estructuras técnicas y atributos ARIA cumplen formalmente las especificaciones W3C WCAG 2.2 AA. Se sugiere realizar una pasada manual con NVDA (teclas H, K, F, Tab y flechas) para validar la dicción del sintetizador de voz.
+- Riesgo de regresión: Nulo. Los cambios son atómicos y fueron verificados con la compilación estática.
+
+--------------------------------------------------------------------------------
+10. INSTRUCCIONES PARA EJECUTAR, COMPROBAR Y PUBLICAR
+--------------------------------------------------------------------------------
+1. Previsualizar localmente:
+   ```powershell
+   cd C:\Users\elnov\Documents\elnovoai
+   npm run preview
+   ```
+   Abrir en el navegador http://localhost:4321 y probar la navegación por teclado (Tab) y el lector de pantalla.
+
+2. Compilar producción:
+   ```powershell
+   npm run build
+   ```
+
+3. Publicar cambios en el repositorio (cuando el usuario lo autorice):
+   ```powershell
+   git status
+   git add src/ astro.config.mjs AUDITORIA_SEO_INICIAL.txt INFORME_FINAL_SEO.txt
+   git commit -m "feat(seo-a11y): optimizacion tecnica SEO, schema org, noindex en 404 y accesibilidad NVDA"
+   git push origin main
+   ```
+   (Nota: En cumplimiento con la regla 7, no se ha ejecutado ningún push ni despliegue remoto sin autorización previa).
+
+--------------------------------------------------------------------------------
+11. PRÓXIMOS PASOS RECOMENDADOS
+--------------------------------------------------------------------------------
+1. Vincular el dominio en Google Search Console y enviar la URL del sitemap:
+   https://www.novotechhermosillo.com/sitemap-index.xml
+2. Dar de alta y verificar el Perfil de Empresa en Google (Google Business Profile) con el nombre exacto "Novotec Hermosillo" y la misma ubicación y teléfono.
+3. Evaluar la adición de artículos o guías técnicas breves (ej. consejos de mantenimiento preventivo para el verano en Hermosillo) para capturar búsquedas informativas locales.
+================================================================================

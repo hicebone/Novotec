@@ -1,0 +1,117 @@
+================================================================================
+AUDITORIA SEO Y ACCESIBILIDAD INICIAL — PROYECTO NOVOAI / NOVOTEC HERMOSILLO
+================================================================================
+Fecha de auditoría: 14 de octubre de 2026
+Ubicación del proyecto auditado: C:\Users\elnov\Documents\elnovoai
+Tecnología base: Astro v7.3.8 + TypeScript v5.7.3 + @astrojs/sitemap v3.2.1
+Entorno / Sistema Operativo: Windows (pwsh)
+Repositorio Git: https://github.com/hicebone/novotec.git (rama main)
+Objetivo prioritario: SEO técnico, rendimiento web, experiencia móvil y accesibilidad funcional para NVDA en Windows.
+
+--------------------------------------------------------------------------------
+1. RESUMEN EJECUTIVO Y ARQUITECTURA DETECTADA
+--------------------------------------------------------------------------------
+El proyecto ubicado en C:\Users\elnov\Documents\elnovoai es un sitio web estático pre-renderizado correspondiente a "Novotec Hermosillo", empresa dedicada a la reparación de computadoras, laptops, formateo, eliminación de virus, recuperación de datos y redes en Hermosillo, Sonora, México.
+
+El sitio fue recientemente modernizado desde un HTML5/Bootstrap monolítico hacia una arquitectura basada en Astro 7 con componentes modulares .astro, hojas de estilo CSS modernas desacopladas basadas en tokens de diseño accesibles (tokens.css, reset.css, global.css) y generación estática pura (output: "static").
+
+Estado general detectado:
+- Compilación (build): 100% exitosa mediante "npm run build" (2 rutas estáticas: index.html y 404.html; sitemap-index.xml y sitemap-0.xml generados en dist/).
+- Git: Limpio en rama main ('origin/main').
+- Semántica y Accesibilidad: Muy sólida base con SkipLink, Landmarks (<header>, <nav>, <main>, <aside>, <footer>), único H1, H2/H3 secuenciales, foco visible universal, soporte para prefers-reduced-motion, y formulario estructurado con live regions y aria-invalid.
+- Hallazgos detectados: Se identifican problemas concretos en etiquetas SEO (meta keywords con errata, schema breadcrumb ausente, robots de 404), redundancia en el layout para páginas secundarias, script de desarrollo no instalado (@astrojs/check) y oportunidades de optimización en imágenes y metadatos sociales.
+
+--------------------------------------------------------------------------------
+2. CLASIFICACIÓN DE HALLAZGOS Y DIAGNÓSTICO
+--------------------------------------------------------------------------------
+
+[CRÍTICO / ALTO]
+----------------
+1. HALLAZGO H-01 (ALTO - SEO / Indexación de páginas de error)
+- Archivo afectado: src/pages/404.astro y src/layouts/Layout.astro
+- Evidencia:
+  src/pages/404.astro invoca <Layout> sin pasar la propiedad 'noindex', heredando por defecto:
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  Además, genera canonicalUrl="https://www.novotechhermosillo.com/404.html".
+- Impacto:
+  Los motores de búsqueda (Googlebot) pueden indexar la página 404.html como un contenido válido o interpretarla como un soft-404, diluyendo el presupuesto de rastreo y la autoridad del dominio.
+- Solución propuesta:
+  Agregar una propiedad opcional `noindex?: boolean` en Layout.astro. Si es true, inyectar `<meta name="robots" content="noindex, nofollow" />`. Pasar `noindex={true}` en 404.astro.
+
+2. HALLAZGO H-02 (ALTO - SEO / Sitemap generado y exclusión de 404)
+- Archivo afectado: astro.config.mjs
+- Evidencia:
+  La integración @astrojs/sitemap se configuró sin filtros de exclusión:
+  sitemap({ changefreq: 'weekly', priority: 1.0, lastmod: new Date() })
+  Astro actualmente no incluye el 404.html en sitemap-0.xml porque detecta el nombre 404, pero para prevenir que futuras compilaciones o rutas de error se indexen, debe declararse explícitamente el filtro `filter: (page) => !page.includes('/404')`.
+- Impacto:
+  Garantiza que ninguna URL no indexable aparezca en el sitemap XML entregado a Google Search Console.
+- Solución propuesta:
+  Añadir directiva de filtrado explícita en la configuración de sitemap.
+
+[MEDIO]
+-------
+3. HALLAZGO H-03 (MEDIO - SEO Técnico / Errata en meta keywords y enriquecimiento de términos)
+- Archivo afectado: src/layouts/Layout.astro (línea 31)
+- Evidencia:
+  Texto en Layout.astro:
+  content="... mantenimiento de computadoras sonoral" (palabra "sonoral" con errata tipográfica final).
+- Impacto:
+  Pérdida de concordancia exacta y señal de falta de pulcritud técnica ante los motores de búsqueda.
+- Solución propuesta:
+  Corregir a "mantenimiento de computadoras sonora" y refinar el conjunto de términos locales clave (ej. "reparacion de pc hermosillo", "soporte tecnico novotec hermosillo").
+
+4. HALLAZGO H-04 (MEDIO - SEO / Preload indiscriminado de imagen LCP en todas las páginas)
+- Archivo afectado: src/layouts/Layout.astro (línea 69)
+- Evidencia:
+  Layout.astro contiene de forma fija e incondicional:
+  <link rel="preload" as="image" href="/imagenes/opt/reparacion-optimizada.webp" type="image/webp" fetchpriority="high" />
+- Impacto:
+  En páginas distintas a index (como 404.astro o futuras páginas secundarias), el navegador descarga forzadamente 34 KB de una imagen que nunca se muestra en pantalla, malgastando ancho de banda móvil y retrasando el renderizado real de dicha página.
+- Solución propuesta:
+  Condicionar el preload mediante una prop opcional `preloadLcpImage?: string` en Layout.astro, activándola únicamente en index.astro.
+
+5. HALLAZGO H-05 (MEDIO - Accesibilidad / Título del documento de 404 para lectores de pantalla)
+- Archivo afectado: src/pages/404.astro (línea 9)
+- Evidencia:
+  title="Página no encontrada (404) | Novotec Hermosillo"
+  El título está bien, pero en NVDA es recomendable que comience de forma directa con "404: Página no encontrada | Novotec Hermosillo" y que el foco programático al cargar se traslade al contenedor de error para que la persona ciega reciba inmediatamente la confirmación del error sin tener que recorrer todo el header.
+- Impacto:
+  Mejora sustancial de la experiencia de usuario con lector de pantalla en navegación no vidente.
+- Solución propuesta:
+  Añadir autofocus o gestión de foco al encabezado principal o al main en 404.
+
+6. HALLAZGO H-06 (MEDIO - SEO Datos Estructurados / Schema BreadcrumbList y LocalBusiness)
+- Archivo afectado: src/components/SchemaOrg.astro
+- Evidencia:
+  SchemaOrg incluye LocalBusiness, ElectronicsRepairShop y FAQPage. Sin embargo, no incluye la especificación `WebSite` con `potentialAction` (SearchAction) ni `BreadcrumbList` básica que Google Search Console recomienda para definir la jerarquía del sitio.
+- Impacto:
+  Falta de fragmentos enriquecidos de navegación y búsqueda de marca en los resultados de Google (SERP).
+- Solución propuesta:
+  Enriquecer el @graph con la entidad WebSite vinculada canónicamente.
+
+[BAJO]
+------
+7. HALLAZGO H-07 (BAJO - Calidad de código / Script "check" interactivo)
+- Archivo afectado: package.json
+- Evidencia:
+  El script "npm run check" ("astro check") requiere la instalación de @astrojs/check que no está en devDependencies.
+- Impacto:
+  Si se ejecuta en entornos CI/CD sin prompt interactivo, el comando queda colgado esperando confirmación de consola.
+- Solución propuesta:
+  Instalar o documentar @astrojs/check, o ajustar el script según corresponda.
+
+8. HALLAZGO H-08 (BAJO - Optimización y peso de imágenes en la raíz del repositorio)
+- Archivo afectado: logo2.png (1.3 MB en raíz del repo) y PNGs no optimizados en public/imagenes/
+- Evidencia:
+  Existen archivos fuente PNG de más de 2 MB (antivirus.png, instalacion.png, etc.) conviviendo con los optimizados en public/imagenes/opt/ (33-80 KB). El archivo HTML en producción únicamente enlaza las versiones .webp de public/imagenes/opt/, lo cual es correcto para el usuario final, pero los archivos no utilizados aumentan el tamaño del repositorio innecesariamente.
+- Impacto:
+  No afecta al usuario web final (ya que no se descargan en el navegador), pero sí afecta al almacenamiento y despliegue del repositorio.
+- Solución propuesta:
+  Mantener las imágenes optimizadas en el build y documentar la política de activos estáticos.
+
+--------------------------------------------------------------------------------
+3. CONCLUSIÓN DE LA FASE 1
+--------------------------------------------------------------------------------
+El proyecto cuenta con un estándar de accesibilidad excepcional y una arquitectura limpia en Astro 7. Los ajustes requeridos son específicos, no disruptivos, de bajo riesgo de regresión y orientados a la excelencia en SEO técnico, indexabilidad y experiencia de usuario.
+================================================================================

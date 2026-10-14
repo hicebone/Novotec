@@ -8,13 +8,17 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  noindex?: boolean;
+  preloadLcpImage?: string;
 }
 
 const {
   title = "Reparación de Computadoras en Hermosillo | Laptops y PC - Novotec",
   description = "Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Diagnóstico honesto, formateo, recuperación de datos, virus y redes. ¡Cotiza rápido por WhatsApp!",
   canonicalUrl = "https://www.novotechhermosillo.com/",
-  ogImage = "/imagenes/opt/reparacion-optimizada.webp"
+  ogImage = "/imagenes/opt/reparacion-optimizada.webp",
+  noindex = false,
+  preloadLcpImage
 } = Astro.props;
 
 const siteUrl = "https://www.novotechhermosillo.com";
@@ -28,8 +32,12 @@ const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="reparacion de computadoras hermosillo, reparacion de laptops hermosillo, soporte tecnico hermosillo, formateo de computadoras hermosillo, recuperacion de datos hermosillo, novotec hermosillo, mantenimiento de computadoras sonoral" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="keywords" content="reparacion de computadoras hermosillo, reparacion de laptops hermosillo, soporte tecnico hermosillo, formateo de computadoras hermosillo, recuperacion de datos hermosillo, novotec hermosillo, mantenimiento de computadoras sonora, reparacion de pc hermosillo" />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
     <meta name="author" content="Novotec Hermosillo" />
     <meta name="format-detection" content="telephone=yes" />
     <meta name="theme-color" content="#07111f" />
@@ -65,8 +73,10 @@ const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}
     <link rel="icon" type="image/png" href="/imagenes/logo.png" />
     <link rel="apple-touch-icon" href="/imagenes/logo-optimized.png" />
 
-    <!-- Preload del recurso LCP principal -->
-    <link rel="preload" as="image" href="/imagenes/opt/reparacion-optimizada.webp" type="image/webp" fetchpriority="high" />
+    <!-- Preload opcional del recurso LCP principal -->
+    {preloadLcpImage && (
+      <link rel="preload" as="image" href={preloadLcpImage} type="image/webp" fetchpriority="high" />
+    )}
 
     <!-- Datos Estructurados Schema.org -->
     <SchemaOrg siteUrl={siteUrl} />
