@@ -55,6 +55,16 @@ const services = [
     alt: "Instalación y configuración de redes WiFi y cableado de red",
     description: "Solución de problemas de internet lento o caídas de señal, configuración de módems, routers, repetidores, impresoras compartidas y cableado estructurado.",
     badge: "Hogar y Negocio"
+  },
+  {
+    id: "software-medida",
+    icon: "code",
+    title: "Software a tu medida",
+    image: "/imagenes/opt/programas-optimizada.webp",
+    alt: "Desarrollo de software y aplicaciones a la medida para negocios",
+    description: "Desarrollo de sistemas personalizados, automatización de procesos, aplicaciones web y herramientas adaptadas a las necesidades exactas de tu negocio.",
+    badge: "Personalizado",
+    whatsapp: "526861239845"
   }
 ];
 ---
@@ -103,7 +113,7 @@ const services = [
 
             <div class="service-footer">
               <a
-                href={`https://wa.me/526625085372?text=${encodeURIComponent(`Hola, me interesa cotizar el servicio de ${s.title} en Hermosillo.`)}`}
+                href={`https://wa.me/${s.whatsapp || '526625085372'}?text=${encodeURIComponent(`Hola, me interesa cotizar el servicio de ${s.title}.`)}`}
                 class="service-cta"
                 target="_blank"
                 rel="noopener noreferrer"

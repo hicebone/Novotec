@@ -171,6 +171,7 @@ import Icon from './Icon.astro';
                 <option value="Recuperación de datos">Recuperación de datos</option>
                 <option value="Instalación de software y formateo">Instalación de software y formateo</option>
                 <option value="Redes e Internet">Redes e Internet</option>
+                <option value="Software a tu medida">Software a tu medida</option>
                 <option value="Otro servicio de cómputo">Otro servicio de cómputo</option>
               </select>
               <span id="servicio-error" class="form-error" role="alert">
@@ -564,19 +565,23 @@ import Icon from './Icon.astro';
       const servVal = sanitize((document.getElementById('servicio') as HTMLSelectElement).value, 80);
       const msgVal = sanitize((document.getElementById('mensaje') as HTMLTextAreaElement).value, 1000);
 
-      const numeroWhatsApp = '526625085372';
+      // Si se selecciona Software a tu medida, se redirige a WhatsApp +52 686 123 9845; de lo contrario al WhatsApp de taller +52 662 508 5372
+      const esSoftwareMedida = servVal.toLowerCase().includes('software a tu medida');
+      const numeroWhatsApp = esSoftwareMedida ? '526861239845' : '526625085372';
+      const destinatarioTitulo = esSoftwareMedida ? 'Novotec - Software a tu medida' : 'Novotec Hermosillo';
+
       const mensajeWA = [
-        '🛠️ *Solicitud de servicio - Novotec Hermosillo*',
+        `🛠️ *Solicitud de servicio - ${destinatarioTitulo}*`,
         '',
         `👤 *Nombre:* ${nombreVal}`,
         `📱 *Teléfono:* ${telVal}`,
         `📧 *Correo:* ${emailVal}`,
         `💻 *Servicio requerido:* ${servVal}`,
         '',
-        '📝 *Descripción del equipo o falla:*',
+        '📝 *Descripción del proyecto o requerimiento:*',
         msgVal,
         '',
-        '📍 *Origen:* Enviado desde el sitio web novoai2'
+        '📍 *Origen:* Enviado desde el sitio web oficial'
       ].join('\n');
 
       const waUrl = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWA)}`;
