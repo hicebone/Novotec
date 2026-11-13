@@ -3,5 +3,13 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "node_modules - copia",
+    "dist",
+    "dist - copia",
+    ".astro",
+    ".astro - copia"
+  ]
 }

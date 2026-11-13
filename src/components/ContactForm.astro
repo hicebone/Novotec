@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 ---
 
-<section id="contacto" class="section" aria-labelledby="contacto-title">
+<section id="contacto" class="section">
   <div class="container">
     <div class="section-header">
       <span class="section-kicker">Contacto Directo</span>
@@ -100,7 +100,6 @@ import Icon from './Icon.astro';
                 autocomplete="name"
                 required
                 aria-required="true"
-                aria-describedby="nombre-error"
                 placeholder="Ej. Juan Pérez"
               />
               <span id="nombre-error" class="form-error" role="alert">
@@ -121,7 +120,6 @@ import Icon from './Icon.astro';
                 autocomplete="email"
                 required
                 aria-required="true"
-                aria-describedby="email-error"
                 placeholder="ejemplo@correo.com"
               />
               <span id="email-error" class="form-error" role="alert">
@@ -143,7 +141,6 @@ import Icon from './Icon.astro';
                 inputmode="tel"
                 required
                 aria-required="true"
-                aria-describedby="telefono-error"
                 placeholder="+52 662 123 4567"
               />
               <span id="telefono-error" class="form-error" role="alert">
@@ -162,15 +159,16 @@ import Icon from './Icon.astro';
                 class="form-select"
                 required
                 aria-required="true"
-                aria-describedby="servicio-error"
               >
                 <option value="">Selecciona una opción</option>
-                <option value="Reparación de laptop">Reparación de laptop</option>
-                <option value="Reparación de PC de escritorio">Reparación de PC de escritorio</option>
-                <option value="Seguridad informática y virus">Seguridad informática y virus</option>
-                <option value="Recuperación de datos">Recuperación de datos</option>
-                <option value="Instalación de software y formateo">Instalación de software y formateo</option>
-                <option value="Redes e Internet">Redes e Internet</option>
+                <option value="Reparación de laptops">Reparación de laptops</option>
+                <option value="Reparación y mantenimiento de PC">Reparación y mantenimiento de PC</option>
+                <option value="Computadoras lentas y optimización">Computadoras lentas y optimización</option>
+                <option value="Eliminación de virus y seguridad">Eliminación de virus y seguridad</option>
+                <option value="Instalación de Windows y software">Instalación de Windows y software</option>
+                <option value="Recuperación de datos y archivos">Recuperación de datos y archivos</option>
+                <option value="Soporte técnico remoto">Soporte técnico remoto</option>
+                <option value="Redes, WiFi y conectividad">Redes, WiFi y conectividad</option>
                 <option value="Software a tu medida">Software a tu medida</option>
                 <option value="Otro servicio de cómputo">Otro servicio de cómputo</option>
               </select>
@@ -191,7 +189,7 @@ import Icon from './Icon.astro';
                 rows="4"
                 required
                 aria-required="true"
-                aria-describedby="mensaje-help mensaje-error"
+                aria-describedby="mensaje-help"
                 placeholder="Cuéntanos la marca, modelo aproximado y qué síntomas presenta el equipo..."
               ></textarea>
               <span id="mensaje-help" class="form-help">
@@ -212,7 +210,6 @@ import Icon from './Icon.astro';
                   class="form-checkbox"
                   required
                   aria-required="true"
-                  aria-describedby="terminos-error"
                 />
                 <label for="terminos" class="form-checkbox-label">
                   Acepto ser contactado por Novotec mediante WhatsApp o llamada telefónica para dar seguimiento a esta cotización. <span class="required-indicator" aria-hidden="true">*</span>
@@ -298,8 +295,7 @@ import Icon from './Icon.astro';
     color: var(--color-text-muted);
     margin-bottom: 0.5rem;
     line-height: 1.5;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
   }
 
   .info-link {
@@ -468,13 +464,20 @@ import Icon from './Icon.astro';
   const contactForm = document.getElementById('contactForm') as HTMLFormElement | null;
   const statusEl = document.getElementById('formStatus');
 
+  interface FieldConfig {
+    id: string;
+    errorId: string;
+    baseDescribedby: string | null;
+    check: (v: string) => boolean;
+  }
+
   if (contactForm && statusEl) {
-    const fields = [
-      { id: 'nombre', check: (v: string) => v.trim().length >= 2 },
-      { id: 'email', check: (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
-      { id: 'telefono', check: (v: string) => /^[0-9+\-\s()]{7,}$/.test(v.trim()) },
-      { id: 'servicio', check: (v: string) => Boolean(v.trim()) },
-      { id: 'mensaje', check: (v: string) => v.trim().length >= 10 }
+    const fields: FieldConfig[] = [
+      { id: 'nombre', errorId: 'nombre-error', baseDescribedby: null, check: (v: string) => v.trim().length >= 2 },
+      { id: 'email', errorId: 'email-error', baseDescribedby: null, check: (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+      { id: 'telefono', errorId: 'telefono-error', baseDescribedby: null, check: (v: string) => /^[0-9+\-\s()]{7,}$/.test(v.trim()) },
+      { id: 'servicio', errorId: 'servicio-error', baseDescribedby: null, check: (v: string) => Boolean(v.trim()) },
+      { id: 'mensaje', errorId: 'mensaje-error', baseDescribedby: 'mensaje-help', check: (v: string) => v.trim().length >= 10 }
     ];
 
     const sanitize = (text: string, maxLen: number) => {
@@ -485,7 +488,7 @@ import Icon from './Icon.astro';
         .slice(0, maxLen);
     };
 
-    // Limpiar errores cuando el usuario escribe
+    // Limpiar errores cuando el usuario escribe o cambia el valor
     fields.forEach((f) => {
       const input = document.getElementById(f.id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
       if (!input) return;
@@ -494,6 +497,11 @@ import Icon from './Icon.astro';
         if (parent?.classList.contains('has-error')) {
           parent.classList.remove('has-error');
           input.removeAttribute('aria-invalid');
+          if (f.baseDescribedby) {
+            input.setAttribute('aria-describedby', f.baseDescribedby);
+          } else {
+            input.removeAttribute('aria-describedby');
+          }
         }
       };
       input.addEventListener('input', clear);
@@ -507,6 +515,7 @@ import Icon from './Icon.astro';
         if (parent?.classList.contains('has-error')) {
           parent.classList.remove('has-error');
           terminosCheck.removeAttribute('aria-invalid');
+          terminosCheck.removeAttribute('aria-describedby');
         }
       });
     }
@@ -528,10 +537,17 @@ import Icon from './Icon.astro';
           hasErrors = true;
           parent?.classList.add('has-error');
           el.setAttribute('aria-invalid', 'true');
+          const desc = f.baseDescribedby ? `${f.baseDescribedby} ${f.errorId}` : f.errorId;
+          el.setAttribute('aria-describedby', desc);
           if (!firstInvalidEl) firstInvalidEl = el;
         } else {
           parent?.classList.remove('has-error');
           el.removeAttribute('aria-invalid');
+          if (f.baseDescribedby) {
+            el.setAttribute('aria-describedby', f.baseDescribedby);
+          } else {
+            el.removeAttribute('aria-describedby');
+          }
         }
       });
 
@@ -542,10 +558,12 @@ import Icon from './Icon.astro';
           hasErrors = true;
           parent?.classList.add('has-error');
           terminosCheck.setAttribute('aria-invalid', 'true');
+          terminosCheck.setAttribute('aria-describedby', 'terminos-error');
           if (!firstInvalidEl) firstInvalidEl = terminosCheck;
         } else {
           parent?.classList.remove('has-error');
           terminosCheck.removeAttribute('aria-invalid');
+          terminosCheck.removeAttribute('aria-describedby');
         }
       }
 
@@ -604,8 +622,23 @@ import Icon from './Icon.astro';
         window.location.href = waUrl;
       }
 
-      // Limpiar formulario conservando el mensaje de estado para NVDA
+      // Limpiar formulario y resetear estados accesibles
       contactForm.reset();
+      fields.forEach((f) => {
+        const el = document.getElementById(f.id);
+        if (el) {
+          el.removeAttribute('aria-invalid');
+          if (f.baseDescribedby) {
+            el.setAttribute('aria-describedby', f.baseDescribedby);
+          } else {
+            el.removeAttribute('aria-describedby');
+          }
+        }
+      });
+      if (terminosCheck) {
+        terminosCheck.removeAttribute('aria-invalid');
+        terminosCheck.removeAttribute('aria-describedby');
+      }
     });
   }
 </script>

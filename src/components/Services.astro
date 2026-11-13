@@ -15,55 +15,73 @@ const services = [
   {
     id: "laptops",
     icon: "laptop",
-    title: "Reparación de Laptops",
+    title: "Reparación de Laptops en Hermosillo",
     image: "/imagenes/opt/reparacion-optimizada.webp",
-    alt: "Reparación física y electrónica de laptop en taller Novotec",
-    description: "Diagnóstico especializado, solución de problemas de encendido, pantalla negra, cambio de bisagras, teclado, batería, limpieza profunda y cambio de pasta térmica.",
+    alt: "Técnico especialista diagnosticando y reparando una laptop en taller Hermosillo",
+    description: "Diagnóstico preciso para laptops que no encienden, pantallas rotas o negras, cambio de bisagras, teclado, batería, limpieza interna y cambio de pasta térmica en todas las marcas.",
     badge: "Servicio Frecuente"
   },
   {
     id: "pc",
     icon: "desktop",
-    title: "Reparación de Computadoras PC",
+    title: "Reparación y Mantenimiento de PC",
     image: "/imagenes/opt/instalacion-optimizada.webp",
-    alt: "Mantenimiento y actualización de computadora de escritorio PC",
-    description: "Mantenimiento preventivo y correctivo, cambio de disco duro a SSD de alta velocidad, optimización de memoria RAM, fuentes de poder y ensamble gamer/oficina.",
+    alt: "Mantenimiento preventivo y correctivo de computadora de escritorio en Hermosillo",
+    description: "Mantenimiento preventivo y correctivo para computadoras de escritorio en oficinas, hogares y ensambles gamer. Solución a fallas de encendido, fuentes de poder y tarjetas madre.",
     badge: "Alta Demanda"
+  },
+  {
+    id: "lentas",
+    icon: "clock",
+    title: "Computadoras Lentas y Optimización",
+    image: "/imagenes/opt/programas-optimizada.webp",
+    alt: "Optimización de inicio y actualización a disco sólido SSD en computadora",
+    description: "¿Tu equipo tarda minutos en arrancar o se traba al trabajar? Aceleramos tu PC o laptop con cambio a disco sólido SSD de alta velocidad, ampliación de RAM y limpieza del sistema.",
+    badge: "Aceleración Total"
   },
   {
     id: "antivirus",
     icon: "shield",
     title: "Eliminación de Virus y Seguridad",
     image: "/imagenes/opt/antivirus-optimizada.webp",
-    alt: "Análisis y desinfección de virus informáticos y malware",
-    description: "Limpieza profunda de troyanos, publicidad molesta, spyware y malware sin formatear si es posible, protegiendo tus datos personales y bancarios.",
+    alt: "Desinfección profunda de virus, troyanos y malware protegiendo archivos",
+    description: "Detección y eliminación de malware, troyanos, spyware y anuncios molestos sin formatear cuando sea técnicamente posible, protegiendo tus archivos, fotos y contraseñas.",
     badge: "Protección Total"
+  },
+  {
+    id: "software",
+    icon: "software",
+    title: "Instalación de Windows y Software",
+    image: "/imagenes/opt/programas-optimizada.webp",
+    alt: "Instalación limpia de sistema operativo Windows y paquetería con respaldo",
+    description: "Instalación y configuración limpia de Windows y programas básicos con controladores oficiales, siempre con respaldo preventivo obligatorio de tus archivos personales.",
+    badge: "Respaldo Seguro"
   },
   {
     id: "recuperacion",
     icon: "database",
     title: "Recuperación de Archivos y Datos",
     image: "/imagenes/opt/recuperacion-optimizada.webp",
-    alt: "Recuperación de datos desde disco duro y memorias de almacenamiento",
-    description: "Rescate de documentos, fotografías y proyectos en discos duros con fallas lógicas o mecánicas leves, memorias USB dañadas o unidades formateadas por accidente.",
+    alt: "Rescate de fotos y documentos en discos duros dañados o memorias USB",
+    description: "Asistencia para recuperar documentos de trabajo, fotografías familiares y archivos valiosos en discos duros con fallas, memorias USB ilegibles o formateos accidentales.",
     badge: "Confidencial"
   },
   {
-    id: "software",
-    icon: "software",
-    title: "Instalación de Software y Formateo",
-    image: "/imagenes/opt/programas-optimizada.webp",
-    alt: "Instalación de sistema operativo Windows y paquetería de trabajo",
-    description: "Formateo e instalación limpia de Windows con respaldo preventivo obligatorio de tus archivos personales. Configuración de controladores y programas básicos de trabajo.",
-    badge: "Garantizado"
+    id: "remoto",
+    icon: "laptop",
+    title: "Soporte Técnico Remoto",
+    image: "/imagenes/opt/redes-optimizada.webp",
+    alt: "Atención y soporte técnico remoto por internet para laptops y computadoras",
+    description: "Atención rápida a distancia cuando el problema sea de configuración o software y no requiera traslado físico del equipo, ahorrándote tiempo y desplazamientos.",
+    badge: "Atención Ágil"
   },
   {
     id: "redes",
     icon: "network",
     title: "Redes, WiFi y Conectividad",
     image: "/imagenes/opt/redes-optimizada.webp",
-    alt: "Instalación y configuración de redes WiFi y cableado de red",
-    description: "Solución de problemas de internet lento o caídas de señal, configuración de módems, routers, repetidores, impresoras compartidas y cableado estructurado.",
+    alt: "Solución de problemas de internet y configuración de redes WiFi en Hermosillo",
+    description: "Solución a caídas de internet, baja cobertura de señal, configuración de módems, routers, repetidores WiFi, impresoras compartidas y cableado de red.",
     badge: "Hogar y Negocio"
   },
   {
@@ -71,7 +89,7 @@ const services = [
     icon: "code",
     title: "Software a tu medida",
     image: "/imagenes/opt/programas-optimizada.webp",
-    alt: "Desarrollo de software y aplicaciones a la medida para negocios",
+    alt: "Desarrollo de software y aplicaciones a la medida para negocios en Hermosillo",
     description: "Desarrollo de sistemas personalizados, automatización de procesos, aplicaciones web y herramientas adaptadas a las necesidades exactas de tu negocio.",
     badge: "Personalizado",
     whatsapp: "526861239845"
@@ -79,15 +97,15 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="section section--alt" aria-labelledby="servicios-title">
+<section id="servicios" class="section section--alt">
   <div class="container">
     <div class="section-header">
-      <span class="section-kicker">Catálogo de Servicios</span>
+      <span class="section-kicker">Servicios de Soporte y Reparación</span>
       <h2 id="servicios-title" class="section-title">
-        Soluciones técnicas profesionales para tu equipo
+        Soluciones técnicas para computadoras y laptops en Hermosillo
       </h2>
       <p class="section-description">
-        Mantenimiento honesto, transparente y con explicación clara de cada procedimiento en Hermosillo.
+        Mantenimiento honesto, refacciones de calidad y explicación clara de cada procedimiento en Hermosillo.
       </p>
     </div>
 
@@ -236,8 +254,7 @@ const services = [
     color: var(--color-text-muted);
     line-height: 1.65;
     margin-bottom: 1.5rem;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
     flex-grow: 1;
   }
 

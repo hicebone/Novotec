@@ -3,7 +3,7 @@ interface Props {
   siteUrl?: string;
 }
 
-const { siteUrl = "https://www.novotechhermosillo.com" } = Astro.props;
+const { siteUrl = "https://hicebone.github.io/Novotec" } = Astro.props;
 
 const schemaData = {
   "@context": "https://schema.org",
@@ -19,7 +19,7 @@ const schemaData = {
         `${siteUrl}/imagenes/opt/reparacion-optimizada.webp`,
         `${siteUrl}/imagenes/logo-optimized.png`
       ],
-      "description": "Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Mantenimiento, eliminación de virus, formateo, redes y rescate de información.",
+      "description": "Reparación y mantenimiento de computadoras y laptops en Hermosillo, Sonora. Más de 25 años de experiencia. Optimización, eliminación de virus y soporte técnico.",
       "telephone": "+526625085372",
       "priceRange": "$$",
       "currenciesAccepted": "MXN",
@@ -33,11 +33,6 @@ const schemaData = {
         "addressLocality": "Hermosillo",
         "addressRegion": "Sonora",
         "addressCountry": "MX"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 29.072967,
-        "longitude": -110.955919
       },
       "openingHoursSpecification": [
         {
@@ -65,42 +60,56 @@ const schemaData = {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Reparación de laptops"
+              "name": "Reparación de laptops en Hermosillo"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Reparación de computadoras de escritorio (PC)"
+              "name": "Reparación y mantenimiento de computadoras PC"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Seguridad informática y eliminación de virus"
+              "name": "Solución a computadoras lentas y optimización"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Recuperación de datos"
+              "name": "Eliminación de virus y seguridad informática"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Instalación de software y formateo"
+              "name": "Instalación de Windows y software con respaldo"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Redes e Internet"
+              "name": "Recuperación de archivos y datos"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Soporte técnico remoto"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Redes, WiFi y conectividad"
             }
           },
           {
@@ -133,7 +142,7 @@ const schemaData = {
           "name": "¿Cuánto tiempo tarda la reparación de una computadora o laptop?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "El diagnóstico inicial normalmente se efectúa en un lapso de 24 a 48 horas. Mantenimientos preventivos, limpiezas y formateos con frecuencia quedan listos en 24 horas."
+            "text": "El tiempo promedio de diagnóstico inicial es de 24 a 48 horas. Mantenimientos preventivos, limpiezas internas, formateos o cambio de disco duro a unidad de estado sólido (SSD) frecuentemente quedan listos en 24 a 48 horas una vez autorizado el presupuesto."
           }
         },
         {
@@ -141,15 +150,31 @@ const schemaData = {
           "name": "¿Se pierden mis archivos o fotos al reparar o formatear?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Realizamos un respaldo preventivo de tus documentos, fotos y datos antes de realizar cualquier intervención en el sistema."
+            "text": "No. En Novotec realizamos un respaldo preventivo estricto de tus documentos, fotos y datos personales antes de realizar cualquier intervención en el sistema operativo o almacenamiento. Cuidamos tu privacidad y la integridad de tu información."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Qué tipos y marcas de computadoras atienden?",
+          "name": "¿Qué puedo hacer si mi computadora o laptop está muy lenta?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Atendemos laptops y computadoras de escritorio de todas las marcas (HP, Dell, Lenovo, ASUS, Acer, Apple Mac, armadas / gamer) tanto para usuarios domésticos como negocios y oficinas en Hermosillo."
+            "text": "En la gran mayoría de los casos no es necesario comprar un equipo nuevo: una actualización a disco de estado sólido (SSD) de alta velocidad, ampliación de memoria RAM y una limpieza profunda del inicio de Windows multiplican la rapidez de tu equipo con una inversión mucho menor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipos y marcas de computadoras atienden en Hermosillo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atendemos laptops y computadoras de escritorio de todas las marcas del mercado: HP, Dell, Lenovo, ASUS, Acer, Apple Mac, así como computadoras armadas para oficina, diseño y computadoras gamer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué situaciones aplica el soporte técnico remoto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El soporte remoto es una excelente alternativa para solucionar problemas de software, eliminación de publicidad molesta, configuración de impresoras, errores de programas o asesoría rápida sin que tengas que trasladar físicamente tu equipo."
           }
         },
         {
@@ -157,7 +182,7 @@ const schemaData = {
           "name": "¿Ofrecen garantía en las reparaciones?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí, ofrecemos garantía por escrito tanto en mano de obra como en refacciones instaladas, asegurando un servicio confiable con más de 25 años de experiencia técnica."
+            "text": "Sí. Todos los trabajos efectuados y las refacciones instaladas cuentan con garantía por escrito en taller para tu entera tranquilidad y respaldo."
           }
         }
       ]

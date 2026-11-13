@@ -1,0 +1,25 @@
+# Build and cache
+dist/
+dist - copia/
+.astro/
+.astro - copia/
+
+# Dependencies
+node_modules/
+node_modules - copia/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local reports, backups and temporary files
+INFORMES_GENTLE_AI/
+*_respaldo*
+* - copia*
+*.log
+*.patch
+
+# OS files
+.DS_Store
+Thumbs.db

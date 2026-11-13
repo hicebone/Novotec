@@ -3,12 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
 <Layout
   title="404: Página no encontrada | Novotec Hermosillo"
   description="La página que buscas no existe o ha sido movida. Regresa a la página principal de Novotec Hermosillo."
-  canonicalUrl="https://www.novotechhermosillo.com/404.html"
+  canonicalUrl="https://hicebone.github.io/Novotec/404.html"
   noindex={true}
 >
   <Header />
@@ -23,7 +27,7 @@ import Icon from '../components/Icon.astro';
         </p>
 
         <div class="not-found-actions">
-          <a href="/" class="btn btn-primary">
+          <a href={base} class="btn btn-primary">
             <span>Volver al inicio</span>
           </a>
           <a
@@ -96,8 +100,7 @@ import Icon from '../components/Icon.astro';
     color: var(--color-text-muted);
     line-height: 1.65;
     margin-bottom: 2.25rem;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
   }
 
   .not-found-actions {

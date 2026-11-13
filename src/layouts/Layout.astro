@@ -13,15 +13,15 @@ interface Props {
 }
 
 const {
-  title = "Reparación de Computadoras en Hermosillo | Laptops y PC - Novotec",
-  description = "Reparación profesional de computadoras y laptops en Hermosillo, Sonora. Diagnóstico honesto, formateo, recuperación de datos, virus y redes. ¡Cotiza rápido por WhatsApp!",
-  canonicalUrl = "https://www.novotechhermosillo.com/",
+  title = "Reparación de Computadoras en Hermosillo | Novotec",
+  description = "Reparación y mantenimiento de computadoras y laptops en Hermosillo, Sonora. Más de 25 años de experiencia. Optimización, eliminación de virus y soporte técnico.",
+  canonicalUrl = "https://hicebone.github.io/Novotec/",
   ogImage = "/imagenes/opt/reparacion-optimizada.webp",
   noindex = false,
   preloadLcpImage
 } = Astro.props;
 
-const siteUrl = "https://www.novotechhermosillo.com";
+const siteUrl = "https://hicebone.github.io/Novotec";
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -32,7 +32,8 @@ const resolveAsset = (path: string) => {
   return `${base}${clean}`;
 };
 
-const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+const cleanOg = ogImage.startsWith('/') ? ogImage : `/${ogImage}`;
+const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${cleanOg}`;
 ---
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ const fullOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="reparacion de computadoras hermosillo, reparacion de laptops hermosillo, soporte tecnico hermosillo, formateo de computadoras hermosillo, recuperacion de datos hermosillo, novotec hermosillo, mantenimiento de computadoras sonora, reparacion de pc hermosillo" />
+    <meta name="keywords" content="reparacion de computadoras en hermosillo, reparacion de laptops hermosillo, servicio tecnico de computadoras hermosillo, mantenimiento de computadoras hermosillo, computadoras lentas hermosillo, eliminacion de virus en computadoras, instalacion de windows hermosillo, soporte tecnico remoto computadoras, recuperacion de datos hermosillo, reparacion de pc hermosillo, optimizacion de laptops hermosillo, novotec hermosillo" />
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (

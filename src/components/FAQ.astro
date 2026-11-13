@@ -8,11 +8,19 @@ const faqs = [
   },
   {
     q: "¿Se pierden mis archivos o fotos al reparar o formatear?",
-    a: "No. En Novotec realizamos un respaldo preventivo de tus documentos, fotos y datos antes de realizar cualquier intervención en el sistema operativo o disco duro. Cuidamos tu privacidad y la integridad de tu información."
+    a: "No. En Novotec realizamos un respaldo preventivo estricto de tus documentos, fotos y datos personales antes de realizar cualquier intervención en el sistema operativo o almacenamiento. Cuidamos tu privacidad y la integridad de tu información."
   },
   {
-    q: "¿Qué tipos y marcas de computadoras atienden?",
-    a: "Atendemos computadoras de escritorio (PC) y laptops de todas las marcas del mercado: HP, Dell, Lenovo, ASUS, Acer, Apple Mac, así como computadoras ensambladas para diseño o computadoras gamer en Hermosillo."
+    q: "¿Qué puedo hacer si mi computadora o laptop está muy lenta?",
+    a: "En la gran mayoría de los casos no es necesario comprar un equipo nuevo: una actualización a disco de estado sólido (SSD) de alta velocidad, ampliación de memoria RAM y una limpieza profunda del inicio de Windows multiplican la rapidez de tu equipo con una inversión mucho menor."
+  },
+  {
+    q: "¿Qué tipos y marcas de computadoras atienden en Hermosillo?",
+    a: "Atendemos laptops y computadoras de escritorio de todas las marcas del mercado: HP, Dell, Lenovo, ASUS, Acer, Apple Mac, así como computadoras armadas para oficina, diseño y computadoras gamer."
+  },
+  {
+    q: "¿En qué situaciones aplica el soporte técnico remoto?",
+    a: "El soporte remoto es una excelente alternativa para solucionar problemas de software, eliminación de publicidad molesta, configuración de impresoras, errores de programas o asesoría rápida sin que tengas que trasladar físicamente tu equipo."
   },
   {
     q: "¿Ofrecen garantía en las reparaciones?",
@@ -21,7 +29,7 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="section section--alt" aria-labelledby="faq-title">
+<section id="faq" class="section section--alt">
   <div class="container faq-container">
     <div class="section-header">
       <span class="section-kicker">Preguntas Frecuentes</span>
@@ -127,7 +135,6 @@ const faqs = [
 
   .faq-answer p {
     margin: 0;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
   }
 </style>
