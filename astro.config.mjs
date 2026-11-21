@@ -3,8 +3,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://hicebone.github.io',
-  base: '/Novotec/',
+  site: 'https://novotec.mx',
+  base: '/',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404'),
