@@ -1,0 +1,118 @@
+---
+interface Props {
+  size?: number | string;
+  class?: string;
+  showCaption?: boolean;
+}
+
+const {
+  size = 64,
+  class: className = "",
+  showCaption = false
+} = Astro.props;
+---
+
+<div class={`brand-badge-container ${className}`}>
+  <!-- Emblema de Autor Novotec: La Computadora Gris y el Caracol de Alta Velocidad -->
+  <svg
+    class="brand-badge-svg"
+    width={size}
+    height={size}
+    viewBox="0 0 80 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="Emblema histórico de Novotec: Computadora gris y el caracol que recupera su máxima velocidad"
+    focusable="false"
+  >
+    <!-- Base y Monitor Gris de Taller (Chasis Metálico 25 Años) -->
+    <rect x="12" y="14" width="56" height="42" rx="4" fill="#334155" stroke="#64748b" stroke-width="2.5" />
+    <!-- Pantalla Interior de Diagnóstico -->
+    <rect x="18" y="20" width="44" height="28" rx="2" fill="#0f172a" />
+
+    <!-- Trazo de Pantalla de Frecuencia / Benchmark SSD -->
+    <path d="M22 34h8l3-6 4 12 3-8 4 4h10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Botón de Encendido y LED de Estado del Monitor -->
+    <circle cx="56" cy="50" r="1.75" fill="#10b981" />
+    <circle cx="61" cy="50" r="1.75" fill="#d97706" />
+
+    <!-- Pedestal y Base del Monitor -->
+    <path d="M34 56h12v4H34v-4z" fill="#475569" />
+    <path d="M26 60h28v3H26v-3z" fill="#334155" />
+
+    <!-- El Caracol de la Velocidad (Metáfora de Superación del Equipo Lento) -->
+    <!-- Cuerpo del Caracol en Cobalto/Ámbar -->
+    <g class="snail-mascot">
+      <!-- Cuerpo suave que avanza veloz -->
+      <path
+        d="M26 44c4-3 12-2 15 1 2 2 6 2 9 0"
+        stroke="#d97706"
+        stroke-width="2.5"
+        stroke-linecap="round"
+      />
+      <!-- Antenas con sensores de diagnóstico -->
+      <path d="M48 42l3-5M51 44l4-3" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" />
+      <circle cx="51.5" cy="36.5" r="1.5" fill="#d97706" />
+      <circle cx="55.5" cy="40.5" r="1.5" fill="#d97706" />
+
+      <!-- Concha Espiral de Circuito Integrado (Fibonacci / Procesador) -->
+      <circle cx="34" cy="38" r="8" fill="#1e293b" stroke="#d97706" stroke-width="2" />
+      <path
+        d="M34 32a6 6 0 0 1 6 6c0 3.3-2.7 6-6 6s-4-1.8-4-4 1.8-3 4-3"
+        fill="none"
+        stroke="#38bdf8"
+        stroke-width="1.8"
+        stroke-linecap="round"
+      />
+      <!-- Centro del Núcleo de Alta Velocidad -->
+      <circle cx="34" cy="38" r="1.5" fill="#10b981" />
+    </g>
+
+    <!-- Rayas de Velocidad Turbo (El fin del equipo lento) -->
+    <path d="M14 26h-4M12 32H7M15 38h-5" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" opacity="0.85" />
+  </svg>
+
+  {showCaption && (
+    <div class="brand-badge-caption">
+      <span class="badge-title">Emblema Novotec 25 Años</span>
+      <span class="badge-desc">Del Caracol a la Velocidad SSD</span>
+    </div>
+  )}
+</div>
+
+<style>
+  .brand-badge-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .brand-badge-svg {
+    display: block;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.25));
+  }
+
+  .brand-badge-caption {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .badge-title {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-copper-text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .badge-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-inverse-muted);
+    font-weight: var(--font-weight-medium);
+  }
+</style>

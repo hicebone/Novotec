@@ -1,35 +1,39 @@
 ---
 import Icon from './Icon.astro';
+import BrandBadge from './BrandBadge.astro';
 
 const trustItems = [
-  "Más de 25 años atendiendo problemas informáticos en Hermosillo.",
-  "Diagnóstico claro: te explicamos qué falla en palabras cotidianas.",
-  "Respaldo preventivo estricto de documentos, fotos y bases de datos.",
-  "Garantía por escrito tanto en mano de obra como en refacciones.",
-  "Atención a particulares, profesionistas, comercios y pequeñas oficinas.",
-  "Precios honestos y presupuestos autorizados antes de intervenir."
+  "Más de 25 años atendiendo fallas informáticas y de hardware en Hermosillo.",
+  "Diagnóstico claro: te explicamos qué tiene tu equipo en palabras cotidianas.",
+  "Respaldo preventivo estricto de documentos, fotos y bases de datos antes de intervenir.",
+  "Garantía formal por escrito tanto en mano de obra técnica como en refacciones.",
+  "Atención a familias, estudiantes, profesionistas, talleres y comercios locales.",
+  "Precios justos y presupuestos cerrados autorizados antes de ejecutar el trabajo."
 ];
 ---
 
-<section id="experiencia" class="section section--dark">
+<section id="experiencia" class="section section--dark experience-section">
   <div class="container experience-container">
     <div class="experience-content">
-      <span class="section-kicker">Trayectoria y Confianza</span>
+      <span class="section-kicker">
+        <Icon name="award" size={16} />
+        <span>Trayectoria y Confianza Comprobada</span>
+      </span>
       <h2 id="experiencia-title" class="section-title">
         Más de 25 años resolviendo problemas reales en Hermosillo
       </h2>
       <p class="section-description">
-        Iniciamos como un taller de cómputo en Hermosillo y nos mantenemos firmes con un principio elemental: soporte técnico formal, explicaciones transparentes y reparaciones bien hechas desde la primera vez.
+        Iniciamos como un taller de cómputo formal en Hermosillo y nos mantenemos firmes con un principio inquebrantable: soporte técnico serio, explicaciones honestas y reparaciones bien hechas desde la primera vez.
       </p>
 
-      <div class="stats-grid" aria-label="Cifras de experiencia">
+      <div class="stats-grid" aria-label="Cifras de experiencia y compromiso">
         <div class="stat-card">
           <span class="stat-num">25+</span>
-          <span class="stat-label">Años de experiencia</span>
+          <span class="stat-label">Años de oficio en Hermosillo</span>
         </div>
         <div class="stat-card">
           <span class="stat-num">100%</span>
-          <span class="stat-label">Diagnósticos honestos</span>
+          <span class="stat-label">Presupuestos autorizados</span>
         </div>
         <div class="stat-card">
           <span class="stat-num">24-48h</span>
@@ -39,22 +43,45 @@ const trustItems = [
     </div>
 
     <div class="experience-checklist-wrapper">
-      <h3 class="checklist-title">Compromisos de servicio Novotec</h3>
+      <div class="checklist-top">
+        <BrandBadge size={48} showCaption={true} />
+        <h3 class="checklist-title">Compromisos Oficiales de Taller Novotec</h3>
+      </div>
+
       <ul class="checklist" aria-label="Compromisos de calidad">
         {trustItems.map((item) => (
           <li class="checklist-item">
             <span class="checklist-icon" aria-hidden="true">
-              <Icon name="check" size={18} />
+              <Icon name="check" size={16} />
             </span>
             <span class="checklist-text">{item}</span>
           </li>
         ))}
       </ul>
+
+      <div class="checklist-footer">
+        <a
+          href="https://wa.me/526625085372?text=Hola%20Novotec%2C%20quisiera%20asesor%C3%ADa%20para%20llevar%20mi%20equipo%20a%20taller%20en%20Hermosillo."
+          class="btn btn-whatsapp checklist-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Consultar disponibilidad en taller por WhatsApp (+52 662 508 5372, abre en nueva pestaña)"
+        >
+          <Icon name="whatsapp" size={18} />
+          <span>Consultar disponibilidad en taller</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .experience-section {
+    background-color: var(--color-dark-bg);
+    border-top: 1px solid var(--color-dark-border);
+    border-bottom: 1px solid var(--color-dark-border);
+  }
+
   .experience-container {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -62,64 +89,86 @@ const trustItems = [
     align-items: center;
   }
 
+  .experience-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
     margin-top: 2.5rem;
+    width: 100%;
   }
 
   .stat-card {
     background-color: var(--color-dark-surface);
     border: 1px solid var(--color-dark-border);
-    border-radius: var(--radius-md);
-    padding: 1.25rem 1rem;
+    border-radius: var(--radius-sm);
+    padding: 1.35rem 1rem;
     text-align: center;
   }
 
   .stat-num {
     display: block;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    font-weight: var(--font-weight-extrabold);
-    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-copper);
     line-height: 1.1;
     margin-bottom: 0.35rem;
   }
 
   .stat-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--color-text-inverse-muted);
     font-weight: var(--font-weight-medium);
+    line-height: 1.3;
   }
 
   .experience-checklist-wrapper {
     background-color: var(--color-dark-surface);
     border: 1px solid var(--color-dark-border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     padding: 2.25rem;
     box-shadow: var(--shadow-lg);
   }
 
+  .checklist-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-dark-border);
+    margin-bottom: 1.5rem;
+  }
+
   .checklist-title {
-    font-size: 1.3rem;
+    font-family: var(--font-display);
+    font-size: 1.22rem;
     font-weight: var(--font-weight-bold);
     color: #ffffff;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--color-dark-border);
-    text-align: center;
+    text-align: left;
+    margin: 0;
   }
 
   .checklist {
-    display: grid;
-    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
   }
 
   .checklist-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.85rem;
+    gap: 0.75rem;
   }
 
   .checklist-icon {
@@ -128,27 +177,44 @@ const trustItems = [
     justify-content: center;
     width: 24px;
     height: 24px;
-    border-radius: 50%;
-    background-color: var(--color-primary);
-    color: #ffffff;
+    border-radius: var(--radius-xs);
+    background-color: rgba(5, 150, 105, 0.15);
+    color: var(--color-success);
+    border: 1px solid rgba(5, 150, 105, 0.35);
     flex-shrink: 0;
     margin-top: 0.15rem;
   }
 
   .checklist-text {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     color: var(--color-text-inverse-muted);
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
-  @media (max-width: 991px) {
+  .checklist-footer {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-dark-border);
+  }
+
+  .checklist-cta {
+    width: 100%;
+  }
+
+  @media (max-width: 992px) {
     .experience-container {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
 
     .stats-grid {
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
     }
   }
 </style>

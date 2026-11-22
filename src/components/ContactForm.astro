@@ -5,12 +5,15 @@ import Icon from './Icon.astro';
 <section id="contacto" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-kicker">Contacto Directo</span>
+      <span class="section-kicker">
+        <Icon name="phone" size={16} />
+        <span>Atención y Cotización Directa</span>
+      </span>
       <h2 id="contacto-title" class="section-title">
         Hablemos de tu equipo en Hermosillo
       </h2>
       <p class="section-description">
-        Completa el formulario y se abrirá WhatsApp con tu reporte estructurado listo para enviarnos. O contáctanos por teléfono directo.
+        Completa el formulario y se abrirá WhatsApp con tu reporte estructurado listo para enviarnos. O contáctanos por llamada directa a taller.
       </p>
     </div>
 
@@ -46,7 +49,7 @@ import Icon from './Icon.astro';
               class="info-link"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Escribir por WhatsApp a Novotec al +52 662 508 5372 (abre en nueva pestaña)"
+              aria-label="Iniciar Chat en WhatsApp con Novotec (+52 662 508 5372, abre en nueva pestaña)"
             >
               Iniciar Chat en WhatsApp
             </a>
@@ -65,7 +68,7 @@ import Icon from './Icon.astro';
               class="info-link"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Abrir ubicación de Hermosillo en Google Maps (abre en nueva pestaña)"
+              aria-label="Ver en Google Maps: Ubicación de Novotec en Hermosillo (abre en nueva pestaña)"
             >
               Ver en Google Maps
             </a>
@@ -283,11 +286,12 @@ import Icon from './Icon.astro';
   }
 
   .info-title {
+    font-family: var(--font-display);
     font-size: 1.15rem;
     font-weight: var(--font-weight-bold);
     color: var(--color-text-main);
     margin-bottom: 0.35rem;
-    text-align: center;
+    text-align: left;
   }
 
   .info-desc {
@@ -300,10 +304,11 @@ import Icon from './Icon.astro';
 
   .info-link {
     display: inline-block;
+    font-family: var(--font-mono);
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
     font-size: 0.98rem;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-xs);
     min-height: 36px;
     line-height: 36px;
   }
@@ -316,9 +321,9 @@ import Icon from './Icon.astro';
   .form-wrapper {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: 2.5rem;
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-card);
   }
 
   .form-grid {
@@ -395,19 +400,30 @@ import Icon from './Icon.astro';
   .form-checkbox-wrapper {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .form-checkbox {
-    width: 22px;
-    height: 22px;
-    margin-top: 0.2rem;
-    flex-shrink: 0;
+    gap: 0.85rem;
+    min-height: 48px;
+    padding: 0.35rem 0;
     cursor: pointer;
   }
 
+  .form-checkbox {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+  }
+
+  .form-checkbox:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
   .form-checkbox-label {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     color: var(--color-text-main);
     cursor: pointer;
     line-height: 1.5;

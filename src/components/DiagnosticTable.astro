@@ -1,0 +1,615 @@
+---
+import Icon from './Icon.astro';
+import BrandBadge from './BrandBadge.astro';
+
+const symptoms = [
+  {
+    id: "lenta",
+    badge: "Falla Más Común",
+    title: "Computadora lenta / Se arrastra como caracol",
+    shortDesc: "Tarda minutos en arrancar, programas se congelan y el equipo no responde con agilidad.",
+    cause: "Disco duro mecánico (HDD) con desgaste, saturación de inicio de Windows o falta de memoria RAM.",
+    solution: "Actualización a disco sólido SSD de alta velocidad + Respaldo seguro de archivos + Optimización integral de Windows.",
+    time: "24 a 48 horas",
+    warranty: "Garantía por escrito en taller",
+    whatsappText: "Hola Novotec, mi computadora está muy lenta (parece caracol). Quisiera cotizar actualización a disco sólido SSD y optimización en Hermosillo.",
+    phone: "526625085372"
+  },
+  {
+    id: "calor",
+    badge: "Clima Hermosillo",
+    title: "Se calienta demasiado, ventilador ruidoso o se apaga sola",
+    shortDesc: "Chasis hirviendo, ventilador zumbando al máximo y apagones súbitos al trabajar.",
+    cause: "Ductos de ventilación tapados de polvo y resequedad de pasta térmica por las altas temperaturas de Sonora.",
+    solution: "Mantenimiento térmico profundo, limpieza de disipador y ventilador, aplicación de pasta térmica de alta conductividad y prueba de estrés.",
+    time: "24 horas",
+    warranty: "Garantía por escrito en taller",
+    whatsappText: "Hola Novotec, mi equipo se calienta mucho y el ventilador hace mucho ruido. Me interesa cotizar mantenimiento térmico en Hermosillo.",
+    phone: "526625085372"
+  },
+  {
+    id: "virus",
+    badge: "Seguridad y Privacidad",
+    title: "Virus, publicidad invasiva o navegador secuestrado",
+    shortDesc: "Aparecen ventanas emergentes extrañas, avisos de infección falsa o cambios no autorizados.",
+    cause: "Infección por adware, troyanos o extensiones maliciosas instaladas por descuido.",
+    solution: "Desinfección forense profunda sin formatear cuando sea técnicamente posible, protegiendo tus fotos, documentos y contraseñas.",
+    time: "24 horas",
+    warranty: "Garantía de limpieza y protección",
+    whatsappText: "Hola Novotec, mi computadora tiene virus y publicidad sospechosa. Necesito desinfección protegiendo mis archivos personales.",
+    phone: "526625085372"
+  },
+  {
+    id: "pantalla",
+    badge: "Diagnóstico Electrónico",
+    title: "Laptop no da video, pantalla rota o parpadeante",
+    shortDesc: "Las luces encienden pero la pantalla queda en negro, o parpadea al mover la tapa.",
+    cause: "Falla de display LCD, flex de video dañado, bisagra fracturada o problema de memoria RAM / tarjeta madre.",
+    solution: "Diagnóstico electrónico en banco de trabajo, cambio de pantalla o flex de video con refacciones compatibles y calibradas.",
+    time: "24 a 48 horas",
+    warranty: "Garantía por escrito en mano de obra y refacción",
+    whatsappText: "Hola Novotec, la pantalla de mi laptop no da imagen o está rota. Quisiera cotizar diagnóstico y reparación en Hermosillo.",
+    phone: "526625085372"
+  },
+  {
+    id: "archivos",
+    badge: "Rescate Confidencial",
+    title: "Archivos borrados, memoria USB ilegible o disco con fallas",
+    shortDesc: "Windows dice que debes formatear el disco, hace sonidos de clic o se perdieron fotos importantes.",
+    cause: "Corrupción lógica de partición, sectores defectuosos o daño electromecánico de la unidad.",
+    solution: "Extracción y rescate de documentos, fotografías y carpetas valiosas con estricta confidencialidad.",
+    time: "Según volumen de datos",
+    warranty: "Confidencialidad absoluta y revisión previa",
+    whatsappText: "Hola Novotec, tengo un disco o memoria dañada con archivos importantes que necesito recuperar. ¿Podrían asesorarme?",
+    phone: "526625085372"
+  },
+  {
+    id: "software",
+    badge: "Sistemas a Medida",
+    title: "Software a tu medida y automatización de negocios",
+    shortDesc: "Necesitas un sistema de inventario, punto de venta o solución informática para tu comercio.",
+    cause: "Procesos manuales o sistemas genéricos que no se adaptan al flujo operativo de tu negocio.",
+    solution: "Desarrollo de software a tu medida, automatización y asesoría especializada con canal de soporte directo.",
+    time: "Según alcance técnico",
+    warranty: "Acompañamiento y soporte continuo",
+    whatsappText: "Hola Novotec, me interesa cotizar una solución de software a la medida para mi negocio en Hermosillo.",
+    phone: "526861239845"
+  }
+];
+---
+
+<section id="diagnostico" class="section diagnostic-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-kicker">
+        <Icon name="award" size={16} />
+        <span>Triage Rápido de Taller</span>
+      </span>
+      <h2 id="diagnostico-title" class="section-title">
+        ¿Qué problema o síntoma presenta tu equipo hoy?
+      </h2>
+      <p class="section-description">
+        Haz clic en la falla de tu computadora o laptop para conocer el diagnóstico técnico preliminar, tiempos promedio de entrega y solicitar presupuesto directo por WhatsApp.
+      </p>
+    </div>
+
+    <div class="diagnostic-grid">
+      <!-- Selector de Síntomas Accesible (Lista interactiva de botones) -->
+      <div
+        class="symptoms-list"
+        role="tablist"
+        aria-label="Selector de fallas y síntomas comunes en computadoras"
+      >
+        {symptoms.map((s, idx) => (
+          <button
+            type="button"
+            class={`symptom-card ${idx === 0 ? "is-active" : ""}`}
+            id={`tab-${s.id}`}
+            role="tab"
+            tabindex={idx === 0 ? "0" : "-1"}
+            aria-selected={idx === 0 ? "true" : "false"}
+            aria-controls={`panel-${s.id}`}
+            data-target={s.id}
+          >
+            <div class="symptom-header">
+              <span class="symptom-badge">{s.badge}</span>
+              {s.id === "lenta" && (
+                <span class="snail-mini-icon" aria-hidden="true" title="El caracol de la computadora lenta">
+                  🐌
+                </span>
+              )}
+            </div>
+            <span class="symptom-title">{s.title}</span>
+            <p class="symptom-short">{s.shortDesc}</p>
+            <span class="symptom-action" aria-hidden="true">
+              <span>Ver dictamen y solución</span>
+              <Icon name="chevron-down" size={18} />
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <!-- Panel de Dictamen y Solución en Vivo (Región accesible) -->
+      <aside class="diagnostic-workbench" aria-label="Dictamen técnico y recomendación de taller">
+        <div class="workbench-header">
+          <div class="workbench-status-pill">
+            <span class="pulse-indicator" aria-hidden="true"></span>
+            <span>Mesa de Diagnóstico Novotec Hermosillo</span>
+          </div>
+          <span class="workbench-tag">25+ Años de Oficio</span>
+        </div>
+
+        {symptoms.map((s, idx) => (
+          <div
+            id={`panel-${s.id}`}
+            class={`workbench-panel ${idx === 0 ? "is-active" : ""}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${s.id}`}
+            tabindex="0"
+            hidden={idx !== 0}
+          >
+            <div class="panel-badge-row">
+              <span class="panel-type-badge">{s.badge}</span>
+              {s.id === "lenta" && (
+                <BrandBadge size={44} showCaption={false} />
+              )}
+            </div>
+
+            <h3 class="panel-title">{s.title}</h3>
+
+            <div class="panel-card-box">
+              <div class="panel-field">
+                <span class="field-label">
+                  <Icon name="shield" size={18} />
+                  <span>Causa técnica más común:</span>
+                </span>
+                <p class="field-desc">{s.cause}</p>
+              </div>
+
+              <div class="panel-field panel-field--highlight">
+                <span class="field-label">
+                  <Icon name="check" size={18} />
+                  <span>Solución profesional en taller Novotec:</span>
+                </span>
+                <p class="field-desc">{s.solution}</p>
+              </div>
+            </div>
+
+            <div class="panel-specs-grid">
+              <div class="spec-cell">
+                <span class="spec-label">Tiempo de diagnóstico:</span>
+                <span class="spec-val spec-val--time">{s.time}</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-label">Garantía formal:</span>
+                <span class="spec-val spec-val--warranty">{s.warranty}</span>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <a
+                href={`https://wa.me/${s.phone}?text=${encodeURIComponent(s.whatsappText)}`}
+                class="btn btn-whatsapp panel-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Cotizar esta falla por WhatsApp: ${s.title} con Novotec (+52 ${s.phone.slice(2, 5)} ${s.phone.slice(5, 8)} ${s.phone.slice(8)}, abre en nueva pestaña)`}
+              >
+                <Icon name="whatsapp" size={20} />
+                <span>Cotizar esta falla por WhatsApp</span>
+              </a>
+
+              <a href="#contacto" class="btn btn-secondary panel-cta-sec">
+                <span>Llenar reporte detallado</span>
+              </a>
+            </div>
+          </div>
+        ))}
+
+        <!-- Región en vivo para anuncio de lectores de pantalla -->
+        <div id="diagnosticLiveStatus" class="sr-only" role="status" aria-live="polite"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .diagnostic-section {
+    background-color: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .diagnostic-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.25rem;
+    align-items: flex-start;
+  }
+
+  /* Lista de síntomas */
+  .symptoms-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+  }
+
+  .symptom-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 190px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .symptom-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .symptom-card.is-active {
+    border-color: var(--color-primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px var(--color-primary), var(--shadow-md);
+    position: relative;
+  }
+
+  .symptom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+  }
+
+  .symptom-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-copper);
+    background-color: var(--color-copper-light);
+    border: 1px solid var(--color-copper-border);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .snail-mini-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  .symptom-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .symptom-short {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .symptom-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-top: auto;
+  }
+
+  /* Mesa de Diagnóstico (Panel derecho de taller) */
+  .diagnostic-workbench {
+    background-color: var(--color-dark-bg);
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    color: var(--color-text-inverse);
+    position: sticky;
+    top: 6rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .workbench-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-dark-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .workbench-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-inverse-muted);
+  }
+
+  .pulse-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-success);
+    box-shadow: 0 0 10px var(--color-success);
+  }
+
+  .workbench-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-copper-text-dark);
+    background-color: rgba(217, 119, 6, 0.15);
+    border: 1px solid rgba(217, 119, 6, 0.35);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-xs);
+  }
+
+  .workbench-panel {
+    display: none;
+  }
+
+  .workbench-panel[hidden] {
+    display: none !important;
+  }
+
+  .workbench-panel.is-active:not([hidden]) {
+    display: block;
+    animation: panelFadeIn 200ms ease;
+  }
+
+  @keyframes panelFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .panel-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .panel-type-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-focus-inverse);
+    background-color: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-xs);
+  }
+
+  .panel-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .panel-card-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .panel-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .panel-field--highlight {
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .field-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-copper-text-dark);
+  }
+
+  .panel-field--highlight .field-label {
+    color: #38bdf8;
+  }
+
+  .field-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-inverse-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .panel-specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .spec-cell {
+    background-color: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem;
+  }
+
+  .spec-label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--color-text-inverse-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .spec-val {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .spec-val--time {
+    color: var(--color-copper-text-dark);
+  }
+
+  .spec-val--warranty {
+    color: #10b981;
+  }
+
+  .panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .panel-cta {
+    width: 100%;
+  }
+
+  .panel-cta-sec {
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-text-inverse);
+    border-color: var(--color-dark-border);
+  }
+
+  .panel-cta-sec:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  @media (max-width: 992px) {
+    .diagnostic-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .diagnostic-workbench {
+      position: static;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .panel-specs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .workbench-panel.is-active {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Manejo accesible del selector de la Mesa de Diagnóstico Novotec (W3C WAI-ARIA APG Tabs Pattern)
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.symptom-card');
+  const panels = document.querySelectorAll<HTMLElement>('.workbench-panel');
+  const liveStatus = document.getElementById('diagnosticLiveStatus');
+
+  const activateTab = (tab: HTMLButtonElement, focus = true) => {
+    const targetId = tab.getAttribute('data-target');
+    if (!targetId) return;
+
+    // Actualizar estados visuales, ARIA y roving tabindex en botones
+    tabs.forEach((t) => {
+      const isSelected = t === tab;
+      t.classList.toggle('is-active', isSelected);
+      t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      t.setAttribute('tabindex', isSelected ? '0' : '-1');
+    });
+
+    // Actualizar paneles: sincronizar clase y atributo nativo booleano hidden
+    panels.forEach((p) => {
+      const isTarget = p.id === `panel-${targetId}`;
+      p.classList.toggle('is-active', isTarget);
+      if (isTarget) {
+        p.removeAttribute('hidden');
+      } else {
+        p.setAttribute('hidden', '');
+      }
+    });
+
+    if (focus) {
+      tab.focus();
+    }
+
+    // Notificar a usuarios de NVDA / TalkBack mediante la región en vivo
+    if (liveStatus) {
+      const titleEl = tab.querySelector('.symptom-title');
+      const titleText = titleEl ? titleEl.textContent : targetId;
+      liveStatus.textContent = `Se ha seleccionado la falla: ${titleText}. Panel de diagnóstico actualizado.`;
+    }
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab, false));
+
+    // Navegación accesible por teclado según W3C WAI-ARIA APG
+    tab.addEventListener('keydown', (e: KeyboardEvent) => {
+      const tabArray = Array.from(tabs);
+      let targetIndex = -1;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        targetIndex = (index + 1) % tabArray.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        targetIndex = (index - 1 + tabArray.length) % tabArray.length;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        targetIndex = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        targetIndex = tabArray.length - 1;
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateTab(tab, true);
+      }
+
+      if (targetIndex >= 0) {
+        activateTab(tabArray[targetIndex], true);
+      }
+    });
+  });
+</script>

@@ -1,40 +1,44 @@
 ---
 import Icon from './Icon.astro';
+import BrandBadge from './BrandBadge.astro';
 ---
 
 <footer class="site-footer" aria-label="Pie de página">
   <div class="container">
     <div class="footer-main">
       <div class="footer-brand-col">
-        <span class="footer-brand-name">Novotec Hermosillo</span>
+        <div class="footer-badge-wrap">
+          <BrandBadge size={40} showCaption={false} />
+          <span class="footer-brand-name">Novotec Hermosillo</span>
+        </div>
         <p class="footer-tagline">
-          Servicio técnico formal, honesto y especializado en laptops, PCs de escritorio, rescate de archivos y redes en Hermosillo, Sonora.
+          Taller formal de soporte y reparación especializado en laptops, computadoras de escritorio, optimización contra lentitud, rescate de archivos y redes en Hermosillo, Sonora. Más de 25 años de oficio técnico comprobado.
         </p>
-        <div class="footer-social" aria-label="Canales de contacto y redes sociales">
+        <div class="footer-social" aria-label="Canales oficiales de contacto y redes">
           <a
             href="tel:+526625085372"
             class="social-btn"
-            aria-label="Llamar al taller Novotec Hermosillo al +52 662 508 5372"
+            aria-label="Llamar directamente al taller Novotec Hermosillo al +52 662 508 5372"
           >
-            <Icon name="phone" size={20} />
+            <Icon name="phone" size={18} />
           </a>
           <a
             href="https://wa.me/526625085372"
-            class="social-btn"
+            class="social-btn social-btn--wa"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Contactar a Novotec por WhatsApp (abre en nueva pestaña)"
+            aria-label="Contactar a Novotec por WhatsApp al +52 662 508 5372 (abre en nueva pestaña)"
           >
-            <Icon name="whatsapp" size={20} />
+            <Icon name="whatsapp" size={18} />
           </a>
           <a
             href="https://facebook.com/elnovotech"
             class="social-btn"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Página de Facebook oficial de Novotec (abre en nueva pestaña)"
+            aria-label="Página oficial de Facebook de Novotec (abre en nueva pestaña)"
           >
-            <Icon name="facebook" size={20} />
+            <Icon name="facebook" size={18} />
           </a>
         </div>
       </div>
@@ -43,7 +47,8 @@ import Icon from './Icon.astro';
         <h3 class="footer-heading">Navegación</h3>
         <ul class="footer-nav-list">
           <li><a href="#inicio" class="footer-link">Inicio</a></li>
-          <li><a href="#servicios" class="footer-link">Servicios de Soporte</a></li>
+          <li><a href="#diagnostico" class="footer-link footer-link--highlight">Mesa de Diagnóstico</a></li>
+          <li><a href="#servicios" class="footer-link">Servicios de Taller</a></li>
           <li><a href="#proceso" class="footer-link">Cómo Trabajamos</a></li>
           <li><a href="#experiencia" class="footer-link">Trayectoria y Garantía</a></li>
           <li><a href="#faq" class="footer-link">Preguntas Frecuentes</a></li>
@@ -52,16 +57,19 @@ import Icon from './Icon.astro';
       </nav>
 
       <div class="footer-hours-col">
-        <h3 class="footer-heading">Horario y Ubicación</h3>
+        <h3 class="footer-heading">Horario y Taller</h3>
         <p class="footer-info-text">
-          <strong>Taller en:</strong> Hermosillo, Sonora, México
+          <strong>Ubicación:</strong> Hermosillo, Sonora, México
         </p>
         <p class="footer-info-text">
           <strong>Lunes a Viernes:</strong> 9:00 am - 6:00 pm<br />
           <strong>Sábados:</strong> 9:00 am - 2:00 pm
         </p>
         <p class="footer-info-text">
-          <strong>Teléfono:</strong> <a href="tel:+526625085372" class="footer-link footer-link--inline">+52 662 508 5372</a>
+          <strong>Teléfono oficial:</strong> <a href="tel:+526625085372" class="footer-link footer-link--inline">+52 662 508 5372</a>
+        </p>
+        <p class="footer-info-text">
+          <strong>Software a medida:</strong> <a href="https://wa.me/526861239845" class="footer-link footer-link--inline" target="_blank" rel="noopener noreferrer">+52 686 123 9845</a>
         </p>
       </div>
     </div>
@@ -93,79 +101,114 @@ import Icon from './Icon.astro';
     border-bottom: 1px solid var(--color-dark-border);
   }
 
+  .footer-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
   .footer-brand-name {
     display: block;
-    font-size: 1.45rem;
-    font-weight: var(--font-weight-extrabold);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-bold);
     color: #ffffff;
-    margin-bottom: 0.85rem;
+    letter-spacing: -0.01em;
   }
 
   .footer-tagline {
-    font-size: 0.98rem;
-    line-height: 1.65;
+    font-size: 0.95rem;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
-    max-width: 28rem;
+    color: var(--color-text-inverse-muted);
+    max-width: 440px;
+    text-align: left;
   }
 
   .footer-social {
     display: flex;
-    gap: 0.85rem;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .social-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-xs);
     background-color: var(--color-dark-surface);
-    color: #ffffff;
     border: 1px solid var(--color-dark-border);
-    transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
   }
 
   .social-btn:hover {
-    transform: translateY(-2px);
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: #ffffff;
   }
 
+  .social-btn--wa:hover {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+  }
+
   .footer-heading {
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
     font-weight: var(--font-weight-bold);
-    color: #ffffff;
+    color: var(--color-copper-text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     margin-bottom: 1.25rem;
+    text-align: left;
   }
 
   .footer-nav-list {
-    display: grid;
-    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
   }
 
   .footer-link {
-    font-size: 0.95rem;
     color: var(--color-text-inverse-muted);
-    border-radius: var(--radius-sm);
-    display: inline-block;
+    text-decoration: none;
+    font-size: 0.95rem;
     transition: color var(--transition-fast);
+    display: inline-block;
+    padding: 0.15rem 0;
   }
 
   .footer-link:hover {
-    color: var(--color-accent);
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .footer-link--highlight {
+    color: #38bdf8;
+    font-weight: var(--font-weight-medium);
   }
 
   .footer-link--inline {
     display: inline;
-    text-decoration: underline;
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-bold);
   }
 
   .footer-info-text {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.6;
     margin-bottom: 0.85rem;
+    color: var(--color-text-inverse-muted);
+    text-align: left;
   }
 
   .footer-info-text strong {
@@ -174,24 +217,27 @@ import Icon from './Icon.astro';
 
   .footer-bottom {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
     padding-top: 2rem;
-    font-size: 0.88rem;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .footer-copy {
+    font-size: 0.88rem;
+    color: var(--color-text-inverse-muted);
     margin: 0;
   }
 
   .footer-a11y-badge {
+    font-size: 0.85rem;
+    color: var(--color-copper-text-dark);
     margin: 0;
-    color: #a7c8ed;
+    font-weight: var(--font-weight-medium);
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 900px) {
     .footer-main {
       grid-template-columns: 1fr;
       gap: 2.5rem;
@@ -199,7 +245,7 @@ import Icon from './Icon.astro';
 
     .footer-bottom {
       flex-direction: column;
-      text-align: center;
+      align-items: flex-start;
     }
   }
 </style>

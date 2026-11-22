@@ -9,18 +9,25 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
 
 <header class="site-header" id="cabecera">
   <div class="container header-container">
-    <a href="#inicio" class="brand-link" aria-label="Novotec Hermosillo - Ir a inicio">
+    <!-- Logotipo y Marca Oficial Novotec Hermosillo -->
+    <a href="#inicio" class="brand-link">
       <img
         src={logoSrc}
-        alt="Novotec Hermosillo"
+        alt=""
         class="brand-logo"
         width="160"
         height="69"
         loading="eager"
         decoding="async"
+        aria-hidden="true"
       />
+      <div class="brand-text-block">
+        <span class="brand-title">Novotec</span>
+        <span class="brand-subtitle">Hermosillo · 25+ Años</span>
+      </div>
     </a>
 
+    <!-- Botón Menú Móvil Accesible -->
     <button
       type="button"
       class="nav-toggle"
@@ -29,28 +36,41 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
       aria-controls="navMenu"
       aria-label="Abrir menú de navegación"
     >
-      <span class="icon-open"><Icon name="menu" size={28} /></span>
-      <span class="icon-close"><Icon name="close" size={28} /></span>
+      <span class="icon-open"><Icon name="menu" size={26} /></span>
+      <span class="icon-close"><Icon name="close" size={26} /></span>
     </button>
 
+    <!-- Navegación Principal -->
     <nav class="nav-shell" id="navShell" aria-label="Navegación principal">
       <ul class="nav-list" id="navMenu">
         <li><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li><a class="nav-link nav-link--highlight" href="#diagnostico">Diagnóstico</a></li>
         <li><a class="nav-link" href="#servicios">Servicios</a></li>
         <li><a class="nav-link" href="#proceso">Cómo Trabajamos</a></li>
         <li><a class="nav-link" href="#experiencia">Experiencia</a></li>
         <li><a class="nav-link" href="#faq">Preguntas</a></li>
         <li><a class="nav-link nav-link--contact" href="#contacto">Contacto</a></li>
-        <li class="nav-item-cta">
+
+        <!-- Accesos Directos de Taller en Cabecera -->
+        <li class="nav-item-actions">
+          <a
+            class="header-phone-btn"
+            href="tel:+526625085372"
+            aria-label="Llamar directamente al taller Novotec al +52 662 508 5372"
+          >
+            <Icon name="phone" size={17} />
+            <span class="phone-number">662 508 5372</span>
+          </a>
+
           <a
             class="btn btn-whatsapp header-cta"
-            href="https://wa.me/526625085372"
+            href="https://wa.me/526625085372?text=Hola%20Novotec%2C%20quisiera%20cotizar%20un%20servicio%20técnico%20para%20mi%20computadora."
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Contactar a Novotec por WhatsApp (abre en nueva pestaña)"
+            aria-label="WhatsApp: Contactar a Novotec al +52 662 508 5372 (abre en nueva pestaña)"
           >
             <Icon name="whatsapp" size={18} />
-            <span>Cotizar</span>
+            <span>WhatsApp</span>
           </a>
         </li>
       </ul>
@@ -63,11 +83,11 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgba(7, 17, 31, 0.94);
+    background-color: rgba(11, 15, 23, 0.95);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--color-dark-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   }
 
   .header-container {
@@ -82,15 +102,40 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
   .brand-link {
     display: flex;
     align-items: center;
-    border-radius: var(--radius-sm);
+    gap: 0.85rem;
+    text-decoration: none;
+    border-radius: var(--radius-xs);
   }
 
   .brand-logo {
     display: block;
     width: auto;
-    height: 48px;
-    max-width: 220px;
+    height: 44px;
+    max-width: 150px;
     object-fit: contain;
+  }
+
+  .brand-text-block {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .brand-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-copper-text-dark);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .nav-shell {
@@ -101,35 +146,72 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
   .nav-list {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-link {
     display: inline-flex;
     align-items: center;
-    padding: 0.6rem 0.95rem;
-    font-size: 0.95rem;
-    font-weight: var(--font-weight-semibold);
-    color: #ffffff;
-    border-radius: var(--radius-full);
+    padding: 0.55rem 0.85rem;
+    font-size: 0.92rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-inverse-muted);
+    text-decoration: none;
+    border-radius: var(--radius-xs);
     transition: color var(--transition-fast), background-color var(--transition-fast);
   }
 
   .nav-link:hover {
-    color: var(--color-accent);
-    background-color: rgba(57, 160, 255, 0.12);
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-link--highlight {
+    color: #38bdf8;
+    font-weight: var(--font-weight-semibold);
   }
 
   .nav-link--contact {
-    color: var(--color-accent);
-    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .nav-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-left: 0.75rem;
+  }
+
+  .header-phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    border: 1px solid var(--color-dark-border);
+    border-radius: var(--radius-xs);
+    background-color: var(--color-dark-surface);
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .header-phone-btn:hover {
+    border-color: var(--color-copper);
+    color: var(--color-copper);
+    background-color: var(--color-dark-surface-raised);
   }
 
   .header-cta {
     min-height: 40px;
-    padding: 0.5rem 1.1rem;
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.88rem;
+    border-radius: var(--radius-xs);
   }
 
   .nav-toggle {
@@ -138,14 +220,21 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
     justify-content: center;
     width: 48px;
     height: 48px;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-dark-border);
     color: #ffffff;
-    background-color: rgba(14, 27, 45, 0.85);
+    background-color: var(--color-dark-surface);
+    cursor: pointer;
   }
 
   .nav-toggle .icon-close {
     display: none;
+  }
+
+  @media (max-width: 1080px) {
+    .phone-number {
+      display: none;
+    }
   }
 
   @media (max-width: 991px) {
@@ -158,8 +247,8 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
       top: 100%;
       left: 0;
       right: 0;
-      background-color: #07111f;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background-color: var(--color-dark-bg);
+      border-bottom: 1px solid var(--color-dark-border);
       box-shadow: var(--shadow-lg);
       padding: 1.25rem 1.5rem;
       display: none;
@@ -186,29 +275,54 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
     .nav-link {
       padding: 0.75rem 1rem;
       width: 100%;
-      border-radius: var(--radius-md);
+      font-size: 1rem;
     }
 
-    .nav-item-cta {
-      margin-top: 0.5rem;
+    .nav-item-actions {
+      flex-direction: column;
+      margin-left: 0;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--color-dark-border);
+      gap: 0.75rem;
     }
 
+    .header-phone-btn,
     .header-cta {
       width: 100%;
-      margin-left: 0;
+      justify-content: center;
+    }
+
+    .phone-number {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-logo {
+      height: 34px;
+      max-width: 95px;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+    }
+
+    .brand-subtitle {
+      font-size: 0.65rem;
     }
   }
 </style>
 
 <script>
-  // Script accesible y sin dependencias para el menú de navegación móvil
+  // Control accesible del menú móvil (NVDA, TalkBack y teclado)
   const toggleBtn = document.getElementById('navToggle');
   const navShell = document.getElementById('navShell');
-  const navLinks = document.querySelectorAll('.nav-link, .header-cta');
+  const navLinks = document.querySelectorAll('.nav-link, .header-cta, .header-phone-btn');
 
   if (toggleBtn && navShell) {
     const toggleMenu = (open?: boolean) => {
-      const isExpanded = open ?? (toggleBtn.getAttribute('aria-expanded') === 'true');
+      const isExpanded = open !== undefined ? open : (toggleBtn.getAttribute('aria-expanded') === 'true');
       const newState = !isExpanded;
       toggleBtn.setAttribute('aria-expanded', String(newState));
       toggleBtn.setAttribute('aria-label', newState ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
@@ -217,19 +331,19 @@ const logoSrc = `${base}imagenes/logo-optimized.png`;
 
     toggleBtn.addEventListener('click', () => toggleMenu());
 
-    // Cerrar al pulsar Escape
+    // Cerrar al presionar Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && toggleBtn.getAttribute('aria-expanded') === 'true') {
-        toggleMenu(true);
+        toggleMenu(false);
         toggleBtn.focus();
       }
     });
 
-    // Cerrar al hacer clic en un enlace de navegación
+    // Cerrar al seleccionar un enlace
     navLinks.forEach((link) => {
       link.addEventListener('click', () => {
         if (toggleBtn.getAttribute('aria-expanded') === 'true') {
-          toggleMenu(true);
+          toggleMenu(false);
         }
       });
     });

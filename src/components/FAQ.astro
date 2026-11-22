@@ -11,7 +11,7 @@ const faqs = [
     a: "No. En Novotec realizamos un respaldo preventivo estricto de tus documentos, fotos y datos personales antes de realizar cualquier intervención en el sistema operativo o almacenamiento. Cuidamos tu privacidad y la integridad de tu información."
   },
   {
-    q: "¿Qué puedo hacer si mi computadora o laptop está muy lenta?",
+    q: "¿Qué puedo hacer si mi computadora o laptop está muy lenta (parece caracol)?",
     a: "En la gran mayoría de los casos no es necesario comprar un equipo nuevo: una actualización a disco de estado sólido (SSD) de alta velocidad, ampliación de memoria RAM y una limpieza profunda del inicio de Windows multiplican la rapidez de tu equipo con una inversión mucho menor."
   },
   {
@@ -29,15 +29,18 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="section section--alt">
+<section id="faq" class="section faq-section">
   <div class="container faq-container">
     <div class="section-header">
-      <span class="section-kicker">Preguntas Frecuentes</span>
+      <span class="section-kicker">
+        <Icon name="award" size={16} />
+        <span>Preguntas Frecuentes</span>
+      </span>
       <h2 id="faq-title" class="section-title">
-        Dudas habituales sobre nuestro servicio
+        Dudas habituales sobre nuestro taller y servicio
       </h2>
       <p class="section-description">
-        Respuestas directas sobre tiempos, respaldos y garantías para tu computadora en Hermosillo.
+        Respuestas directas sobre tiempos de entrega, respaldo de información y garantías para tu computadora en Hermosillo.
       </p>
     </div>
 
@@ -60,12 +63,17 @@ const faqs = [
 </section>
 
 <style>
+  .faq-section {
+    background-color: var(--color-bg);
+  }
+
   .faq-container {
-    max-width: 860px;
+    max-width: 880px;
   }
 
   .faq-list {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 1.25rem;
   }
 
@@ -73,7 +81,7 @@ const faqs = [
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   }
@@ -89,6 +97,7 @@ const faqs = [
     justify-content: space-between;
     gap: 1.25rem;
     padding: 1.35rem 1.6rem;
+    font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: var(--font-weight-bold);
     color: var(--color-text-main);
@@ -103,6 +112,7 @@ const faqs = [
 
   .faq-summary:hover {
     color: var(--color-primary);
+    background-color: var(--color-primary-light);
   }
 
   .faq-icon {
@@ -111,11 +121,11 @@ const faqs = [
     justify-content: center;
     width: 32px;
     height: 32px;
-    border-radius: 50%;
+    border-radius: var(--radius-xs);
     background-color: var(--color-surface-alt);
     color: var(--color-primary);
     flex-shrink: 0;
-    transition: transform 200ms ease, background-color 200ms ease;
+    transition: transform var(--transition-fast);
   }
 
   .faq-item[open] .faq-icon {
@@ -126,14 +136,14 @@ const faqs = [
 
   .faq-answer {
     padding: 0 1.6rem 1.5rem 1.6rem;
-    font-size: 1.02rem;
-    color: var(--color-text-muted);
-    line-height: 1.7;
     border-top: 1px solid var(--color-border-subtle);
     padding-top: 1.25rem;
   }
 
   .faq-answer p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
     margin: 0;
     text-align: left;
   }
